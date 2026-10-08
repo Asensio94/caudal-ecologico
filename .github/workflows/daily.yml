@@ -1,0 +1,74 @@
+name: Caudal diario
+
+# Once a day: re-read the last week of flows (the SAIH corrects provisional data for a
+# few days), compare with the minimums and publish the page. 07:15 UTC leaves the
+# previous local day complete in every basin.
+on:
+  schedule:
+    - cron: "15 7 * * *"
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "Days to (re)fetch"
+        default: "7"
+
+permissions:
+  contents: write           # commit the daily series and publish gh-pages
+
+concurrency:
+  group: daily
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python -m pytest -q
+
+      # The plan is consolidated text that can be amended: re-read it on the 1st.
+      - name: Monthly plan refresh
+        run: |
+          if [ "$(date -u +%d)" = "01" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            python -m caudal.cli plan
+          fi
+
+      - name: Fetch flows and render the page
+        run: |
+          python -m caudal.cli fetch --days "${{ github.event.inputs.days || '7' }}"
+          python -m caudal.cli page
+
+      - name: Commit the series
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then
+            echo "Nothing new."
+          else
+            git commit -m "Caudales al $(date -u +%Y-%m-%d)"
+            git pull --rebase --autostash origin main
+            git push origin HEAD:main
+          fi
+
+      # gh-pages is a single orphan commit replaced every day: the page history adds
+      # nothing, the series it comes from are versioned on main.
+      - name: Publish
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          rm -rf publish && mkdir publish
+          cp docs/index.html publish/ && touch publish/.nojekyll
+          cd publish
+          git init -q -b gh-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A && git commit -q -m "Página del $(date -u +%Y-%m-%d)"
+          git push -q --force "https://x-access-token:$TOKEN@github.com/$REPO.git" HEAD:gh-pages

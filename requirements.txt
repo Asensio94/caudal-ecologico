@@ -1,0 +1,4 @@
+requests>=2.31
+typer>=0.12
+tzdata>=2024.1      # Europe/Madrid on systems without a zoneinfo database (Windows)
+pytest>=8
