@@ -54,3 +54,50 @@ def test_spanish_title_case_keeps_particles_lower():
     from caudal.plan import title_es
     assert title_es("SALIDA DE ARQUILLO") == "Salida de Arquillo"
     assert title_es("EL PICAZO") == "El Picazo"
+    assert title_es("RIO GUADIANA IV B") == "Río Guadiana IV B"
+    assert title_es("RIVERA DE LOS LIMONETES") == "Rivera de los Limonetes"
+
+
+def _guadiana_fixture():
+    def table(rows):
+        return "<table>" + "".join("<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>" for r in rows) + "</table>"
+    h = '<p class="parrafo_2">Apéndice {} Título</p>'
+    oct_first = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
+    return (
+        h.format("6.1") + table([["Código masa", "Nombre", "Estación", "Denominación"],
+                                 ["ES040MSPF000132180", "Guadiana V", "E2 25", "Azud de Badajoz"],
+                                 ["ES040MSPF00013353A", "Guadiana IV A", "E1-06", "Embalse"],
+                                 # Real slip in the BOE: the Guadajira gauge listed under Zújar II's code.
+                                 ["ES040MSPF000134230", "RÍO GUADAJIRA II.", "CR2 37", "Guadajira"]])
+        # A table under another heading in between must not be taken for 6.2.
+        + h.format("6.1.1") + table([["ES040MSPF000132180", "Distractor", *["99"] * 13]])
+        + h.format("6.2") + table([["ES040MSPF000132180", "Río Guadiana V.", *oct_first, "100"],
+                                   ["ES040MSPF00013353A", "Río Guadiana IV A (*)", *oct_first, "100"],
+                                   ["ES040MSPF000134230", "RIO ZUJAR II.", *oct_first, "100"],
+                                   ["ES040MSPF000142300", "RIO GUADAJIRA II.", *oct_first, "100"]])
+        + h.format("6.7") + table([["ES040MSPF000132180", "Río Guadiana V", *["0,5"] * 12, "15"]])
+    )
+
+
+def test_guadiana_sections_are_found_by_heading_and_pending_bodies_left_out():
+    from caudal.plan import guadiana_minimums
+    minimums, control, pending, corrected = guadiana_minimums(_guadiana_fixture())
+    wb = minimums["ES040MSPF000132180"]
+    assert wb.name == "Río Guadiana V" and wb.ordinary[0] == 4 and wb.ordinary[9] == 1   # Jan, Oct
+    assert wb.drought == (0.5,) * 12
+    assert control["ES040MSPF000132180"] == ["E2-25"]                                   # "E2 25" normalised
+    assert pending == ["ES040MSPF00013353A"] and "ES040MSPF00013353A" not in minimums
+
+
+def test_utm30_to_lonlat_lands_on_known_points():
+    from caudal.plan import utm30_to_lonlat
+    # Puerta del Sol, Madrid (ETRS89 UTM 30N 440291, 4474254) ≈ -3.70379, 40.41678
+    lon, lat = utm30_to_lonlat(440291, 4474254)
+    assert abs(lon + 3.70379) < 2e-4 and abs(lat - 40.41678) < 2e-4
+
+
+def test_guadiana_control_code_contradicting_its_name_is_resolved_by_name():
+    from caudal.plan import guadiana_minimums
+    _, control, _, corrected = guadiana_minimums(_guadiana_fixture())
+    assert control["ES040MSPF000142300"] == ["CR2-37"] and "ES040MSPF000134230" not in control
+    assert len(corrected) == 1 and corrected[0].startswith("CR2-37")

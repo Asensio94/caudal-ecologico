@@ -4,18 +4,25 @@ Compara cada día el caudal medio de los ríos con el caudal mínimo ecológico 
 hidrológico para ese punto y ese mes. Caudales del SAIH de cada confederación; mínimos leídos
 directamente del BOE. Web: https://asensio94.github.io/caudal-ecologico/
 
-De momento cubre la demarcación del Júcar: 42 de los 45 puntos de control del plan.
+De momento cubre dos demarcaciones: el Júcar (42 de los 45 puntos de control del plan) y el Guadiana
+(13 de 35: los aforos de río; los de salida de embalse no publican el caudal soltado).
 
 ## Cómo funciona
 
-1. **Mínimos.** El Real Decreto 35/2023 aprobó los planes hidrológicos 2022–2027. Para el Júcar,
-   su anexo XI, apéndice 5, da un mínimo por mes para cada masa de agua (tabla 5.1, régimen ordinario;
-   5.2, sequía prolongada) y nombra la estación ROEA que lo controla. `caudal/plan.py` descarga ese
-   bloque de la API de datos abiertos del BOE y lee las tablas. «Cese» se guarda como 0 (el río puede
-   secarse ese mes); una casilla vacía queda sin mínimo.
-2. **Estaciones.** La estación «EA 89» del SAIH Júcar es la ROEA 08089 del plan. Con esa
-   correspondencia, cada punto de control del plan se une con su variable de caudal sin tabla manual.
-3. **Caudal diario.** Se descargan las lecturas cada cinco minutos de cada día (hora peninsular,
+1. **Mínimos.** El Real Decreto 35/2023 aprobó los planes hidrológicos 2022–2027. Cada demarcación
+   tiene su anexo con un mínimo por mes para cada masa de agua, en régimen ordinario y de sequía
+   prolongada, y la estación que lo controla. `caudal/plan.py` descarga el bloque de la API de datos
+   abiertos del BOE y lee las tablas. «Cese» se guarda como 0 (el río puede secarse ese mes); una
+   casilla vacía queda sin mínimo.
+   - Júcar: anexo XI, apéndice 5 (tablas 5.1 y 5.2, y la de seguimiento con su ROEA).
+   - Guadiana: anexo VI, apéndice 6. Las tablas se localizan por el título de su apartado (6.1 puntos de
+     control, 6.2 y 6.3 mínimos ordinarios, 6.7 sequía), no por su posición. Los tramos marcados (*)
+     del Alto Guadiana solo serán exigibles cuando se recuperen sus acuíferos y se dejan fuera.
+2. **Estaciones.** La estación «EA 89» del SAIH Júcar es la ROEA 08089 del plan; en el Guadiana el
+   plan ya nombra la estación del SIRA («CR2 25» → CR2-25). Así cada punto de control se une con su
+   serie de caudal sin tabla manual. Las coordenadas se guardan en longitud y latitud (el Júcar las da
+   en UTM 30N y se convierten).
+3. **Caudal diario.** Se descargan las lecturas cada cinco (Júcar) o diez minutos (Guadiana) de cada día (hora peninsular,
    días de 23 y 25 horas incluidos) y se hace la media. Con menos del 75 % de las lecturas, el día
    se queda sin dato.
 4. **Comparación.** Un día queda «por debajo del mínimo» si su media está más de un 5 % por debajo
@@ -39,12 +46,14 @@ De momento cubre la demarcación del Júcar: 42 de los 45 puntos de control del 
 - Se aplica siempre el régimen ordinario; todavía no se cruzan las declaraciones de sequía prolongada.
 - Las curvas de gasto son menos precisas con poco caudal, justo donde se mira. El margen del 5 % lo
   amortigua, no lo elimina.
-- Tres puntos de control (ROEA 08092, 08112 y 08119) no tienen aforo con datos públicos.
+- Tres puntos de control del Júcar (ROEA 08092, 08112 y 08119) no tienen aforo con datos públicos.
+- En el Guadiana, 20 puntos se controlan a la salida de un embalse o azud y el visor SIRA no publica
+  ese caudal; tampoco el aforo NR2-12, ligado a un tramo aún no exigible.
 
 ## Pendiente
 
-- Otras demarcaciones. Lectores ya probados para el Cantábrico (`sources/cantabrico.py`) y el Guadiana
-  (`sources/guadiana.py`); falta extraer sus mínimos del BOE. El Tajo, con mínimos escalonados por
+- Cantábrico. El lector está probado (`sources/cantabrico.py`), pero el plan da los mínimos por tramo
+  con coordenadas y por estaciones del año, sin nombrar aforo: hace falta un cruce espacial. El Tajo, con mínimos escalonados por
   fechas hasta 2027, necesita además permiso de la confederación para reutilizar su SAIH.
 - Calificación mensual al estilo del Ministerio (leve, media, grave).
 - Cruce con las declaraciones de sequía prolongada.
@@ -53,7 +62,7 @@ De momento cubre la demarcación del Júcar: 42 de los 45 puntos de control del 
 
 ```bash
 pip install -r requirements.txt
-python -m caudal.cli plan            # mínimos y estaciones desde el BOE y el SAIH
+python -m caudal.cli plan            # mínimos y estaciones desde el BOE, el SAIH y el SIRA
 python -m caudal.cli fetch --days 30 # medias diarias de los últimos 30 días
 python -m caudal.cli page            # docs/index.html
 python -m pytest -q
@@ -63,13 +72,15 @@ python -m pytest -q
 
 | Fichero | Contenido |
 |---|---|
-| `data/stations.csv` | Puntos de control: estación, río, masa de agua, ROEA, coordenadas UTM 30N |
-| `data/requirements/jucar.csv` | Mínimo mensual por estación y régimen, con su referencia legal y enlace al BOE |
+| `data/stations.csv` | Puntos de control: estación, río, masa de agua, ROEA, longitud y latitud (ETRS89) |
+| `data/requirements/<cuenca>.csv` | Mínimo mensual por estación y régimen, con su referencia legal y enlace al BOE |
 | `data/flows/<estación>.csv` | Media diaria, lecturas recibidas y esperadas, fuente y hora de descarga |
 
 ## Fuentes y licencias
 
-- Caudales: [SAIH Júcar](https://saih.chj.es/), Confederación Hidrográfica del Júcar.
+- Caudales: [SAIH Júcar](https://saih.chj.es/), Confederación Hidrográfica del Júcar;
+  [SIRA](https://siraguadiana.com/), Confederación Hidrográfica del Guadiana (perfil público del visor,
+  sin cuenta; su aviso legal permite reproducir citando la fuente).
 - Mínimos: [Real Decreto 35/2023](https://www.boe.es/buscar/act.php?id=BOE-A-2023-3511), BOE,
   vía su API de datos abiertos.
 - Código: MIT. Datos propios (medias diarias y comparaciones): CC BY 4.0.

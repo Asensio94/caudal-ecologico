@@ -1,43 +1,56 @@
-station_id,basin,source,source_id,name,river,water_body_code,water_body_name,protected,roea,utm_x,utm_y
-jucar-08005,jucar,saih-jucar,2700,La Presa de Vila-real,Mijares,10-11A,Río Mijares: canal cota 100 - azud Vila-real,0,08005,745828,4427251
-jucar-08014,jucar,saih-jucar,2737,Tramacastilla,Guadalaviar,15-01A,Río Guadalaviar (Turia): cabecera - río de la Garganta,1,08014,620801,4475012
-jucar-08015,jucar,saih-jucar,12927,Teruel Turia,Turia,15-05,Río Turia: río Alfambra - rambla de la Matanza,1,08015,660403,4467539
-jucar-08018,jucar,saih-jucar,13670,Zagra,Turia,15-09,Río Turia: paraje de El Villarejo - embalse de Benagéber,1,08018,658622,4411661
-jucar-08022,jucar,saih-jucar,13337,Bugarra,Turia,15-14A,Río Turia: río Sot - rambla Castellana,1,08022,690376,4386379
-jucar-08025,jucar,saih-jucar,1523,Aguas Potables,Turia,15-17,Río Turia: azud de Manises - azud de la acequia de Tormos,0,08025,714413,4377582
-jucar-08027,jucar,saih-jucar,12924,Teruel Alfambra,Alfambra,15-04-01-02,Río Alfambra: rambla de la Hoz - río Turia,1,08027,659535,4469092
-jucar-08028,jucar,saih-jucar,13683,Villalba Alta,Alfambra,15-04-01-01B,Río Alfambra: río de Sollavientos - rambla de la Hoz,1,08028,671247,4497916
-jucar-08029,jucar,saih-jucar,12827,Montaverner,Albaida,18-29-01-01B,Río Albaida: río Clariano - embalse de Bellús,1,08029,717236,4307737
-jucar-08030,jucar,saih-jucar,13526,El Terde,Mijares,10-03A,Río Mijares: río Valbona - manantial de Babor,0,08030,689590,4448255
-jucar-08032,jucar,saih-jucar,2736,Cuenca,Júcar,18-06A,Río Júcar: río Huécar - río San Martín,1,08032,573097,4436214
-jucar-08036,jucar,saih-jucar,2691,Los Frailes,Júcar,18-12,Río Júcar: paraje de Los Guardas - río Valdemembra,0,08036,608074,4332781
-jucar-08042,jucar,saih-jucar,13080,Salida de Tous,Júcar,18-26,Río Júcar: embalse de Tous - azud de la acequia de Escalona,1,08042,703565,4333365
-jucar-08060,jucar,saih-jucar,13403,Requena,Magro,18-32-01-04,Río Magro: barranco Hondo - barranco Rubio,0,08060,662001,4371515
-jucar-08071,jucar,saih-jucar,2697,Villalonga,Serpis,21-06,Río Serpis: Lorcha - paraje de La Reprimala,1,08071,735699,4305931
-jucar-08074,jucar,saih-jucar,12810,Fuente del Baño,Palancia,13-05,Río Palancia: embalse del Regajo - rambla Seca,1,08074,712522,4417781
-jucar-08087,jucar,saih-jucar,14051,Marimota,Marimota,18-07-01-01,Río Marimota,0,08087,556058,4407796
-jucar-08089,jucar,saih-jucar,13070,Huerto Mulet,Júcar,18-33,Río Júcar: río Magro - Albalat de la Ribera,1,08089,723737,4340858
-jucar-08090,jucar,saih-jucar,2735,Pajaroncillo,Cabriel,18-21-01-04,Río Cabriel: río Mayor del Molinillo - embalse de El Bujioso,1,08090,610131,4421909
-jucar-08091,jucar,saih-jucar,2695,San Lorenzo de la Parrilla,Júcar,18-06B,Río Júcar: río San Martín - embalse de Alarcón,1,08091,560878,4411600
-jucar-08093,jucar,saih-jucar,16915,Macastre,Magro,18-32-01-07,Río Magro: embalse Forata - paraje del Puntal de los Bonetes,1,08093,687405,4357205
-jucar-08096,jucar,saih-jucar,13952,Salida de Arquillo,Guadalaviar,15-04,Río Guadalaviar (Turia): embalse Arquillo San Blas - río Alfambra,0,08096,653192,4469199
-jucar-08097,jucar,saih-jucar,2693,Montemayor,Mirón (s. Pedro),18-14-01-03-01-01,Río Mirón: cabecera - rambla de Fuentecarrasca,1,08097,567433,4286564
-jucar-08098,jucar,saih-jucar,2749,Río Jardín,Jardín,18-14-01-02,Río Arquillo: laguna del Arquillo - azud de Carrasca del Sombrero,1,08098,562739,4297397
-jucar-08099,jucar,saih-jucar,12812,Salida Ulldecona,Cenia,01-03A,Río de la Sénia: embalse de Ulldecona - azud presa del Martinet,1,08099,773803,4507323
-jucar-08103,jucar,saih-jucar,2690,Torrealta,Túria,15-06,Río Turia: rambla de la Matanza - rambla del Barrancón,1,08103,648431,4442043
-jucar-08104,jucar,saih-jucar,2683,Los Santos,Ebrón,15-06-02-01B,Río Ebrón: rambla del Torcanejo - río Turia,1,08104,645856,4441151
-jucar-08107,jucar,saih-jucar,2716,Salida Alarcón,Júcar,18-08,Río Júcar: embalse de Alarcón - azud Henchideros,1,08107,576001,4379418
-jucar-08120,jucar,saih-jucar,13617,Calles,Tuéjar,15-12-01-02,Río Tuéjar: barranco del Prado - embalse de Loriguilla,1,08120,675278,4398548
-jucar-08126,jucar,saih-jucar,2689,Molino de Juan Romero,Júcar,18-01-02,Río Júcar: cabecera - embalse de la Toba,1,08126,597999,4453027
-jucar-08129,jucar,saih-jucar,2696,El Picazo,Júcar,18-10,Río Júcar: central hidroeléctrica de El Picazo - carretera de Fuensanta,0,08129,578606,4368605
-jucar-08130,jucar,saih-jucar,12962,Salida Contreras,Cabriel,18-21-01-08,Río Cabriel: embalse de Contreras - rambla de Consolación,1,08130,628398,4376677
-jucar-08132,jucar,saih-jucar,15280,El Carrasco,Júcar,18-11,Río Júcar: carretera de Fuensanta - paraje de Los Guardas,0,08132,584666,4340847
-jucar-08134,jucar,saih-jucar,2725,Los Cantos,Mijares,10-04A,Río Mijares: río Mora - embalse de Arenós,1,08134,704070,4443312
-jucar-08138,jucar,saih-jucar,2679,Balazote,Don Juan,18-14-01-04,Río Arquillo: río Mirón - azud de Volada La Choriza,0,08138,576391,4306286
-jucar-08139,jucar,saih-jucar,12799,Víllora,Cabriel,18-21-01-06A,Río Cabriel: embalse de El Bujioso - río Guadazaón,0,08139,616950,4399661
-jucar-08140,jucar,saih-jucar,2680,Rio Huércemes,Guadazaón,18-21-01-06-01-02A,Río Guadazaón: arroyo del Sargal - río Cabriel,1,08140,611064,4397519
-jucar-08144,jucar,saih-jucar,12836,Alcalá del Júcar,Júcar,18-17,Río Júcar: Alcalá del Júcar - presa del Bosque,1,08144,635979,4339762
-jucar-08145,jucar,saih-jucar,2726,Salida de Arenós,Mijares,10-06A,Río Mijares: embalse de Arenós - embalse de Cirat,1,08145,709742,4440330
-jucar-08147,jucar,saih-jucar,12905,Salida Loriguilla,Turia,15-13,Río Turia: embalse Loriguilla - río Sot,1,08147,679654,4392465
-jucar-08148,jucar,saih-jucar,2720,Jérica,Palancia,13-03,Río Palancia: azud del Sargal - embalse del Regajo,1,08148,709892,4418884
-jucar-08149,jucar,saih-jucar,2688,Gea de Albarracín,Guadalaviar,15-02,Río Guadalaviar (Turia): rambla de Monterde - embalse de Arquillo de San Blas,1,08149,645070,4472895
+station_id,basin,source,source_id,name,river,water_body_code,water_body_name,protected,roea,lon,lat
+guadiana-CR1-07,guadiana,sira-guadiana,CR1-07,Gigüela en Villafranca,Ciguela,ES040MSPF00013474D,Río Gigüela IV,0,,-3.310165,39.414914
+guadiana-CR1-21,guadiana,sira-guadiana,CR1-21,Bullaque en Luciana,Bullaque,ES040MSPF00014160B,Río Bullaque II B,0,,-4.287334,38.985086
+guadiana-CR2-01,guadiana,sira-guadiana,CR2-01,Guadiana en Puebla de Don Rodrigo,Guadiana,ES040MSPF00013353B,Río Guadiana IV B,0,,-4.583657,39.10164
+guadiana-CR2-04,guadiana,sira-guadiana,CR2-04,Fresnedoso en Sevilleja,Fresnedoso,ES040MSPF000134420,Río de Fresnedoso,0,,-4.977757,39.454622
+guadiana-CR2-19,guadiana,sira-guadiana,CR2-19,Ruecas en Hernán Cortés,Ruecas,ES040MSPF000134140,Río Ruecas IV,0,,-5.91138,39.032146
+guadiana-CR2-20,guadiana,sira-guadiana,CR2-20,Ortiga en las Cruces,Ortiga,ES040MSPF000134120,Río Ortiga,0,,-5.930324668,38.950140117
+guadiana-CR2-23,guadiana,sira-guadiana,CR2-23,Búrdalo en Sta. Amalia,Búrdalo,ES040MSPF000142000,Río Burdalo II,0,,-6.049714,39.014094
+guadiana-CR2-25,guadiana,sira-guadiana,CR2-25,Guadiana en Valverde de Mérida,Guadiana,ES040MSPF00013355B,Río Guadiana V B,0,,-6.189537,38.889587
+guadiana-CR2-27,guadiana,sira-guadiana,CR2-27,San Juan en Oliva,San Juan,ES040MSPF00013399B,Río San Juan II,0,,-6.139779076,38.726185427
+guadiana-CR2-37,guadiana,sira-guadiana,CR2-37,Guadajira en Guadajira,Guadajira,ES040MSPF000142300,Río Guadajira II,0,,-6.68945,38.852367
+guadiana-CR2-42,guadiana,sira-guadiana,CR2-42,Albuera en Talavera,Rivera de los Limonetes,ES040MSPF000133870,Rivera de los Limonetes,0,,-6.776837,38.879849
+guadiana-CR2-50,guadiana,sira-guadiana,CR2-50,Ardila en Oliva de la Frontera,Ardila,ES040MSPF000133590,Río Ardila II,0,,-6.885452846,38.230532935
+guadiana-E2-25,guadiana,sira-guadiana,E2-25,Azud de Badajoz,Guadiana,ES040MSPF000132180,Río Guadiana VII,0,,-7.014748,38.861804
+jucar-08005,jucar,saih-jucar,2700,La Presa de Vila-real,Mijares,10-11A,Río Mijares: canal cota 100 - azud Vila-real,0,08005,-0.122,39.9597
+jucar-08014,jucar,saih-jucar,2737,Tramacastilla,Guadalaviar,15-01A,Río Guadalaviar (Turia): cabecera - río de la Garganta,1,08014,-1.57613,40.41697
+jucar-08015,jucar,saih-jucar,12927,Teruel Turia,Turia,15-05,Río Turia: río Alfambra - rambla de la Matanza,1,08015,-1.11143,40.34299
+jucar-08018,jucar,saih-jucar,13670,Zagra,Turia,15-09,Río Turia: paraje de El Villarejo - embalse de Benagéber,1,08018,-1.1461,39.84016
+jucar-08022,jucar,saih-jucar,13337,Bugarra,Turia,15-14A,Río Turia: río Sot - rambla Castellana,1,08022,-0.78252,39.60601
+jucar-08025,jucar,saih-jucar,1523,Aguas Potables,Turia,15-17,Río Turia: azud de Manises - azud de la acequia de Tormos,0,08025,-0.50561,39.52114
+jucar-08027,jucar,saih-jucar,12924,Teruel Alfambra,Alfambra,15-04-01-02,Río Alfambra: rambla de la Hoz - río Turia,1,08027,-1.12126,40.35714
+jucar-08028,jucar,saih-jucar,13683,Villalba Alta,Alfambra,15-04-01-01B,Río Alfambra: río de Sollavientos - rambla de la Hoz,1,08028,-0.97563,40.61434
+jucar-08029,jucar,saih-jucar,12827,Montaverner,Albaida,18-29-01-01B,Río Albaida: río Clariano - embalse de Bellús,1,08029,-0.49525,38.89167
+jucar-08030,jucar,saih-jucar,13526,El Terde,Mijares,10-03A,Río Mijares: río Valbona - manantial de Babor,0,08030,-0.77372,40.16327
+jucar-08032,jucar,saih-jucar,2736,Cuenca,Júcar,18-06A,Río Júcar: río Huécar - río San Martín,1,08032,-2.14275,40.07302
+jucar-08036,jucar,saih-jucar,2691,Los Frailes,Júcar,18-12,Río Júcar: paraje de Los Guardas - río Valdemembra,0,08036,-1.74951,39.13751
+jucar-08042,jucar,saih-jucar,13080,Salida de Tous,Júcar,18-26,Río Júcar: embalse de Tous - azud de la acequia de Escalona,1,08042,-0.6451,39.12569
+jucar-08060,jucar,saih-jucar,13403,Requena,Magro,18-32-01-04,Río Magro: barranco Hondo - barranco Rubio,0,08060,-1.11647,39.47799
+jucar-08071,jucar,saih-jucar,2697,Villalonga,Serpis,21-06,Río Serpis: Lorcha - paraje de La Reprimala,1,08071,-0.2832,38.87065
+jucar-08074,jucar,saih-jucar,12810,Fuente del Baño,Palancia,13-05,Río Palancia: embalse del Regajo - rambla Seca,1,08074,-0.51463,39.88348
+jucar-08087,jucar,saih-jucar,14051,Marimota,Marimota,18-07-01-01,Río Marimota,0,08087,-2.34501,39.8183
+jucar-08089,jucar,saih-jucar,13070,Huerto Mulet,Júcar,18-33,Río Júcar: río Magro - Albalat de la Ribera,1,08089,-0.40949,39.18819
+jucar-08090,jucar,saih-jucar,2735,Pajaroncillo,Cabriel,18-21-01-04,Río Cabriel: río Mayor del Molinillo - embalse de El Bujioso,1,08090,-1.71094,39.94014
+jucar-08091,jucar,saih-jucar,2695,San Lorenzo de la Parrilla,Júcar,18-06B,Río Júcar: río San Martín - embalse de Alarcón,1,08091,-2.28834,39.85224
+jucar-08093,jucar,saih-jucar,16915,Macastre,Magro,18-32-01-07,Río Magro: embalse Forata - paraje del Puntal de los Bonetes,1,08093,-0.82529,39.34398
+jucar-08096,jucar,saih-jucar,13952,Salida de Arquillo,Guadalaviar,15-04,Río Guadalaviar (Turia): embalse Arquillo San Blas - río Alfambra,0,08096,-1.19589,40.3593
+jucar-08097,jucar,saih-jucar,2693,Montemayor,Mirón (s. Pedro),18-14-01-03-01-01,Río Mirón: cabecera - rambla de Fuentecarrasca,1,08097,-2.22425,38.72516
+jucar-08098,jucar,saih-jucar,2749,Río Jardín,Jardín,18-14-01-02,Río Arquillo: laguna del Arquillo - azud de Carrasca del Sombrero,1,08098,-2.27726,38.82313
+jucar-08099,jucar,saih-jucar,12812,Salida Ulldecona,Cenia,01-03A,Río de la Sénia: embalse de Ulldecona - azud presa del Martinet,1,08099,0.23932,40.67136
+jucar-08103,jucar,saih-jucar,2690,Torrealta,Túria,15-06,Río Turia: rambla de la Matanza - rambla del Barrancón,1,08103,-1.25822,40.11561
+jucar-08104,jucar,saih-jucar,2683,Los Santos,Ebrón,15-06-02-01B,Río Ebrón: rambla del Torcanejo - río Turia,1,08104,-1.28862,40.10803
+jucar-08107,jucar,saih-jucar,2716,Salida Alarcón,Júcar,18-08,Río Júcar: embalse de Alarcón - azud Henchideros,1,08107,-2.11528,39.56109
+jucar-08120,jucar,saih-jucar,13617,Calles,Tuéjar,15-12-01-02,Río Tuéjar: barranco del Prado - embalse de Loriguilla,1,08120,-0.95504,39.71881
+jucar-08126,jucar,saih-jucar,2689,Molino de Juan Romero,Júcar,18-01-02,Río Júcar: cabecera - embalse de la Toba,1,08126,-1.8482,40.22194
+jucar-08129,jucar,saih-jucar,2696,El Picazo,Júcar,18-10,Río Júcar: central hidroeléctrica de El Picazo - carretera de Fuensanta,0,08129,-2.08624,39.46344
+jucar-08130,jucar,saih-jucar,12962,Salida Contreras,Cabriel,18-21-01-08,Río Cabriel: embalse de Contreras - rambla de Consolación,1,08130,-1.50602,39.53016
+jucar-08132,jucar,saih-jucar,15280,El Carrasco,Júcar,18-11,Río Júcar: carretera de Fuensanta - paraje de Los Guardas,0,08132,-2.0193,39.21278
+jucar-08134,jucar,saih-jucar,2725,Los Cantos,Mijares,10-04A,Río Mijares: río Mora - embalse de Arenós,1,08134,-0.60538,40.11538
+jucar-08138,jucar,saih-jucar,2679,Balazote,Don Juan,18-14-01-04,Río Arquillo: río Mirón - azud de Volada La Choriza,0,08138,-2.11902,38.90214
+jucar-08139,jucar,saih-jucar,12799,Víllora,Cabriel,18-21-01-06A,Río Cabriel: embalse de El Bujioso - río Guadazaón,0,08139,-1.63512,39.73883
+jucar-08140,jucar,saih-jucar,2680,Río Huércemes,Guadazaón,18-21-01-06-01-02A,Río Guadazaón: arroyo del Sargal - río Cabriel,1,08140,-1.70416,39.72032
+jucar-08144,jucar,saih-jucar,12836,Alcalá del Júcar,Júcar,18-17,Río Júcar: Alcalá del Júcar - presa del Bosque,1,08144,-1.42533,39.19648
+jucar-08145,jucar,saih-jucar,2726,Salida de Arenós,Mijares,10-06A,Río Mijares: embalse de Arenós - embalse de Cirat,1,08145,-0.53984,40.08714
+jucar-08147,jucar,saih-jucar,12905,Salida Loriguilla,Turia,15-13,Río Turia: embalse Loriguilla - río Sot,1,08147,-0.90567,39.66313
+jucar-08148,jucar,saih-jucar,2720,Jérica,Palancia,13-03,Río Palancia: azud del Sargal - embalse del Regajo,1,08148,-0.54502,39.89406
+jucar-08149,jucar,saih-jucar,2688,Gea de Albarracín,Guadalaviar,15-02,Río Guadalaviar (Turia): rambla de Monterde - embalse de Arquillo de San Blas,1,08149,-1.29066,40.39403

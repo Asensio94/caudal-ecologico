@@ -6,6 +6,8 @@ notice of chguadiana.es allows reproduction citing the source.
 """
 from __future__ import annotations
 
+import re
+from dataclasses import dataclass
 from datetime import date, datetime
 from zoneinfo import ZoneInfo
 
@@ -50,3 +52,34 @@ def fetch_day(station: str, day: date, http=None, token: str | None = None) -> D
     readings = parse(resp.json(), variable, day)
     expected = expected_readings(day, STEP_MINUTES)
     return DailyFlow(day, daily_mean(readings, expected), len(readings), expected, "sira-guadiana")
+
+
+# River gauges ("CR", "NR") publish QR1 to the public profile; reservoir outlets ("E")
+# do not publish their release (QSR) there, so they cannot be read yet.
+FLOW_TYPES = {"CR", "NR"}
+
+
+@dataclass(frozen=True)
+class Station:
+    code: str
+    name: str
+    river: str
+    kind: str
+    lon: float
+    lat: float
+
+    @property
+    def flow_published(self) -> bool:
+        return self.kind in FLOW_TYPES
+
+
+def fetch_stations(http=None) -> dict[str, Station]:
+    http = http or session()
+    resp = http.get(f"{BASE}/Visor/estaciones", headers={"AUTHJWT": public_token(http)}, timeout=60)
+    resp.raise_for_status()
+    out = {}
+    for e in resp.json()["estaciones"]:
+        river = re.sub(r"^(?:río|arroyo)\s+(?:de\s+)?", "", (e.get("rio") or "").strip())
+        out[e["cod_estacion"]] = Station(e["cod_estacion"], e["nombre"], river[:1].upper() + river[1:],
+                                         e.get("tipo", ""), e.get("longitud"), e.get("latitud"))
+    return out

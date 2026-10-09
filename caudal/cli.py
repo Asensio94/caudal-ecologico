@@ -21,12 +21,19 @@ RANGE_CHUNK_DAYS = 31
 @app.command("plan")
 def build_plan():
     """Parse the minimums from the BOE and rebuild data/stations.csv and data/requirements/."""
-    stations, reqs, unread = plan.build_jucar(plan.fetch_block(plan.JUCAR_BLOCK), jucar.fetch_gauges())
-    plan.write_requirements("jucar", reqs)
-    plan.write_stations(stations)
-    typer.echo(f"Júcar: {len(stations)} control points read by the SAIH, {len(unread)} without a public gauge")
-    for u in unread:
-        typer.echo(f"  sin aforo público: {u}")
+    builds = {
+        "jucar": lambda: plan.build_jucar(plan.fetch_block(plan.JUCAR_BLOCK), jucar.fetch_gauges()),
+        "guadiana": lambda: plan.build_guadiana(plan.fetch_block(plan.GUADIANA_BLOCK), guadiana.fetch_stations()),
+    }
+    all_stations = []
+    for basin, build in builds.items():
+        stations, reqs, unread = build()
+        plan.write_requirements(basin, reqs)
+        all_stations += stations
+        typer.echo(f"{basin}: {len(stations)} control points with public flows; not compared:")
+        for u in unread:
+            typer.echo(f"  - {u}")
+    plan.write_stations(all_stations)
 
 
 @app.command()

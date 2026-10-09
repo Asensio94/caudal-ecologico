@@ -15,6 +15,8 @@ ACCENT, ACCENT_DARK = "#007c91", "#4fc7d9"
 WINDOW_DAYS = 30
 COMMON_CSS = (Path(__file__).parent / "common.css").read_text(encoding="utf-8")
 SAIH_JUCAR = "https://saih.chj.es/mapa-aforos"
+SIRA_GUADIANA = "https://siraguadiana.com/"
+BASINS = {"jucar": "Júcar", "guadiana": "Guadiana"}
 REPO = "https://github.com/Asensio94/caudal-ecologico"
 
 SIBLINGS = [
@@ -106,6 +108,11 @@ def build_rows(today: date) -> tuple[list[dict], date]:
     return rows, start
 
 
+def _gauge_label(s: dict) -> str:
+    basin = BASINS.get(s["basin"], s["basin"])
+    return f'{basin} · ROEA {s["roea"]}' if s["roea"] else f'{basin} · estación {escape(s["source_id"])}'
+
+
 def _row_html(r: dict, start: date) -> str:
     s, latest = r["station"], r["latest"]
     status = latest.status.value if latest else "no_data"
@@ -117,8 +124,8 @@ def _row_html(r: dict, start: date) -> str:
     qmin = _fmt(latest.minimum) if latest and latest.minimum is not None else "—"
     pct = f'{latest.ratio * 100:.0f} %' if latest and latest.ratio is not None else ""
     return (
-        f'<tr data-status="{status}"><td><span class="state {status}" title="{label}"></span>'
-        f'<b>{escape(s["name"])}</b><span class="sub">Río {escape(s["river"])} · ROEA {s["roea"]}</span></td>'
+        f'<tr data-status="{status}" data-basin="{s["basin"]}"><td><span class="state {status}" title="{label}"></span>'
+        f'<b>{escape(s["name"])}</b><span class="sub">Río {escape(s["river"])} · {_gauge_label(s)}</span></td>'
         f'<td>{escape(s["water_body_name"])}<span class="sub">Masa {s["water_body_code"]}{protected}</span></td>'
         f'<td class="num {status}"><b>{q}</b><span class="sub">{pct}</span></td>'
         f'<td class="num">{qmin}</td>'
@@ -160,7 +167,7 @@ def render(today: date | None = None) -> Path:
   <p class="lede">Cada día, el caudal medio de los puntos de control frente al caudal mínimo que fija el plan
   hidrológico para ese río y ese mes. Datos del SAIH; mínimos leídos del BOE.</p>
   <div class="figures">
-    <div><b>{len(rows)}</b><span>puntos de control (Júcar)</span></div>
+    <div><b>{len(rows)}</b><span>puntos de control ({" y ".join(BASINS.values())})</span></div>
     <div><b>{n_below_now}</b><span>por debajo del mínimo el último día con datos</span></div>
     <div><b>{n_any}</b><span>con algún día por debajo en {WINDOW_DAYS} días</span></div>
     <div><b>{_fmt(deficit, 2)}</b><span>hm³ que faltaron para llegar al mínimo</span></div>
@@ -171,6 +178,10 @@ def render(today: date | None = None) -> Path:
     <button type="button" data-filter="all" aria-pressed="true">Todos</button>
     <button type="button" data-filter="below" aria-pressed="false">Por debajo ahora</button>
     <button type="button" data-filter="history" aria-pressed="false">Algún día por debajo</button>
+  </div>
+  <div class="tools" role="group" aria-label="Demarcación">
+    <button type="button" data-basin="" aria-pressed="true">Todas</button>
+{chr(10).join(f'    <button type="button" data-basin="{k}" aria-pressed="false">{v}</button>' for k, v in BASINS.items())}
   </div>
   <div class="wrap"><table class="points">
     <thead><tr><th>Punto de control</th><th>Masa de agua</th><th class="num">Caudal último día<br>m³/s</th>
@@ -188,11 +199,12 @@ def render(today: date | None = None) -> Path:
     <h2>Cómo se calcula</h2>
     <ol>
       <li><b>El mínimo sale del BOE.</b> El Real Decreto 35/2023 aprobó los planes hidrológicos 2022–2027.
-      Su anexo XI, apéndice 5, fija para cada masa de agua del Júcar un caudal mínimo por mes y nombra la
-      estación de aforo que lo controla. El programa lee esas tablas directamente del BOE, sin copiarlas a mano.</li>
-      <li><b>El caudal sale del SAIH.</b> El Sistema Automático de Información Hidrológica de la Confederación
-      Hidrográfica del Júcar publica el caudal cada cinco minutos. Se juntan las lecturas de cada día (hora
-      peninsular) y se calcula la media.</li>
+      Cada demarcación tiene su anexo (el XI para el Júcar, el VI para el Guadiana), que fija para cada masa de
+      agua un caudal mínimo por mes y nombra la estación de aforo que lo controla. El programa lee esas tablas
+      directamente del BOE, sin copiarlas a mano.</li>
+      <li><b>El caudal sale del SAIH.</b> El Sistema Automático de Información Hidrológica de cada confederación
+      publica el caudal cada cinco minutos (Júcar) o cada diez (Guadiana). Se juntan las lecturas de cada día
+      (hora peninsular) y se calcula la media.</li>
       <li><b>Se comparan.</b> Un día queda «por debajo del mínimo» si su caudal medio es más de un
       {TOLERANCE * 100:.0f} % inferior al mínimo de ese mes. Ese margen absorbe el error de medida, que es mayor
       cuanto menos agua lleva el río.</li>
@@ -213,14 +225,18 @@ def render(today: date | None = None) -> Path:
       <li>Se aplica siempre el régimen ordinario. En sequía prolongada declarada, el plan permite un mínimo menor
       fuera de los espacios protegidos; aún no se cruza con las declaraciones de sequía.</li>
       <li>El plan mide el cumplimiento en conjunto por meses y años, no día a día; esta página enseña el detalle diario.</li>
-      <li>Tres puntos de control del plan no tienen todavía aforo con datos públicos y no aparecen.</li>
-      <li>De momento solo la demarcación del Júcar; el resto de cuencas se irá sumando.</li>
+      <li>No aparecen los puntos de control sin aforo con datos públicos: tres en el Júcar y, en el Guadiana, los
+      que se miden a la salida de un embalse, cuyo caudal soltado al río no publica el visor.</li>
+      <li>Dos tramos del Alto Guadiana tienen mínimo solo cuando se recuperen sus acuíferos; el plan aún no lo
+      exige y no se comparan.</li>
+      <li>De momento, Júcar y Guadiana; el resto de cuencas se irá sumando.</li>
     </ul>
   </section>
 </main>
 <footer class="site-footer">
   <p class="principle">Datos públicos, reglas a la vista y cada cifra enlazada a su fuente. Indicios, no veredictos.</p>
-  <p>Caudales: <a href="{SAIH_JUCAR}">SAIH Júcar</a>, Confederación Hidrográfica del Júcar. Mínimos:
+  <p>Caudales: <a href="{SAIH_JUCAR}">SAIH Júcar</a>, Confederación Hidrográfica del Júcar;
+  <a href="{SIRA_GUADIANA}">SIRA</a>, Confederación Hidrográfica del Guadiana. Mínimos:
   <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2023-3511">Real Decreto 35/2023</a>, BOE. Código en
   <a href="{REPO}">GitHub</a> (MIT); datos propios CC BY 4.0.</p>
   <nav aria-label="Proyectos hermanos"><ul class="siblings">
@@ -228,13 +244,15 @@ def render(today: date | None = None) -> Path:
   </ul></nav>
 </footer>
 <script>
+const state = {{ filter: 'all', basin: '' }};
 document.querySelectorAll('.tools button').forEach(b => b.addEventListener('click', () => {{
-  document.querySelectorAll('.tools button').forEach(o => o.setAttribute('aria-pressed', o === b));
-  const f = b.dataset.filter;
+  b.parentElement.querySelectorAll('button').forEach(o => o.setAttribute('aria-pressed', o === b));
+  if ('filter' in b.dataset) state.filter = b.dataset.filter; else state.basin = b.dataset.basin;
   document.querySelectorAll('.points tbody tr').forEach(tr => {{
     const below = tr.dataset.status === 'below';
     const history = tr.children[4].textContent.trim()[0] !== '0';
-    tr.hidden = f === 'below' ? !below : f === 'history' ? !history : false;
+    const shown = state.filter === 'below' ? below : state.filter === 'history' ? history : true;
+    tr.hidden = !shown || (state.basin !== '' && tr.dataset.basin !== state.basin);
   }});
 }}));
 </script>
