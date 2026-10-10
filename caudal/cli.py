@@ -24,6 +24,9 @@ def build_plan():
     builds = {
         "jucar": lambda: plan.build_jucar(plan.fetch_block(plan.JUCAR_BLOCK), jucar.fetch_gauges()),
         "guadiana": lambda: plan.build_guadiana(plan.fetch_block(plan.GUADIANA_BLOCK), guadiana.fetch_stations()),
+        "cantabrico": lambda: plan.build_cantabrico(
+            {b: plan.fetch_block(b) for b in plan.CANTABRICO_PLANS}, cantabrico.fetch_gauges(),
+            cantabrico.fetch_catchments(), cantabrico.fetch_river_bodies()),
     }
     all_stations = []
     for basin, build in builds.items():

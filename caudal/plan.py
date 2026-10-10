@@ -8,6 +8,7 @@ reference. Run `python -m caudal.cli plan` to rebuild data/requirements/*.csv.
 from __future__ import annotations
 
 import csv
+import math
 import re
 from dataclasses import dataclass
 from html.parser import HTMLParser
@@ -231,6 +232,113 @@ def build_guadiana(boe_html: str, stations: dict) -> tuple[list[dict], list[dict
     return out_st, reqs, unread
 
 
+# ---- Cantábrico (anexos I y II, apéndice 4 of each) ------------------------------
+
+# The two plans share the table layout and the seasons; the Oriental one adds a stretch
+# column, and its drought regime is "sequía prolongada" where the Occidental one's is
+# "emergencia por sequía declarada".
+CANTABRICO_PLANS = {"a4-12": ("anexo I", "Oriental"), "a4-18": ("anexo II", "Occidental")}
+# Nota 1 of each table: aguas altas Jan–Apr, medias May, Jun, Nov, Dec, bajas Jul–Oct.
+SEASON_OF_MONTH = (0, 0, 0, 0, 1, 1, 2, 2, 2, 2, 1, 1)
+RIVER_RESERVE = "*"   # the body holds a Reserva Natural Fluvial stretch with its own minimums
+# The gauge must sit on the body's river line and drain nearly the same catchment as the
+# point where the plan sets the minimum, so the BOE value applies as it stands.
+SNAP_METRES = 50
+CATCHMENT_TOLERANCE = 0.10
+_WB_CODE = re.compile(r"^ES\d{3}(?!SEXP)[A-Z0-9]+$")
+
+
+@dataclass(frozen=True)
+class ControlPoint:
+    """Lower end of a water body (or of a stretch of one) with its minimums."""
+    x: float       # ETRS89 UTM 30N
+    y: float
+    km2: float     # catchment area at the point
+    minimum: WaterBodyMinimum
+    river_reserve: bool
+
+
+def _season_months(cells: list[str]) -> tuple[float | None, ...]:
+    values = [to_m3s(c) for c in cells]
+    return tuple(values[s] for s in SEASON_OF_MONTH)
+
+
+def _plain_name(name: str) -> str:
+    """'Río Nansa I*.' → 'Río Nansa I'; 'RÍo Deva III.' → 'Río Deva III'."""
+    return re.sub(r"^R[ÍI]o\b", "Río", name.replace("*", "").strip(" ."))
+
+
+def cantabrico_points(html: str, block: str) -> list[ControlPoint]:
+    """Apéndice 4.1: rivers and reservoirs. The last nine cells of a row are the lower-end
+    UTM X and Y, the catchment area and three seasonal minimums for each regime; the
+    Occidental plan opens each exploitation system with an extra system-code cell."""
+    annex, part = CANTABRICO_PLANS[block]
+    url = CONSOLIDATED_URL.format(boe=BOE_ID, block=block)
+    out = []
+    for r in (r for t in tables_by_appendix(html).get("4.1", []) for r in t):
+        codes = [i for i, c in enumerate(r) if _WB_CODE.match(c)]
+        if not codes or len(r) - codes[0] < 11:
+            continue
+        i = codes[0]
+        name = _plain_name(r[i + 1])
+        if len(r) - i == 12 and r[i + 2].strip(" .-"):     # Oriental stretch
+            name += f" ({r[i + 2].strip(' .')})"
+        x, y, km2, *values = r[-9:]
+        out.append(ControlPoint(
+            x=to_m3s(x), y=to_m3s(y), km2=to_m3s(km2), river_reserve=RIVER_RESERVE in r[i + 1].replace("**", ""),
+            minimum=WaterBodyMinimum(
+                code=r[i], name=name, protected=False, temporality="",
+                ordinary=_season_months(values[:3]), drought=_season_months(values[3:]),
+                legal_ref=f"RD 35/2023, {annex} (Cantábrico {part}), apéndice 4.1", source_url=url)))
+    return out
+
+
+def _distance_to_line(px: float, py: float, paths) -> float:
+    best = float("inf")
+    for path in paths:
+        for (ax, ay), (bx, by) in zip(path, path[1:]):
+            dx, dy = bx - ax, by - ay
+            t = 0.0 if dx == dy == 0 else max(0.0, min(1.0, ((px - ax) * dx + (py - ay) * dy) / (dx * dx + dy * dy)))
+            best = min(best, math.hypot(px - ax - t * dx, py - ay - t * dy))
+    return best
+
+
+def build_cantabrico(boe_html: dict[str, str], gauges: dict, catchments: dict[str, float],
+                     river_bodies: dict[str, list]) -> tuple[list[dict], list[dict], list[str]]:
+    """The plans name no gauges, so each SAIH gauge is placed by geometry: on the river
+    line of a water body (as the basin's own visor does) and at one of that body's
+    control points, judged by catchment area. A gauge in the upper part of a long body
+    drains less than the lower end the minimum is set for, so it is left out."""
+    points: dict[str, list[ControlPoint]] = {}
+    for block, html in boe_html.items():
+        for p in cantabrico_points(html, block):
+            points.setdefault(p.minimum.code, []).append(p)
+    stations, reqs, unread = [], [], []
+    for roea, g in sorted(gauges.items()):
+        label = f"ROEA {roea} {title_es(g.name)} ({title_es(g.river)})"
+        on = {c for c, paths in river_bodies.items() if c in points and _distance_to_line(g.x, g.y, paths) <= SNAP_METRES}
+        area = catchments.get(roea)
+        if area is None:
+            unread.append(f"{label}: sin superficie de cuenca en el anuario del CEDEX")
+            continue
+        fits = [p for c in on for p in points[c] if abs(area / p.km2 - 1) <= CATCHMENT_TOLERANCE]
+        if len(fits) != 1:
+            why = "no está sobre una masa con caudal mínimo" if not on else                   "su cuenca no coincide con la de ningún punto de control" if not fits else "encaja en varios puntos"
+            unread.append(f"{label}: {why}")
+            continue
+        p = fits[0]
+        if p.river_reserve:
+            unread.append(f"{label}: masa con tramo de reserva natural fluvial (apéndice aparte)")
+            continue
+        sid = f"cantabrico-{roea}"
+        stations.append({"station_id": sid, "basin": "cantabrico", "source": "saih-cantabrico", "source_id": roea,
+                         "name": title_es(g.name), "river": title_es(g.river), "water_body_code": p.minimum.code,
+                         "water_body_name": p.minimum.name, "protected": 0, "roea": roea,
+                         **dict(zip(("lon", "lat"), utm30_to_lonlat(g.x, g.y)))})
+        reqs += requirement_rows(sid, p.minimum)
+    return stations, reqs, unread
+
+
 # ---- Output --------------------------------------------------------------------
 
 REQ_FIELDS = (["station_id", "water_body_code", "water_body_name", "protected", "temporality", "regime"]
@@ -311,7 +419,7 @@ def utm30_to_lonlat(x: float, y: float) -> tuple[float, float]:
     return round(math.degrees(lon) - 3.0, 5), round(math.degrees(lat), 5)
 
 
-_LOWER = {"de", "del", "la", "las", "los", "el", "y", "d'en", "en"}
+_LOWER = {"de", "del", "la", "las", "los", "el", "y", "d'en", "en", "da", "do", "das", "dos"}
 
 
 # Water bodies split into stretches are numbered "IV", "II B"...; those stay upper case.
@@ -321,9 +429,11 @@ _ACCENTS = {"rio": "río"}
 
 
 def title_es(text: str) -> str:
-    """'SALIDA DE ARQUILLO' → 'Salida de Arquillo', 'RIO GUADIANA IV B' → 'Río Guadiana IV B'."""
+    """'SALIDA DE ARQUILLO' → 'Salida de Arquillo', 'RIO GUADIANA IV B' → 'Río Guadiana IV B',
+    'PONTENOVA (A)' → 'Pontenova (A)': a bracketed word opens its own phrase."""
     words = [_ACCENTS.get(w, w) for w in text.lower().split()]
-    return " ".join(w.upper() if i and _ORDINAL.match(w) else w if i and w in _LOWER else w[:1].upper() + w[1:]
+    return " ".join("(" + w[1:2].upper() + w[2:] if w.startswith("(")
+                    else w.upper() if i and _ORDINAL.match(w) else w if i and w in _LOWER else w[:1].upper() + w[1:]
                     for i, w in enumerate(words))
 
 

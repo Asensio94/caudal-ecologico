@@ -4,8 +4,10 @@ Compara cada día el caudal medio de los ríos con el caudal mínimo ecológico 
 hidrológico para ese punto y ese mes. Caudales del SAIH de cada confederación; mínimos leídos
 directamente del BOE. Web: https://asensio94.github.io/caudal-ecologico/
 
-De momento cubre dos demarcaciones: el Júcar (42 de los 45 puntos de control del plan) y el Guadiana
-(13 de 35: los aforos de río; los de salida de embalse no publican el caudal soltado).
+De momento cubre tres: el Júcar (42 de los 45 puntos de control del plan), el Guadiana
+(13 de 35: los aforos de río; los de salida de embalse no publican el caudal soltado) y el Cantábrico
+Oriental y Occidental (33 de los 108 aforos de río del SAIH, los que miden justo donde el plan fija
+el mínimo).
 
 ## Cómo funciona
 
@@ -18,11 +20,23 @@ De momento cubre dos demarcaciones: el Júcar (42 de los 45 puntos de control de
    - Guadiana: anexo VI, apéndice 6. Las tablas se localizan por el título de su apartado (6.1 puntos de
      control, 6.2 y 6.3 mínimos ordinarios, 6.7 sequía), no por su posición. Los tramos marcados (*)
      del Alto Guadiana solo serán exigibles cuando se recuperen sus acuíferos y se dejan fuera.
+   - Cantábrico: anexos I (Oriental) y II (Occidental), apéndice 4.1. Tres valores por masa (aguas
+     altas de enero a abril; medias en mayo, junio, noviembre y diciembre; bajas de julio a octubre),
+     fijados en el extremo de aguas abajo de la masa, del que se da la superficie de cuenca. El
+     Oriental parte algunas masas en tramos, cada uno con su punto; el régimen de sequía es
+     «sequía prolongada» en el Oriental y «emergencia por sequía declarada» en el Occidental.
 2. **Estaciones.** La estación «EA 89» del SAIH Júcar es la ROEA 08089 del plan; en el Guadiana el
    plan ya nombra la estación del SIRA («CR2 25» → CR2-25). Así cada punto de control se une con su
    serie de caudal sin tabla manual. Las coordenadas se guardan en longitud y latitud (el Júcar las da
    en UTM 30N y se convierten).
-3. **Caudal diario.** Se descargan las lecturas cada cinco (Júcar) o diez minutos (Guadiana) de cada día (hora peninsular,
+   El plan del Cantábrico no nombra estaciones, así que se cruzan por geometría y cuenca, sin tabla
+   manual: una estación del SAIH (catálogo de la red en el servidor cartográfico de la CHC) cuenta para
+   una masa si está a menos de 50 m de su cauce (capa de masas de agua de la propia CHC; su visor
+   asocia caudales ecológicos a estaciones de la misma forma) y si su superficie de cuenca, según el
+   anuario de aforos del CEDEX, difiere menos de un 10 % de la del punto del plan. Con eso se distingue,
+   en una confluencia, a qué río mide la estación, y se descartan las que están en mitad de una masa
+   larga, que drenan bastante menos cuenca que el punto donde rige el mínimo.
+3. **Caudal diario.** Se descargan las lecturas cada cinco (Júcar, Cantábrico) o diez minutos (Guadiana) de cada día (hora peninsular,
    días de 23 y 25 horas incluidos) y se hace la media. Con menos del 75 % de las lecturas, el día
    se queda sin dato.
 4. **Comparación.** Un día queda «por debajo del mínimo» si su media está más de un 5 % por debajo
@@ -49,12 +63,20 @@ De momento cubre dos demarcaciones: el Júcar (42 de los 45 puntos de control de
 - Tres puntos de control del Júcar (ROEA 08092, 08112 y 08119) no tienen aforo con datos públicos.
 - En el Guadiana, 20 puntos se controlan a la salida de un embalse o azud y el visor SIRA no publica
   ese caudal; tampoco el aforo NR2-12, ligado a un tramo aún no exigible.
+- En el Cantábrico, 75 aforos con caudal no se comparan: 20 no figuran en el anuario del CEDEX (sin
+  superficie de cuenca), uno no está sobre una masa con mínimo y la mayoría están aguas arriba del
+  punto del plan. Compararlos exigiría interpolar el mínimo por cuenca, cosa que el plan del Occidental
+  permite pero no detalla. Tampoco se comparan las masas con un tramo declarado reserva natural
+  fluvial (marcadas * en el BOE), que tiene mínimos propios. `python -m caudal.cli plan` lista cada
+  aforo descartado y el motivo.
+- En las masas marcadas ** del Cantábrico Occidental el mínimo de sequía no rige para los
+  aprovechamientos en ZEC o ZEPA; da igual mientras se aplique siempre el régimen ordinario.
 
 ## Pendiente
 
-- Cantábrico. El lector está probado (`sources/cantabrico.py`), pero el plan da los mínimos por tramo
-  con coordenadas y por estaciones del año, sin nombrar aforo: hace falta un cruce espacial. El Tajo, con mínimos escalonados por
-  fechas hasta 2027, necesita además permiso de la confederación para reutilizar su SAIH.
+- Tajo: mínimos escalonados por fechas hasta 2027, y hace falta permiso de la confederación para
+  reutilizar su SAIH. Ebro y Segura, pendientes de la clave de la API y de aceptar las condiciones
+  de su visor, respectivamente.
 - Calificación mensual al estilo del Ministerio (leve, media, grave).
 - Cruce con las declaraciones de sequía prolongada.
 
@@ -62,7 +84,7 @@ De momento cubre dos demarcaciones: el Júcar (42 de los 45 puntos de control de
 
 ```bash
 pip install -r requirements.txt
-python -m caudal.cli plan            # mínimos y estaciones desde el BOE, el SAIH y el SIRA
+python -m caudal.cli plan            # mínimos y estaciones desde el BOE, los SAIH, el SIRA y el CEDEX
 python -m caudal.cli fetch --days 30 # medias diarias de los últimos 30 días
 python -m caudal.cli page            # docs/index.html
 python -m pytest -q
@@ -80,7 +102,12 @@ python -m pytest -q
 
 - Caudales: [SAIH Júcar](https://saih.chj.es/), Confederación Hidrográfica del Júcar;
   [SIRA](https://siraguadiana.com/), Confederación Hidrográfica del Guadiana (perfil público del visor,
-  sin cuenta; su aviso legal permite reproducir citando la fuente).
+  sin cuenta; su aviso legal permite reproducir citando la fuente);
+  [SAIH Cantábrico](https://visor.saichcantabrico.es/), Confederación Hidrográfica del Cantábrico
+  (descarga histórica del visor; su aviso legal permite reutilizar citando la fuente).
+- Estaciones y masas del Cantábrico: servicios de mapas de la CHC (`nodoide.chcantabrico.es`, red SAIH
+  y masas de agua del plan); superficie de cuenca: [Anuario de aforos](https://ceh.cedex.es/anuarioaforos/)
+  del CEDEX.
 - Mínimos: [Real Decreto 35/2023](https://www.boe.es/buscar/act.php?id=BOE-A-2023-3511), BOE,
   vía su API de datos abiertos.
 - Código: MIT. Datos propios (medias diarias y comparaciones): CC BY 4.0.

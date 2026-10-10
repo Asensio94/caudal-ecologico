@@ -1,4 +1,37 @@
 station_id,basin,source,source_id,name,river,water_body_code,water_body_name,protected,roea,lon,lat
+cantabrico-1105,cantabrico,saih-cantabrico,1105,Ereñozu,Urumea,ES018MAR002491,Río Urumea II,0,1105,-1.94154,43.24356
+cantabrico-1106,cantabrico,saih-cantabrico,1106,Endarlatsa,Bidasoa,ES010MAR002420,Río Bidasoa III,0,1106,-1.72975,43.295
+cantabrico-1163,cantabrico,saih-cantabrico,1163,Lemoa,Ibaizabal,ES068MAR002842,Río Ibaizabal III,0,1163,-2.75491,43.21168
+cantabrico-1164,cantabrico,saih-cantabrico,1164,Lemoa,Arratia,ES067MAR002790,Río Arratia,0,1164,-2.77144,43.20116
+cantabrico-1166,cantabrico,saih-cantabrico,1166,La Peña,Nervión,ES068MAR002850,Río Ibaizabal IV,0,1166,-2.91937,43.24233
+cantabrico-1178,cantabrico,saih-cantabrico,1178,Alonsotegi,Cadagua,ES073MAR002920,Río Cadagua IV,0,1178,-2.99431,43.24302
+cantabrico-1196,cantabrico,saih-cantabrico,1196,Coterillo,Asón,ES018MSPFES084MAR000060,Río Asón III,0,1196,-3.43617,43.33005
+cantabrico-1205,cantabrico,saih-cantabrico,1205,Entrambasaguas,Aguanaz,ES018MSPFES086MAR000120,Río Aguanaz,0,1205,-3.68793,43.38202
+cantabrico-1216,cantabrico,saih-cantabrico,1216,Carandia,Pas,ES018MSPFES092MAR000230,Río Pas IV,0,1216,-3.96993,43.33343
+cantabrico-1240,cantabrico,saih-cantabrico,1240,Torrelavega,Saja,ES018MSPFES112MAR000380,Río Besaya III,0,1240,-4.04831,43.36573
+cantabrico-1245,cantabrico,saih-cantabrico,1245,Santa Lucía,Saja,ES018MSPFES098MAR000291,Río Saja III,0,1245,-4.23578,43.28371
+cantabrico-1268,cantabrico,saih-cantabrico,1268,Puentelles,Deva,ES018MSPFES132MAR000621,Río Deva III,0,1268,-4.60717,43.31714
+cantabrico-1269,cantabrico,saih-cantabrico,1269,Panes,Deva,ES018MSPFES132MAR000620,Río Cares III- Deva IV,0,1269,-4.58508,43.32629
+cantabrico-1274,cantabrico,saih-cantabrico,1274,Poncebos,Cares,ES018MSPFES131MAR000610,Río Cares II,0,1274,-4.83055,43.25915
+cantabrico-1277,cantabrico,saih-cantabrico,1277,Las Arenas,Casaño,ES018MSPFES130MAR000600,Río Casaño,0,1277,-4.81838,43.30227
+cantabrico-1292,cantabrico,saih-cantabrico,1292,Arriondas,Sella,ES018MSPFES144MAR000820,Río Sella III,0,1292,-5.18258,43.39549
+cantabrico-1293,cantabrico,saih-cantabrico,1293,Pervís,Sella,ES018MSPFES139MAR000710,Río Sella II,0,1293,-5.13414,43.28941
+cantabrico-1294,cantabrico,saih-cantabrico,1294,Cangas de Onís,Güeña,ES018MSPFES142MAR000750,Río Güeña,0,1294,-5.1264,43.35186
+cantabrico-1300,cantabrico,saih-cantabrico,1300,Fuentes,Sella,ES018MSPFES144MAR000820,Río Sella III,0,1300,-5.14054,43.40195
+cantabrico-1301,cantabrico,saih-cantabrico,1301,Arriondas,Piloña,ES018MSPFES144MAR000840,Río Piloña III,0,1301,-5.18472,43.38282
+cantabrico-1302,cantabrico,saih-cantabrico,1302,Ozanes,Piloña,ES018MSPFES144MAR000840,Río Piloña III,0,1302,-5.1846,43.36698
+cantabrico-1304,cantabrico,saih-cantabrico,1304,Salinas,Raíces,ES018MSPFES145MAR000900,Río Raíces,0,1304,-5.95774,43.57225
+cantabrico-1305,cantabrico,saih-cantabrico,1305,Villaviciosa,Linares,ES018MSPFES145MAR000970,Arroyo de la Ría,0,1305,-5.44576,43.46974
+cantabrico-1306,cantabrico,saih-cantabrico,1306,Gijón,Piles,ES018MSPFES145MAR000920,Río Piles I,0,1306,-5.65297,43.52073
+cantabrico-1348,cantabrico,saih-cantabrico,1348,Cornellana,Nonaya,ES018MSPFES193MAR001690,Río Nonaya,0,1348,-6.16639,43.41086
+cantabrico-1358,cantabrico,saih-cantabrico,1358,Puente San Martín,Pigüeña,ES018MSPFES193MAR001700,Río Somiedo y Pigüeña,0,1358,-6.204,43.3439
+cantabrico-1361,cantabrico,saih-cantabrico,1361,Arganza,Arganza,ES018MSPFES189MAR001640,Río Arganza II,0,1361,-6.49747,43.26014
+cantabrico-1375,cantabrico,saih-cantabrico,1375,Trubia (Machón),Trubia,ES018MSPFES170MAR001320,Río Trubia III,0,1375,-5.98351,43.33993
+cantabrico-1376,cantabrico,saih-cantabrico,1376,Trubia (Desembocadura),Trubia,ES018MSPFES170MAR001320,Río Trubia III,0,1376,-5.96902,43.34924
+cantabrico-1378,cantabrico,saih-cantabrico,1378,Grado,Cubia,ES018MSPFES175MAR001450,Río Cubia II,0,1378,-6.06646,43.38827
+cantabrico-1398,cantabrico,saih-cantabrico,1398,Luarca,Negro,ES018MSPFES202MAR001800,Río Negro II,0,1398,-6.53497,43.52995
+cantabrico-1405,cantabrico,saih-cantabrico,1405,San Pelayo,Navia,ES018MSPFES234MAR002150,Río Navia V,0,1405,-6.72387,43.49273
+cantabrico-1407,cantabrico,saih-cantabrico,1407,Ponte da Muria,Navia,ES018MSPFES208MAR001902,Río Navia IV,0,1407,-6.96232,43.02455
 guadiana-CR1-07,guadiana,sira-guadiana,CR1-07,Gigüela en Villafranca,Ciguela,ES040MSPF00013474D,Río Gigüela IV,0,,-3.310165,39.414914
 guadiana-CR1-21,guadiana,sira-guadiana,CR1-21,Bullaque en Luciana,Bullaque,ES040MSPF00014160B,Río Bullaque II B,0,,-4.287334,38.985086
 guadiana-CR2-01,guadiana,sira-guadiana,CR2-01,Guadiana en Puebla de Don Rodrigo,Guadiana,ES040MSPF00013353B,Río Guadiana IV B,0,,-4.583657,39.10164
@@ -34,7 +67,7 @@ jucar-08090,jucar,saih-jucar,2735,Pajaroncillo,Cabriel,18-21-01-04,Río Cabriel:
 jucar-08091,jucar,saih-jucar,2695,San Lorenzo de la Parrilla,Júcar,18-06B,Río Júcar: río San Martín - embalse de Alarcón,1,08091,-2.28834,39.85224
 jucar-08093,jucar,saih-jucar,16915,Macastre,Magro,18-32-01-07,Río Magro: embalse Forata - paraje del Puntal de los Bonetes,1,08093,-0.82529,39.34398
 jucar-08096,jucar,saih-jucar,13952,Salida de Arquillo,Guadalaviar,15-04,Río Guadalaviar (Turia): embalse Arquillo San Blas - río Alfambra,0,08096,-1.19589,40.3593
-jucar-08097,jucar,saih-jucar,2693,Montemayor,Mirón (s. Pedro),18-14-01-03-01-01,Río Mirón: cabecera - rambla de Fuentecarrasca,1,08097,-2.22425,38.72516
+jucar-08097,jucar,saih-jucar,2693,Montemayor,Mirón (S. Pedro),18-14-01-03-01-01,Río Mirón: cabecera - rambla de Fuentecarrasca,1,08097,-2.22425,38.72516
 jucar-08098,jucar,saih-jucar,2749,Río Jardín,Jardín,18-14-01-02,Río Arquillo: laguna del Arquillo - azud de Carrasca del Sombrero,1,08098,-2.27726,38.82313
 jucar-08099,jucar,saih-jucar,12812,Salida Ulldecona,Cenia,01-03A,Río de la Sénia: embalse de Ulldecona - azud presa del Martinet,1,08099,0.23932,40.67136
 jucar-08103,jucar,saih-jucar,2690,Torrealta,Túria,15-06,Río Turia: rambla de la Matanza - rambla del Barrancón,1,08103,-1.25822,40.11561
