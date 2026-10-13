@@ -18,7 +18,8 @@ COMMON_CSS = (Path(__file__).parent / "common.css").read_text(encoding="utf-8")
 SAIH_JUCAR = "https://saih.chj.es/mapa-aforos"
 SIRA_GUADIANA = "https://siraguadiana.com/"
 SAIH_CANTABRICO = "https://visor.saichcantabrico.es/"
-BASINS = {"jucar": "Júcar", "guadiana": "Guadiana", "cantabrico": "Cantábrico"}
+SAIH_GUADALQUIVIR = "https://www.chguadalquivir.es/saih/"
+BASINS = {"jucar": "Júcar", "guadiana": "Guadiana", "cantabrico": "Cantábrico", "guadalquivir": "Guadalquivir"}
 REPO = "https://github.com/Asensio94/caudal-ecologico"
 
 SIBLINGS = [
@@ -128,7 +129,7 @@ def _row_html(r: dict, start: date) -> str:
     return (
         f'<tr data-status="{status}" data-basin="{s["basin"]}"><td><span class="state {status}" title="{label}"></span>'
         f'<b>{escape(s["name"])}</b><span class="sub">Río {escape(s["river"])} · {_gauge_label(s)}</span></td>'
-        f'<td>{escape(s["water_body_name"])}<span class="sub">Masa {s["water_body_code"]}{protected}</span></td>'
+        f'<td>{escape(s["water_body_name"])}<span class="sub">{"Masa " + s["water_body_code"] if s["water_body_code"] else "Punto de control del plan"}{protected}</span></td>'
         f'<td class="num {status}"><b>{q}</b><span class="sub">{pct}</span></td>'
         f'<td class="num">{qmin}</td>'
         f'<td class="num">{r["below_days"]}{ongoing}</td>'
@@ -202,15 +203,16 @@ def render(today: date | None = None) -> Path:
     <ol>
       <li><b>El mínimo sale del BOE.</b> El Real Decreto 35/2023 aprobó los planes hidrológicos 2022–2027.
       Cada demarcación tiene su anexo (el XI para el Júcar, el VI para el Guadiana, el I y el II para el
-      Cantábrico Oriental y Occidental), que fija para cada masa de agua un caudal mínimo por mes o por estación
-      del año. El programa lee esas tablas directamente del BOE, sin copiarlas a mano.</li>
+      Cantábrico Oriental y Occidental, el VII para el Guadalquivir), que fija un caudal mínimo por mes, por
+      estación del año o por periodos. El programa lee esas tablas directamente del BOE, sin copiarlas a mano.</li>
       <li><b>Cada mínimo, con su estación.</b> En el Júcar y el Guadiana el propio plan nombra la estación de
-      aforo de cada masa. El Cantábrico no lo hace: fija el mínimo en el extremo de aguas abajo de cada masa y
+      aforo de cada masa, y el del Guadalquivir fija sus mínimos en 17 puntos con nombre (estaciones de aforo
+      y presas del eje del Guadalquivir y del Genil), que se leen en la señal de caudal del SAIH en ese sitio. El Cantábrico no lo hace: fija el mínimo en el extremo de aguas abajo de cada masa y
       da la superficie de cuenca de ese punto. Una estación se compara solo si está sobre el cauce de la masa
       y su cuenca (según el anuario de aforos del CEDEX) difiere menos de un {CATCHMENT_TOLERANCE * 100:.0f} %
       de la del punto del plan, es decir, si mide prácticamente el mismo río en el mismo sitio.</li>
       <li><b>El caudal sale del SAIH.</b> El Sistema Automático de Información Hidrológica de cada confederación
-      publica el caudal cada cinco minutos (Júcar y Cantábrico) o cada diez (Guadiana). Se juntan las lecturas de cada día
+      publica el caudal cada cinco minutos (Júcar y Cantábrico), cada diez (Guadiana) o cada hora (Guadalquivir). Se juntan las lecturas de cada día
       (hora peninsular) y se calcula la media.</li>
       <li><b>Se comparan.</b> Un día queda «por debajo del mínimo» si su caudal medio es más de un
       {TOLERANCE * 100:.0f} % inferior al mínimo de ese mes. Ese margen absorbe el error de medida, que es mayor
@@ -239,7 +241,11 @@ def render(today: date | None = None) -> Path:
       <li>En el Cantábrico quedan fuera las estaciones situadas en mitad de una masa larga: miden menos cuenca
       que el punto donde el plan fija el mínimo, y compararlas exageraría los incumplimientos. También las
       masas con un tramo declarado reserva natural fluvial, que tiene mínimos propios.</li>
-      <li>De momento, Júcar, Guadiana y Cantábrico; el resto de cuencas se irá sumando.</li>
+      <li>En el Guadalquivir solo se comparan los 17 puntos de la red de seguimiento del plan (apéndice 6.1.3);
+      los mínimos por masa del apéndice 6.1.1 aún no. La presa de Cordobilla queda fuera: el SAIH publica lo que
+      alivia y lo que se bombea, no lo que sigue río abajo. En Arroyo María el BOE da «1,22» l/s en mayo y junio,
+      una errata evidente (el resto del año pide 370–610 l/s): esos dos meses quedan sin mínimo.</li>
+      <li>De momento, Júcar, Guadiana, Cantábrico y Guadalquivir; el resto de cuencas se irá sumando.</li>
     </ul>
   </section>
 </main>
@@ -247,7 +253,8 @@ def render(today: date | None = None) -> Path:
   <p class="principle">Datos públicos, reglas a la vista y cada cifra enlazada a su fuente. Indicios, no veredictos.</p>
   <p>Caudales: <a href="{SAIH_JUCAR}">SAIH Júcar</a>, Confederación Hidrográfica del Júcar;
   <a href="{SIRA_GUADIANA}">SIRA</a>, Confederación Hidrográfica del Guadiana;
-  <a href="{SAIH_CANTABRICO}">SAIH Cantábrico</a>, Confederación Hidrográfica del Cantábrico. Mínimos:
+  <a href="{SAIH_CANTABRICO}">SAIH Cantábrico</a>, Confederación Hidrográfica del Cantábrico;
+  <a href="{SAIH_GUADALQUIVIR}">SAIH Guadalquivir</a>, Confederación Hidrográfica del Guadalquivir. Mínimos:
   <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2023-3511">Real Decreto 35/2023</a>, BOE. Código en
   <a href="{REPO}">GitHub</a> (MIT); datos propios CC BY 4.0.</p>
   <nav aria-label="Proyectos hermanos"><ul class="siblings">

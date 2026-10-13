@@ -159,3 +159,45 @@ def test_cantabrico_gauge_is_compared_only_at_the_point_the_minimum_is_set_for()
     assert any("1335" in u and "cuenca" in u for u in unread)
     assert any("1297" in u and "reserva" in u for u in unread)
     assert any("1999" in u and "CEDEX" in u for u in unread)
+
+
+def _guadalquivir_fixture():
+    def table(rows):
+        return "<table>" + "".join("<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>" for r in rows) + "</table>"
+    h = '<p class="parrafo_2">Apéndice {} Título</p>'
+    head = [["Red de seguimiento del régimen de caudales", "Régimen de caudales mínimos (l/s)"],
+            ["Río", "Punto de control", "Oct.-Nov.", "Dic.-Abr.", "May.", "Jun.", "Jul.-Sep."]]
+    return (h.format("6.1.3") + table(head + [
+        ["Guadalquivir.", "Estación de aforos Arroyo María (*).", "370", "610", "1,22", "1,22", "370"],
+        ["Presa de Pedro Marin (*).", "1.600", "1.600", "1.600", "1.600", "1.600"],
+        ["Genil.", "Presa de Cordobilla.", "930", "1.020", "1.020", "880", "880"],
+        ["(*) Responde a estudios específicos del tramo."]])
+        + h.format("6.2.2") + table(head + [
+        ["Guadalquivir.", "Estación de aforos Arroyo María (*).", "300", "250", "250", "250", "300"],
+        # The drought table spells some places differently; the key still matches.
+        ["Presa Pedro Marin (*).", "1.200", "1.200", "1.200", "1.200", "1.200"]]))
+
+
+def test_guadalquivir_periods_in_litres_become_monthly_m3s():
+    from caudal.plan import guadalquivir_points
+    pts = guadalquivir_points(_guadalquivir_fixture())
+    assert set(pts) == {("guadalquivir", "arroyo maria"), ("guadalquivir", "pedro marin"), ("genil", "cordobilla")}
+    # Oct–Nov, Dec–Apr, May, Jun, Jul–Sep; a decimal comma in an l/s table is left blank.
+    assert pts[("guadalquivir", "arroyo maria")].ordinary == (0.61, 0.61, 0.61, 0.61, None, None,
+                                                            0.37, 0.37, 0.37, 0.37, 0.37, 0.61)
+    marin = pts[("guadalquivir", "pedro marin")]
+    assert marin.name == "Presa de Pedro Marín" and marin.drought == (1.2,) * 12
+    assert pts[("genil", "cordobilla")].drought is None
+
+
+def test_guadalquivir_reads_only_points_with_a_flow_signal():
+    from caudal.plan import build_guadalquivir
+    from caudal.sources.guadalquivir import Gauge
+    gauges = {("guadalquivir", "pedro marin"): Gauge("H04_222_X", "", "Presa de Pedro Marín", "Guadalquivir", 463717, 4195812),
+              ("guadalquivir", "arroyo maria"): Gauge("A40_211_X", "5001", "Arroyo María", "Guadalquivir", 514377, 4225681)}
+    stations, reqs, unread = build_guadalquivir(_guadalquivir_fixture(), gauges)
+    assert [s["station_id"] for s in stations] == ["guadalquivir-a40", "guadalquivir-h04"]
+    assert len(reqs) == 4 and any("Cordobilla" in u for u in unread) and any("mayo, junio" in u for u in unread)
+    import pytest
+    with pytest.raises(ValueError):   # a curated point the BOE no longer lists
+        build_guadalquivir(_guadalquivir_fixture(), {**gauges, ("genil", "loja"): gauges[("guadalquivir", "pedro marin")]})

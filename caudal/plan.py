@@ -339,6 +339,81 @@ def build_cantabrico(boe_html: dict[str, str], gauges: dict, catchments: dict[st
     return stations, reqs, unread
 
 
+# ---- Guadalquivir (anexo VII, apéndice 6) ----------------------------------------
+
+GUADALQUIVIR_BLOCK = "a6-30"
+# 6.1.3 (ordinary) and 6.2.2 (prolonged drought) set the minimums of the monitoring
+# network in l/s over five periods: Oct–Nov, Dec–Apr, May, Jun and Jul–Sep.
+PERIOD_OF_MONTH = (1, 1, 1, 1, 2, 3, 4, 4, 4, 0, 0, 1)
+LITRES = 0.001
+MONTHS_ES = ("enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre",
+             "octubre", "noviembre", "diciembre")
+
+
+def _place_key(text: str) -> str:
+    """'Estación de aforos de Écija(*).' → 'ecija'; 'Presa de Alcalá del Río.' → 'alcala rio'."""
+    import unicodedata
+    plain = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode().lower()
+    skip = {"estacion", "aforos", "presa", "azud", "de", "del", "el", "la"}
+    return " ".join(w for w in re.sub(r"[^a-z ]", " ", plain).split() if w not in skip)
+
+
+def _litres(cell: str) -> float | None:
+    """'1.600' l/s → 1.6 m³/s. A decimal comma has no place in an l/s table (Arroyo María
+    reads '1,22' in May and June, against 370–610 the rest of the year): left blank, not guessed."""
+    return None if "," in cell else to_m3s(cell, LITRES)
+
+
+def guadalquivir_points(html: str) -> dict[tuple[str, str], WaterBodyMinimum]:
+    """Minimums per control point, keyed by (river, place) as `_place_key` writes them.
+    A row of seven cells opens a river; the rows after it, of six, are further points on it."""
+    by_app = tables_by_appendix(html)
+    url = CONSOLIDATED_URL.format(boe=BOE_ID, block=GUADALQUIVIR_BLOCK)
+
+    def rows(app):
+        river, out = "", {}
+        for r in (r for t in by_app.get(app, []) for r in t):
+            if len(r) not in (6, 7) or r[-5] == "Oct.-Nov.":
+                continue
+            if len(r) == 7:
+                river = r[0].strip(" .")
+            periods = [_litres(c) for c in r[-5:]]
+            out[(_place_key(river), _place_key(r[-6]))] = (river, r[-6], tuple(periods[p] for p in PERIOD_OF_MONTH))
+        return out
+
+    drought = rows("6.2.2")
+    points = {}
+    for key, (_, place, ordinary) in rows("6.1.3").items():
+        name = re.sub(r"\s*\(\*\)", "", place).strip(" .")
+        points[key] = WaterBodyMinimum(
+            code="", name=name.replace("Marin", "Marín"), protected=False, temporality="", ordinary=ordinary,
+            drought=drought[key][2] if key in drought else None,
+            legal_ref="RD 35/2023, anexo VII, apéndices 6.1.3 y 6.2.2", source_url=url)
+    return points
+
+
+def build_guadalquivir(boe_html: str, gauges: dict) -> tuple[list[dict], list[dict], list[str]]:
+    """`gauges` maps the plan's (river, place) to the SAIH signal read there (sources.guadalquivir)."""
+    points = guadalquivir_points(boe_html)
+    if missing := set(gauges) - set(points):   # the BOE text changed under the curated table
+        raise ValueError(f"control points not found in the BOE: {sorted(missing)}")
+    stations, reqs, unread = [], [], []
+    for key, wb in sorted(points.items()):
+        if blank := [MONTHS_ES[i] for i, v in enumerate(wb.ordinary) if v is None]:
+            unread.append(f"{wb.name}: sin mínimo legible en el BOE en {', '.join(blank)}")
+        g = gauges.get(key)
+        if g is None:
+            unread.append(f"{wb.name}: el SAIH no publica el caudal que circula por el punto")
+            continue
+        sid = f"guadalquivir-{g.signal.split('_')[0].lower()}"
+        stations.append({"station_id": sid, "basin": "guadalquivir", "source": "saih-guadalquivir",
+                         "source_id": g.signal, "name": g.name, "river": g.river, "water_body_code": "",
+                         "water_body_name": wb.name, "protected": 0, "roea": g.roea,
+                         **dict(zip(("lon", "lat"), utm30_to_lonlat(g.x, g.y)))})
+        reqs += requirement_rows(sid, wb)
+    return stations, reqs, unread
+
+
 # ---- Output --------------------------------------------------------------------
 
 REQ_FIELDS = (["station_id", "water_body_code", "water_body_name", "protected", "temporality", "regime"]

@@ -8,13 +8,13 @@ import typer
 
 from . import plan, store
 from .config import REFRESH_DAYS
-from .sources import cantabrico, guadiana, jucar
+from .sources import cantabrico, guadalquivir, guadiana, jucar
 
 app = typer.Typer(add_completion=False, help="Caudal ecológico: daily flows against the legal minimum.")
 
 READERS = {"saih-jucar": jucar.fetch_day, "saih-cantabrico": cantabrico.fetch_day, "sira-guadiana": guadiana.fetch_day}
 # Sources that answer a date range in one request; the rest are read day by day.
-RANGE_READERS = {"saih-jucar": jucar.fetch_range}
+RANGE_READERS = {"saih-jucar": jucar.fetch_range, "saih-guadalquivir": guadalquivir.fetch_range}
 RANGE_CHUNK_DAYS = 31
 
 
@@ -27,6 +27,7 @@ def build_plan():
         "cantabrico": lambda: plan.build_cantabrico(
             {b: plan.fetch_block(b) for b in plan.CANTABRICO_PLANS}, cantabrico.fetch_gauges(),
             cantabrico.fetch_catchments(), cantabrico.fetch_river_bodies()),
+        "guadalquivir": lambda: plan.build_guadalquivir(plan.fetch_block(plan.GUADALQUIVIR_BLOCK), guadalquivir.GAUGES),
     }
     all_stations = []
     for basin, build in builds.items():

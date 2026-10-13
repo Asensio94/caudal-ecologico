@@ -32,6 +32,22 @@ cantabrico-1378,cantabrico,saih-cantabrico,1378,Grado,Cubia,ES018MSPFES175MAR001
 cantabrico-1398,cantabrico,saih-cantabrico,1398,Luarca,Negro,ES018MSPFES202MAR001800,Río Negro II,0,1398,-6.53497,43.52995
 cantabrico-1405,cantabrico,saih-cantabrico,1405,San Pelayo,Navia,ES018MSPFES234MAR002150,Río Navia V,0,1405,-6.72387,43.49273
 cantabrico-1407,cantabrico,saih-cantabrico,1407,Ponte da Muria,Navia,ES018MSPFES208MAR001902,Río Navia IV,0,1407,-6.96232,43.02455
+guadalquivir-a07,guadalquivir,saih-guadalquivir,A07_211_X,Mengíbar,Guadalbullón,,Estación de aforos de Mengíbar,0,5029,-3.7809,37.97458
+guadalquivir-a08,guadalquivir,saih-guadalquivir,A08_211_X,Mengíbar,Guadalquivir,,Presa de Mengíbar,0,5004,-3.79905,37.98393
+guadalquivir-a13,guadalquivir,saih-guadalquivir,A13_211_X,El Pósito,Guadiana Menor,,Estación de aforos el Pósito,0,5023,-3.21168,37.88161
+guadalquivir-a14,guadalquivir,saih-guadalquivir,A14_211_X,Valchillón,Guadajoz,,Estación de aforos de Valchillón,0,5016,-4.80452,37.82046
+guadalquivir-a15,guadalquivir,saih-guadalquivir,A15_211_X,Loja,Genil,,Estación de aforos de Loja,0,5045,-4.16705,37.17523
+guadalquivir-a18,guadalquivir,saih-guadalquivir,A18_211_X,Carmona,Corbones,,Estación de aforos de Carmona,0,,-5.60695,37.56374
+guadalquivir-a22,guadalquivir,saih-guadalquivir,A22_211_X,Aznalcázar,Guadiamar,,Estación de aforos de Aznalcázar,0,5076,-6.25989,37.3029
+guadalquivir-a23,guadalquivir,saih-guadalquivir,A23_211_X,Pinos Genil,Genil,,Estación de aforos de Canales Pinos,0,5020,-3.49305,37.16252
+guadalquivir-a40,guadalquivir,saih-guadalquivir,A40_211_X,Arroyo María,Guadalquivir,,Estación de aforos Arroyo María,0,5001,-2.83585,38.17893
+guadalquivir-a64,guadalquivir,saih-guadalquivir,A64_211_X,Linares,Guadalimar,,Estación de aforos de Linares,0,5171,-3.58487,38.06802
+guadalquivir-e53,guadalquivir,saih-guadalquivir,E53_221_X,Presa de Peñaflor,Guadalquivir,,Presa de Peñaflor,0,,-5.33083,37.69429
+guadalquivir-h04,guadalquivir,saih-guadalquivir,H04_222_X,Presa de Pedro Marín,Guadalquivir,,Presa de Pedro Marín,0,,-3.41275,37.90912
+guadalquivir-h07,guadalquivir,saih-guadalquivir,H07_221_X,Presa de Villafranca,Guadalquivir,,Presa de Villafranca,0,,-4.59893,37.95569
+guadalquivir-h09,guadalquivir,saih-guadalquivir,H09_215_X,Presa de Alcalá del Río,Guadalquivir,,Presa de Alcalá del Río,0,,-5.97617,37.51855
+guadalquivir-i11,guadalquivir,saih-guadalquivir,I11_211_X,Azud de Fuente Palmera,Guadalquivir,,Azud Fuente Palmera,0,,-5.1319,37.76804
+guadalquivir-i15,guadalquivir,saih-guadalquivir,I15_211_X,Écija (El Villar),Genil,,Estación de aforos de Écija,0,5165,-5.10741,37.60348
 guadiana-CR1-07,guadiana,sira-guadiana,CR1-07,Gigüela en Villafranca,Ciguela,ES040MSPF00013474D,Río Gigüela IV,0,,-3.310165,39.414914
 guadiana-CR1-21,guadiana,sira-guadiana,CR1-21,Bullaque en Luciana,Bullaque,ES040MSPF00014160B,Río Bullaque II B,0,,-4.287334,38.985086
 guadiana-CR2-01,guadiana,sira-guadiana,CR2-01,Guadiana en Puebla de Don Rodrigo,Guadiana,ES040MSPF00013353B,Río Guadiana IV B,0,,-4.583657,39.10164
