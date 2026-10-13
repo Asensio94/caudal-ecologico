@@ -34,6 +34,8 @@ CSS = f""":root{{--accent:{ACCENT};--accent-dark:{ACCENT_DARK};--below:#b42318;-
 @media (prefers-color-scheme:dark){{:root:not([data-theme="light"]){{--below:#f47067;--ok:#62b88a;--gap:#6f6a64}}}}
 :root[data-theme="dark"]{{--below:#f47067;--ok:#62b88a;--gap:#6f6a64}}
 main{{max-width:1100px;margin:0 auto;padding:0 16px}}
+.nav{{margin:20px 0 0;font-size:.92rem}}
+tr:target td{{background:color-mix(in srgb,var(--accent) 10%,transparent)}}
 .tools{{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:24px 0 12px}}
 .tools button{{font:inherit;font-size:.9rem;padding:6px 12px;border:1px solid var(--line);border-radius:999px;
   background:var(--paper);color:var(--ink);cursor:pointer}}
@@ -126,7 +128,7 @@ def _row_html(r: dict, start: date) -> str:
     qmin = _fmt(latest.minimum) if latest and latest.minimum is not None else "—"
     pct = f'{latest.ratio * 100:.0f} %' if latest and latest.ratio is not None else ""
     return (
-        f'<tr data-status="{status}" data-basin="{s["basin"]}"><td><span class="state {status}" title="{label}"></span>'
+        f'<tr id="{s["station_id"]}" data-status="{status}" data-basin="{s["basin"]}"><td><span class="state {status}" title="{label}"></span>'
         f'<b>{escape(s["name"])}</b><span class="sub">Río {escape(s["river"])} · {_gauge_label(s)}</span></td>'
         f'<td>{escape(s["water_body_name"])}<span class="sub">Masa {s["water_body_code"]}{protected}</span></td>'
         f'<td class="num {status}"><b>{q}</b><span class="sub">{pct}</span></td>'
@@ -176,6 +178,7 @@ def render(today: date | None = None) -> Path:
   </div>
 </header>
 <main>
+  <p class="nav"><a href="2027.html">¿Llegará a 2027? Estado y plazo de cada masa de agua →</a></p>
   <div class="tools" role="group" aria-label="Filtrar">
     <button type="button" data-filter="all" aria-pressed="true">Todos</button>
     <button type="button" data-filter="below" aria-pressed="false">Por debajo ahora</button>

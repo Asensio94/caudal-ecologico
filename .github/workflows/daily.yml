@@ -36,11 +36,13 @@ jobs:
       - run: pip install -r requirements.txt
       - run: python -m pytest -q
 
-      # The plan is consolidated text that can be amended: re-read it on the 1st.
+      # The plan is consolidated text that can be amended: re-read it on the 1st, with the
+      # status and deadlines of every water body (EEA WISE, pinned release, and the BOE).
       - name: Monthly plan refresh
         run: |
           if [ "$(date -u +%d)" = "01" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             python -m caudal.cli plan
+            python -m caudal.cli wfd
           fi
 
       - name: Fetch flows and render the page
@@ -70,7 +72,7 @@ jobs:
           REPO: ${{ github.repository }}
         run: |
           rm -rf publish && mkdir publish
-          cp docs/index.html publish/ && touch publish/.nojekyll
+          cp docs/*.html docs/*.json publish/ && touch publish/.nojekyll
           cd publish
           git init -q -b gh-pages
           git config user.name "github-actions[bot]"

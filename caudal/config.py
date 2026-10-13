@@ -7,9 +7,10 @@ DATA_DIR = ROOT / "data"
 REQUIREMENTS_DIR = DATA_DIR / "requirements"   # minimums parsed from the BOE, one CSV per basin
 STATIONS_FILE = DATA_DIR / "stations.csv"      # control points and how to read each one
 FLOWS_DIR = DATA_DIR / "flows"                 # daily means, one CSV per station
-DOCS_DIR = ROOT / "docs"                       # the published page
+WFD_DIR = DATA_DIR / "wfd"                     # status, objectives and exemptions of every water body
+DOCS_DIR = ROOT / "docs"                       # the published pages
 
-for _d in (REQUIREMENTS_DIR, FLOWS_DIR, DOCS_DIR):
+for _d in (REQUIREMENTS_DIR, FLOWS_DIR, WFD_DIR, DOCS_DIR):
     _d.mkdir(parents=True, exist_ok=True)
 
 # A day counts as below the minimum only when its mean is more than this fraction under
