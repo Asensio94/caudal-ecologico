@@ -101,7 +101,7 @@ def test_guadiana_control_code_contradicting_its_name_is_resolved_by_name():
     from caudal.plan import guadiana_minimums
     _, control, _, corrected = guadiana_minimums(_guadiana_fixture())
     assert control["ES040MSPF000142300"] == ["CR2-37"] and "ES040MSPF000134230" not in control
-    assert len(corrected) == 1 and corrected[0].startswith("CR2-37")
+    assert len(corrected) == 1 and corrected[0][0] == "CR2-37" and "ES040MSPF000142300" in corrected[0][1]
 
 
 def _cantabrico_fixture():
@@ -197,7 +197,8 @@ def test_guadalquivir_reads_only_points_with_a_flow_signal():
               ("guadalquivir", "arroyo maria"): Gauge("A40_211_X", "5001", "Arroyo María", "Guadalquivir", 514377, 4225681)}
     stations, reqs, unread = build_guadalquivir(_guadalquivir_fixture(), gauges)
     assert [s["station_id"] for s in stations] == ["guadalquivir-a40", "guadalquivir-h04"]
-    assert len(reqs) == 4 and any("Cordobilla" in u for u in unread) and any("mayo, junio" in u for u in unread)
+    assert len(reqs) == 4 and unread == ["Presa de Cordobilla: el SAIH no publica el caudal que circula por el punto"]
+    assert "mayo y junio" in stations[0]["note"]
     import pytest
     with pytest.raises(ValueError):   # a curated point the BOE no longer lists
         build_guadalquivir(_guadalquivir_fixture(), {**gauges, ("genil", "loja"): gauges[("guadalquivir", "pedro marin")]})

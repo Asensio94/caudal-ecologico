@@ -29,15 +29,17 @@ def build_plan():
             cantabrico.fetch_catchments(), cantabrico.fetch_river_bodies()),
         "guadalquivir": lambda: plan.build_guadalquivir(plan.fetch_block(plan.GUADALQUIVIR_BLOCK), guadalquivir.GAUGES),
     }
-    all_stations = []
+    all_stations, excluded = [], []
     for basin, build in builds.items():
         stations, reqs, unread = build()
         plan.write_requirements(basin, reqs)
         all_stations += stations
+        excluded += [(basin, u) for u in unread]
         typer.echo(f"{basin}: {len(stations)} control points with public flows; not compared:")
         for u in unread:
             typer.echo(f"  - {u}")
     plan.write_stations(all_stations)
+    plan.write_excluded(excluded)
 
 
 @app.command()

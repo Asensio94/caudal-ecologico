@@ -11,6 +11,9 @@ el mínimo) y el Guadalquivir (16 de los 17 puntos de su red de seguimiento).
 
 ## Cómo funciona
 
+La web explica todo esto por sí sola: el método cuenca a cuenca, por qué cada estación mide su
+mínimo (una nota en cada fila), qué se deja fuera y por qué, los límites y las fuentes.
+
 1. **Mínimos.** El Real Decreto 35/2023 aprobó los planes hidrológicos 2022–2027. Cada demarcación
    tiene su anexo con un mínimo por mes para cada masa de agua, en régimen ordinario y de sequía
    prolongada, y la estación que lo controla. `caudal/plan.py` descarga el bloque de la API de datos
@@ -121,6 +124,7 @@ python -m pytest -q
 |---|---|
 | `data/stations.csv` | Puntos de control: estación, río, masa de agua, ROEA, longitud y latitud (ETRS89) |
 | `data/requirements/<cuenca>.csv` | Mínimo mensual por estación y régimen, con su referencia legal y enlace al BOE |
+| `data/excluded.csv` | Puntos del plan y aforos que no se comparan, con el motivo; la web los lista |
 | `data/flows/<estación>.csv` | Media diaria, lecturas recibidas y esperadas, fuente y hora de descarga |
 
 ## Fuentes y licencias

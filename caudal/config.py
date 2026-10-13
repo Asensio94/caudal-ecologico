@@ -7,6 +7,7 @@ DATA_DIR = ROOT / "data"
 REQUIREMENTS_DIR = DATA_DIR / "requirements"   # minimums parsed from the BOE, one CSV per basin
 STATIONS_FILE = DATA_DIR / "stations.csv"      # control points and how to read each one
 FLOWS_DIR = DATA_DIR / "flows"                 # daily means, one CSV per station
+EXCLUDED_FILE = DATA_DIR / "excluded.csv"      # plan points and gauges not compared, and why
 DOCS_DIR = ROOT / "docs"                       # the published page
 
 for _d in (REQUIREMENTS_DIR, FLOWS_DIR, DOCS_DIR):

@@ -5,7 +5,7 @@ import csv
 from datetime import date, datetime, timezone
 
 from .compliance import Requirement
-from .config import FLOWS_DIR, REQUIREMENTS_DIR, STATIONS_FILE
+from .config import EXCLUDED_FILE, FLOWS_DIR, REQUIREMENTS_DIR, STATIONS_FILE
 from .sources import DailyFlow
 
 FLOW_FIELDS = ["date", "q_mean", "readings", "expected", "source", "fetched_at"]
@@ -60,3 +60,20 @@ def load_requirements() -> dict[str, list[Requirement]]:
             sid, e["ordinary"], e.get("drought"), date.fromisoformat(vfrom),
             date.fromisoformat(vto) if vto else None, r["protected"] == "1", r["source_url"]))
     return out
+
+
+def legal_refs() -> dict[str, tuple[str, str]]:
+    """(legal reference, BOE link) of each station's minimum, for the page to cite."""
+    out = {}
+    for path in sorted(REQUIREMENTS_DIR.glob("*.csv")):
+        with path.open(encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                out.setdefault(r["station_id"], (r["legal_ref"], r["source_url"]))
+    return out
+
+
+def load_excluded() -> list[dict]:
+    if not EXCLUDED_FILE.exists():
+        return []
+    with EXCLUDED_FILE.open(encoding="utf-8") as f:
+        return list(csv.DictReader(f))
