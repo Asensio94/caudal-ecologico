@@ -6,7 +6,7 @@ from datetime import date, timedelta
 
 import typer
 
-from . import plan, store
+from . import plan, sources, store
 from .config import REFRESH_DAYS
 from .sources import cantabrico, guadalquivir, guadiana, jucar
 
@@ -42,6 +42,28 @@ def build_plan():
     plan.write_excluded(excluded)
 
 
+@app.command("wfd")
+def build_wfd():
+    """Status and exemptions of every water body (EEA WISE) and deadlines from the BOE plans."""
+    from . import objectives, wfd
+    http = sources.session()
+    bodies = wfd.build_bodies(wfd.sql(wfd.SURFACE_SQL, http), wfd.sql(wfd.GROUND_SQL, http), wfd.fetch_places(http))
+    exemptions = wfd.fetch_exemptions(http)
+    wfd.write_csv("water_bodies.csv", wfd.WB_FIELDS, bodies)
+    wfd.write_csv("exemptions.csv", wfd.EXEMPTION_FIELDS, exemptions)
+    typer.echo(f"{len(bodies)} water bodies, {len(exemptions)} exemption rows; "
+               f"{sum(not b['lat'] for b in bodies)} without a point")
+    found = []
+    for block, read in objectives.READERS.items():
+        html = plan.fetch_block(block)
+        found += read(html, block)
+    rows, unmatched = objectives.rows(found, {b["code"] for b in bodies})
+    wfd.write_csv("objectives.csv", objectives.OBJ_FIELDS, rows)
+    typer.echo(f"{len(rows)} plan objectives from the BOE; {len(unmatched)} plan codes match no reported body:")
+    for u in unmatched:
+        typer.echo(f"  - {u}")
+
+
 @app.command()
 def fetch(days: int = REFRESH_DAYS, until: str = "", station: str = "", pause: float = 0.5):
     """Fetch the daily means of the last `days` complete days (yesterday backwards)."""
@@ -72,9 +94,11 @@ def fetch(days: int = REFRESH_DAYS, until: str = "", station: str = "", pause: f
 
 @app.command()
 def page():
-    """Render docs/index.html from the stored flows."""
-    from .web import render
-    render()
+    """Render docs/index.html, docs/2027.html (with masas-2027.json) and docs/signals.json."""
+    from . import countdown, signals, web
+    web.render()
+    countdown.render()
+    signals.render()
 
 
 if __name__ == "__main__":

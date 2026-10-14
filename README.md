@@ -9,6 +9,12 @@ De momento cubre cuatro: el Júcar (42 de los 45 puntos de control del plan), el
 Oriental y Occidental (33 de los 108 aforos de río del SAIH, los que miden justo donde el plan fija
 el mínimo) y el Guadalquivir (16 de los 17 puntos de su red de seguimiento).
 
+Una segunda página, [«¿Llegará a 2027?»](https://asensio94.github.io/caudal-ecologico/2027.html),
+reúne para las 6 274 masas de agua superficiales y subterráneas de España su estado ecológico y químico
+(cuantitativo y químico en las subterráneas), el plazo para alcanzar el buen estado y las excepciones
+de la Directiva Marco del Agua que se le aplican. 2027 es el último plazo: después solo cabe una
+prórroga por condiciones naturales o rebajar el objetivo.
+
 ## Cómo funciona
 
 La web explica todo esto por sí sola: el método cuenca a cuenca, por qué cada estación mide su
@@ -62,6 +68,35 @@ mínimo (una nota en cada fila), qué se deja fuera y por qué, los límites y l
 6. **Publicación.** Una acción diaria vuelve a leer la última semana (el SAIH corrige sus datos
    provisionales), guarda las series y publica la página.
 
+### ¿Llegará a 2027?
+
+1. **Estado y excepciones.** `caudal/wfd.py` consulta Discodata, el punto SQL de solo lectura de la
+   Agencia Europea de Medio Ambiente, sobre la base WISE WFD (versión fijada `v2r1`, tercer ciclo,
+   `cYear = 2022`): estado de cada masa, tramo de plazo («2021 o antes», «2027 o antes», «después de
+   2027») y excepciones con su motivo. El nombre en español y un punto representativo de cada masa
+   salen de los servicios de mapas WFD2022 de la AEMA, leídos como atributos: no se descargan
+   geometrías.
+2. **Plazos del BOE.** `caudal/objectives.py` lee el apéndice de objetivos medioambientales del
+   Real Decreto 35/2023 para el Júcar, el Guadiana y los dos planes del Cantábrico: año exacto y
+   artículo aplicado. Los códigos del plan se traducen al código europeo (`18-33` → `ES080MSPF18-33`);
+   coinciden los 1 363.
+3. **Clasificación.** `caudal/outlook.py` da a cada masa una situación: en buen estado, prórroga hasta
+   2027, más allá de 2027 por condiciones naturales, más allá de 2027 sin alegar condiciones naturales
+   (solo o además viabilidad técnica o coste, o sin motivo), objetivos menos rigurosos o sin evaluar.
+   Donde hay año del BOE, manda sobre el tramo de la AEMA.
+4. **Publicación.** `docs/2027.html` con el resumen por demarcación y un buscador sobre
+   `docs/masas-2027.json` (datos abiertos). `python -m caudal.cli wfd` se ejecuta el día 1 de cada mes,
+   con la relectura del plan.
+
+### Señales para Estado de las IBA
+
+`docs/signals.json` sigue el contrato de `estado-iba/CONTRATO.md`:
+
+- `river_flow`: una por estación con algún día por debajo del mínimo en 30 días (con el margen del 5 %).
+- `water_status` (tipo propuesto al hub): una por masa que no está en buen estado o tiene una
+  excepción. `deadline` va siempre a `null`: el plazo de la Directiva no es un plazo para alegar.
+  El plazo y los motivos van en `details`.
+
 ## Contraste / validación
 
 - La media diaria de la estación EA 89 Huerto Mulet (variable 13070) del 7/10/2026 sale con 287 de
@@ -85,6 +120,11 @@ mínimo (una nota en cada fila), qué se deja fuera y por qué, los límites y l
   permite pero no detalla. Tampoco se comparan las masas con un tramo declarado reserva natural
   fluvial (marcadas * en el BOE), que tiene mínimos propios. `python -m caudal.cli plan` lista cada
   aforo descartado y el motivo.
+- «¿Llegará a 2027?» enseña el estado con que se aprobó el plan (datos de 2019–2021 en la mayoría de
+  cuencas), no el de hoy. Las fichas de masas del Ministerio (MITECO) están tras una protección
+  anti-robots y no se leen; en las cuencas sin año del BOE solo hay los tramos de la AEMA.
+- «Más allá de 2027 sin alegar condiciones naturales» describe lo comunicado a Europa, no una
+  infracción: la memoria del plan puede justificar más de lo que recoge la base europea.
 - En las masas marcadas ** del Cantábrico Occidental el mínimo de sequía no rige para los
   aprovechamientos en ZEC o ZEPA; da igual mientras se aplique siempre el régimen ordinario.
 - En el Guadalquivir solo se comparan los puntos de la red de seguimiento (6.1.3). Los mínimos por
@@ -107,6 +147,9 @@ mínimo (una nota en cada fila), qué se deja fuera y por qué, los límites y l
   de su visor, respectivamente.
 - Calificación mensual al estilo del Ministerio (leve, media, grave).
 - Cruce con las declaraciones de sequía prolongada.
+- Año exacto del BOE para las demás cuencas intercomunitarias: Miño-Sil, Duero, Tajo, Guadalquivir,
+  Segura, Ebro, Ceuta y Melilla (cada plan tiene su propia tabla). Las cuencas internas no están en
+  el real decreto y seguirán con los tramos de la AEMA.
 
 ## Uso
 
@@ -114,7 +157,8 @@ mínimo (una nota en cada fila), qué se deja fuera y por qué, los límites y l
 pip install -r requirements.txt
 python -m caudal.cli plan            # mínimos y estaciones desde el BOE, los SAIH, el SIRA y el CEDEX
 python -m caudal.cli fetch --days 30 # medias diarias de los últimos 30 días
-python -m caudal.cli page            # docs/index.html
+python -m caudal.cli wfd             # estado, plazos y excepciones de todas las masas (AEMA y BOE)
+python -m caudal.cli page            # docs/index.html, docs/2027.html, masas-2027.json y signals.json
 python -m pytest -q
 ```
 
@@ -126,6 +170,9 @@ python -m pytest -q
 | `data/requirements/<cuenca>.csv` | Mínimo mensual por estación y régimen, con su referencia legal y enlace al BOE |
 | `data/excluded.csv` | Puntos del plan y aforos que no se comparan, con el motivo; la web los lista |
 | `data/flows/<estación>.csv` | Media diaria, lecturas recibidas y esperadas, fuente y hora de descarga |
+| `data/wfd/water_bodies.csv` | Cada masa de agua: código europeo, demarcación, categoría, estado, tramo de plazo, fecha de entrega y punto representativo |
+| `data/wfd/exemptions.csv` | Excepciones por masa y aspecto: artículo, motivo y presiones |
+| `data/wfd/objectives.csv` | Año y artículos del BOE por masa, con su referencia legal y enlace |
 
 ## Fuentes y licencias
 
@@ -142,6 +189,8 @@ python -m pytest -q
   aforo del Guadalquivir: [Anuario de aforos](https://ceh.cedex.es/anuarioaforos/) del CEDEX.
 - Mínimos: [Real Decreto 35/2023](https://www.boe.es/buscar/act.php?id=BOE-A-2023-3511), BOE,
   vía su API de datos abiertos.
+- Estado, excepciones y nombres de las masas: [WISE WFD](https://discodata.eea.europa.eu/), Agencia
+  Europea de Medio Ambiente, CC BY 4.0 (Discodata y servicios de mapas WFD2022).
 - Código: MIT. Datos propios (medias diarias y comparaciones): CC BY 4.0.
 
 Forma parte de un conjunto de proyectos hermanos:
