@@ -10,9 +10,12 @@ from html import escape
 
 from .config import TOLERANCE
 from .plan import CATCHMENT_TOLERANCE, SNAP_METRES
+from .sources import chj_piezometry, wise
 
 BOE = "https://www.boe.es/buscar/act.php?id=BOE-A-2023-3511"
 CEDEX = "https://ceh.cedex.es/anuarioaforos/"
+EEA_WFD = "https://water.discomap.eea.europa.eu/arcgis/rest/services/WISE_WFD"
+MITECO_GW = "https://www.miteco.gob.es/es/cartografia-y-sig/ide/descargas/agua/estado-masas-agua-phc-2022-2027.html"
 
 
 def _excluded(items: list[str], what: str) -> str:
@@ -25,9 +28,16 @@ def _excluded(items: list[str], what: str) -> str:
             f'      <ul>\n{li}\n      </ul></details>')
 
 
-def method_html(compared: dict[str, int], excluded: dict[str, list[str]], links: dict[str, str]) -> str:
-    """`compared` and `excluded` by basin key; `links` the SAIH address of each basin."""
+def _of(k: int, total: int) -> str:
+    return f"{k} de {total}"
+
+
+def method_html(compared: dict[str, int], excluded: dict[str, list[str]], links: dict[str, str],
+                ctx: dict[str, int]) -> str:
+    """`compared` and `excluded` by basin key; `links` the SAIH address of each basin; `ctx` the
+    context counts (stations with pressures, with a poor aquifer…) computed by the page."""
     n, x = compared, {k: len(v) for k, v in excluded.items()}
+    c = ctx
     return f"""
   <section class="method">
     <h2>Cómo se calcula</h2>
@@ -119,6 +129,40 @@ def method_html(compared: dict[str, int], excluded: dict[str, list[str]], links:
     de salida de embalse (6.1.4). Se comparan {n.get("guadalquivir", 0)} de los
     {n.get("guadalquivir", 0) + x.get("guadalquivir", 0)} puntos de la red de seguimiento.</p>{_excluded(excluded.get("guadalquivir", []), "puntos del plan")}
 
+    <h2>Por qué puede faltar agua</h2>
+    <p>Cada fila añade lo que el propio plan hidrológico dice del entorno del punto. No explica un día concreto,
+    pero ayuda a distinguir un río que se queda corto por lo que se le quita de uno que simplemente viene seco.</p>
+    <ul>
+      <li><b>Presiones sobre el caudal.</b> Los planes enumeran, masa a masa, las «presiones significativas»:
+      extracciones (para regadío, abastecimiento, industria, hidroeléctrica…), presas y azudes, y alteraciones
+      del régimen del río. Aquí se muestran solo las que restan o regulan caudal, no las de contaminación. La masa
+      se busca en el mismo código que el plan asigna al punto; en el Guadalquivir, que no da códigos, es la masa
+      del mismo río más cercana a la estación (a menos de {wise.SEARCH_METRES} m). Se ha encontrado la masa de
+      {_of(c.get("rivers", 0), c.get("stations", 0))} puntos, y {c.get("pressured", 0)} tienen alguna presión de
+      ese tipo.</li>
+      <li><b>Estado del acuífero.</b> Debajo de casi todos los ríos hay una masa de agua subterránea. Los planes
+      dicen si está en buen o mal estado cuantitativo: en mal estado se bombea más de lo que se recarga o el
+      bombeo ya afecta a ríos y humedales. Cuando un acuífero baja, el río deja de recibir agua de él en verano, o
+      empieza a perderla. Se toma la masa que hay justo debajo de la estación. {c.get("poor", 0)} puntos están
+      sobre un acuífero en mal estado.</li>
+      <li><b>Nivel del acuífero (solo Júcar).</b> La Confederación Hidrográfica del Júcar publica todas las
+      medidas validadas de sus piezómetros, los pozos donde mide la altura del agua subterránea. Para cada
+      piezómetro se toma la mediana de cada año y se calcula la pendiente de Theil–Sen (la mediana de las
+      pendientes entre cada par de años), a la que un año raro no arrastra. Cuentan los piezómetros con al menos
+      {chj_piezometry.MIN_YEARS} años medidos en los últimos {chj_piezometry.FIRST_YEAR_BACK} y alguno en los
+      últimos {chj_piezometry.RECENT_YEARS}. El dato del acuífero es la mediana de sus piezómetros. Si baja año
+      tras año, también en los húmedos, se saca más agua de la que entra; si solo baja en años secos, es sequía.
+      {c.get("trend", 0)} puntos tienen este dato.</li>
+    </ul>
+    <p>De los {c.get("below", 0)} puntos con algún día por debajo del mínimo en estos 30 días,
+    {c.get("below_pressured", 0)} tienen presiones sobre el caudal señaladas por el plan, {c.get("below_poor", 0)}
+    están sobre un acuífero en mal estado y {c.get("below_either", 0)} tienen al menos una de las dos cosas.</p>
+    <p>Es lo que el plan declara, no una comprobación sobre el terreno. Puede quedarse corto (el Gigüela en
+    Villafranca lleva semanas seco y el plan no señala presiones en esa masa, aunque el acuífero de debajo sí
+    está en mal estado) y no dice qué presa o qué pozo concreto, ni cuánta agua se lleva. El acuífero que
+    alimenta un río puede estar aguas arriba y no justo debajo de la estación. Los datos vienen de la evaluación
+    que España envió a la Unión Europea en 2022, hecha con datos de 2018 y 2019.</p>
+
     <h3>Límites</h3>
     <ul>
       <li>Los datos del SAIH son provisionales: la confederación los revisa y publica los definitivos en el anuario
@@ -140,6 +184,11 @@ def method_html(compared: dict[str, int], excluded: dict[str, list[str]], links:
       <li>Los mínimos por masa del Guadalquivir y los de salida de embalse.</li>
       <li>Una calificación mensual como la del Ministerio, y el cruce con las declaraciones de sequía.</li>
       <li>Contrastar las medias con el anuario de aforos validado cuando se publique el del año 2025-26.</li>
+      <li>El nivel de los acuíferos fuera del Júcar. El Ministerio publica la red piezométrica de todas las
+      cuencas, pero su descarga pide superar una prueba antirrobots y su servidor de mapas falla. Cada
+      confederación publica la suya por separado y en formatos distintos.</li>
+      <li>Qué presa o qué toma concreta hay aguas arriba de cada punto (inventario de presas y Registro de
+      Aguas).</li>
     </ul>
   </section>"""
 
@@ -151,4 +200,8 @@ def sources_html(links: dict[str, str]) -> str:
   <a href="{links["guadalquivir"]}">SAIH Guadalquivir</a>, Confederación Hidrográfica del Guadalquivir. Sus avisos
   legales permiten reproducir los datos citando la fuente. Estaciones y masas del Cantábrico: servicios de mapas de
   la Confederación Hidrográfica del Cantábrico. Superficie de cuenca y códigos SAIH de los aforos:
-  <a href="{CEDEX}">anuario de aforos del CEDEX</a>. Mínimos: <a href="{BOE}">Real Decreto 35/2023</a>, BOE.</p>"""
+  <a href="{CEDEX}">anuario de aforos del CEDEX</a>. Mínimos: <a href="{BOE}">Real Decreto 35/2023</a>, BOE.
+  Presiones y estado de los acuíferos: planes hidrológicos 2022–2027 tal como España los envió a la Unión Europea,
+  en los <a href="{EEA_WFD}">servicios WISE de la Agencia Europea de Medio Ambiente</a> (los mismos que publica el
+  <a href="{MITECO_GW}">Ministerio</a>); reutilización libre citando la fuente. Niveles de los acuíferos del Júcar:
+  <a href="{chj_piezometry.PAGE}">red piezométrica de la Confederación Hidrográfica del Júcar</a>.</p>"""

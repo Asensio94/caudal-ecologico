@@ -6,11 +6,12 @@ from html import escape
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from . import store
+from . import context, store
 from .explain import method_html, sources_html
 from .compliance import DayResult, Status, episodes, evaluate
 from .config import DOCS_DIR, TOLERANCE
 from .logo import LOGO_SVG, favicon_link
+from .sources.wise import FLOW_PRESSURES
 
 ACCENT, ACCENT_DARK = "#007c91", "#4fc7d9"
 WINDOW_DAYS = 30
@@ -60,6 +61,8 @@ tr[hidden]{{display:none}}
 .legend{{color:var(--muted);font-size:.85rem;margin:8px 0 0}}
 .points .note{{display:block;color:var(--muted);font-size:.78rem;max-width:42ch;margin-top:2px}}
 .points .sub a,.points .note a{{color:inherit}}
+.points .ctx{{display:block;font-size:.78rem;max-width:42ch;margin-top:4px}}
+.points .ctx b{{color:var(--below);font-weight:600}}
 .method details{{margin:6px 0;max-width:72ch}}
 .method summary{{cursor:pointer;font-weight:600}}
 .method details ul{{font-size:.9rem;margin:6px 0 12px}}
@@ -102,7 +105,7 @@ def build_rows(today: date) -> tuple[list[dict], date]:
     last = today - timedelta(days=1)
     start = last - timedelta(days=WINDOW_DAYS - 1)
     reqs = store.load_requirements()
-    rows, refs = [], store.legal_refs()
+    rows, refs, ctx = [], store.legal_refs(), context.load()
     for s in store.load_stations():
         series = store.flow_series(s["station_id"])
         window = {start + timedelta(days=i): series.get(start + timedelta(days=i)) for i in range(WINDOW_DAYS)}
@@ -113,10 +116,51 @@ def build_rows(today: date) -> tuple[list[dict], date]:
         rows.append({"station": s, "results": results, "latest": latest,
                      "below_days": sum(r.status is Status.BELOW for r in results),
                      "deficit": sum(r.deficit_hm3 for r in results), "ongoing": ongoing,
-                     "ref": refs.get(s["station_id"], ("", ""))})
+                     "ref": refs.get(s["station_id"], ("", "")), "context": ctx.get(s["station_id"])})
     order = {Status.BELOW: 0, Status.OK: 2, Status.NO_DATA: 1, Status.NO_RULE: 3}
     rows.sort(key=lambda r: (order[r["latest"].status] if r["latest"] else 1, -(r["below_days"]), r["station"]["name"]))
     return rows, start
+
+
+SMALL_WORDS = {"de", "del", "la", "las", "los", "el", "y", "en"}
+
+
+def _title(name: str) -> str:
+    """'BAILÉN - GUARROMÁN - LINARES' → 'Bailén - Guarromán - Linares'; "L'ALCORA" → "l'Alcora"."""
+    def word(w: str, first: bool) -> str:
+        w = w.lower()
+        if "'" in w:
+            head, tail = w.split("'", 1)
+            return f"{head}'{tail.capitalize()}"
+        return w if w in SMALL_WORDS and not first else w.capitalize()
+    return " ".join("-".join(word(p, i == 0 and j == 0) for j, p in enumerate(w.split("-")))
+                    for i, w in enumerate(name.split()))
+
+
+def _context_html(c: context.Context | None) -> str:
+    """What the plan reports around the point: pressures on the river, the aquifer under it."""
+    if c is None:
+        return ""
+    lines = []
+    if c.river_body_code:
+        p = [FLOW_PRESSURES[x] for x in c.flow_pressures]
+        lines.append(f"Presiones sobre el caudal que señala el plan: {', '.join(p)}." if p
+                     else "El plan no señala en esta masa presiones que resten caudal.")
+    for a in c.aquifers:
+        state = {"poor": "<b>mal estado cuantitativo</b>", "good": "buen estado cuantitativo"}.get(
+            a["aquifer_status"], "estado cuantitativo desconocido")
+        risk = ", en riesgo de no alcanzar el bueno" if a["aquifer_at_risk"] == "1" and a["aquifer_status"] != "good" else ""
+        line = f"Acuífero {escape(_title(a['aquifer_name']))}: {state}{risk}."
+        if a["level_trend_m_year"]:
+            slope = float(a["level_trend_m_year"])
+            move = "baja" if slope < 0 else "sube"
+            n, falling = int(a["trend_piezometers"]), int(a["trend_falling"])
+            years = a["trend_years"].replace("-", "–")
+            who = (f"un solo piezómetro" if n == 1 else
+                   f"mediana de {n} piezómetros; {falling} {'baja' if falling == 1 else 'bajan'} más de 10 cm al año")
+            line += f" Nivel {move} {_fmt(abs(slope))} m al año ({years}, {who})."
+        lines.append(line)
+    return "".join(f'<span class="ctx">{x}</span>' for x in lines)
 
 
 def _gauge_label(s: dict) -> str:
@@ -139,13 +183,25 @@ def _row_html(r: dict, start: date) -> str:
         f'<b>{escape(s["name"])}</b><span class="sub">Río {escape(s["river"])} · {_gauge_label(s)}</span></td>'
         f'<td>{escape(s["water_body_name"])}<span class="sub">{"Masa " + s["water_body_code"] if s["water_body_code"] else "Punto de control del plan"}{protected}</span>'
         f'<span class="sub"><a href="{escape(r["ref"][1])}">{escape(r["ref"][0])}</a></span>'
-        f'<span class="note">{escape(s.get("note") or "")}</span></td>'
+        f'<span class="note">{escape(s.get("note") or "")}</span>{_context_html(r["context"])}</td>'
         f'<td class="num {status}"><b>{q}</b><span class="sub">{pct}</span></td>'
         f'<td class="num">{qmin}</td>'
         f'<td class="num">{r["below_days"]}{ongoing}</td>'
         f'<td class="num">{_fmt(r["deficit"], 3)}</td>'
         f'<td>{_sparkline(r["results"], start)}</td></tr>'
     )
+
+
+def _context_counts(rows: list[dict]) -> dict[str, int]:
+    cs = [r["context"] for r in rows if r["context"]]
+    below = [r["context"] for r in rows if r["context"] and r["below_days"]]
+    poor = lambda c: any(a["aquifer_status"] == "poor" for a in c.aquifers)          # noqa: E731
+    pressured = lambda c: bool(c.flow_pressures)                                      # noqa: E731
+    return {"stations": len(cs), "rivers": sum(bool(c.river_body_code) for c in cs),
+            "pressured": sum(map(pressured, cs)), "poor": sum(map(poor, cs)),
+            "trend": sum(any(a["level_trend_m_year"] for a in c.aquifers) for c in cs),
+            "below": len(below), "below_pressured": sum(map(pressured, below)), "below_poor": sum(map(poor, below)),
+            "below_either": sum(pressured(c) or poor(c) for c in below)}
 
 
 def render(today: date | None = None) -> Path:
@@ -163,7 +219,7 @@ def render(today: date | None = None) -> Path:
     excluded: dict[str, list[str]] = {}
     for x in store.load_excluded():
         excluded.setdefault(x["basin"], []).append(x["reason"])
-    method, sources = method_html(compared, excluded, links), sources_html(links)
+    method, sources = method_html(compared, excluded, links, _context_counts(rows)), sources_html(links)
     siblings = "\n".join(
         f'    <li{" aria-current=\"page\"" if slug == "caudal-ecologico" else ""}>'
         f'<a href="https://asensio94.github.io/{slug}/">{name}</a></li>' for slug, name in SIBLINGS)

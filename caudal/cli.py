@@ -93,6 +93,13 @@ def fetch(days: int = REFRESH_DAYS, until: str = "", station: str = "", pause: f
 
 
 @app.command()
+def context():
+    """Rebuild data/context.csv: river pressures and aquifer status (EEA) and level trends (CHJ)."""
+    from .context import build
+    typer.echo(f"{build(typer.echo)} rows")
+
+
+@app.command()
 def page():
     """Render docs/index.html, docs/2027.html (with masas-2027.json) and docs/signals.json."""
     from . import countdown, signals, web

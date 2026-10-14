@@ -9,6 +9,7 @@ STATIONS_FILE = DATA_DIR / "stations.csv"      # control points and how to read 
 FLOWS_DIR = DATA_DIR / "flows"                 # daily means, one CSV per station
 EXCLUDED_FILE = DATA_DIR / "excluded.csv"      # plan points and gauges not compared, and why
 WFD_DIR = DATA_DIR / "wfd"                     # status, objectives and exemptions of every water body
+CONTEXT_FILE = DATA_DIR / "context.csv"        # pressures and aquifer status the plans report per station
 DOCS_DIR = ROOT / "docs"                       # the published pages
 
 for _d in (REQUIREMENTS_DIR, FLOWS_DIR, WFD_DIR, DOCS_DIR):

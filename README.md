@@ -97,6 +97,24 @@ mínimo (una nota en cada fila), qué se deja fuera y por qué, los límites y l
   excepción. `deadline` va siempre a `null`: el plazo de la Directiva no es un plazo para alegar.
   El plazo y los motivos van en `details`.
 
+## Por qué puede faltar agua
+
+`python -m caudal.cli context` (una vez al mes, con `plan`) guarda en `data/context.csv` lo que los
+propios planes dicen del entorno de cada punto, y la web lo muestra en cada fila:
+
+- **Presiones sobre el caudal** de la masa de río: extracciones, presas y azudes, regulación del régimen
+  (códigos P3, P4-2 y P4-3 de la Directiva Marco). Se leen de los planes 2022–2027 tal como España los envió a
+  la Unión Europea, en los servicios WISE de la Agencia Europea de Medio Ambiente: el Ministerio publica las
+  mismas capas, pero su servidor de mapas falla y sus descargas piden superar una prueba antirrobots. La masa
+  se busca por el código que el plan da al punto; en el Guadalquivir, la del mismo río más cercana (300 m).
+- **Estado cuantitativo del acuífero** que hay justo debajo de la estación (bueno o malo, y si está en riesgo).
+- **Tendencia del nivel del acuífero, solo en el Júcar**: la CHJ publica todas las medidas validadas de su red
+  piezométrica. Por piezómetro, mediana anual del nivel estático y pendiente de Theil–Sen; cuentan los que
+  tienen 10 años medidos en los últimos 25 y alguno en los últimos 3. Por acuífero, la mediana.
+
+Es lo que el plan declara, no una comprobación: no dice qué presa o qué pozo, y puede quedarse corto (el
+Gigüela IV figura sin presiones, con el acuífero de debajo en mal estado).
+
 ## Contraste / validación
 
 - La media diaria de la estación EA 89 Huerto Mulet (variable 13070) del 7/10/2026 sale con 287 de
@@ -150,12 +168,15 @@ mínimo (una nota en cada fila), qué se deja fuera y por qué, los límites y l
 - Año exacto del BOE para las demás cuencas intercomunitarias: Miño-Sil, Duero, Tajo, Guadalquivir,
   Segura, Ebro, Ceuta y Melilla (cada plan tiene su propia tabla). Las cuencas internas no están en
   el real decreto y seguirán con los tramos de la AEMA.
+- Niveles piezométricos fuera del Júcar (cada confederación los publica por su cuenta) y qué presa o toma
+  concreta hay aguas arriba de cada punto.
 
 ## Uso
 
 ```bash
 pip install -r requirements.txt
 python -m caudal.cli plan            # mínimos y estaciones desde el BOE, los SAIH, el SIRA y el CEDEX
+python -m caudal.cli context         # presiones, acuíferos y niveles piezométricos (AEMA y CHJ)
 python -m caudal.cli fetch --days 30 # medias diarias de los últimos 30 días
 python -m caudal.cli wfd             # estado, plazos y excepciones de todas las masas (AEMA y BOE)
 python -m caudal.cli page            # docs/index.html, docs/2027.html, masas-2027.json y signals.json
@@ -168,6 +189,7 @@ python -m pytest -q
 |---|---|
 | `data/stations.csv` | Puntos de control: estación, río, masa de agua, ROEA, longitud y latitud (ETRS89) |
 | `data/requirements/<cuenca>.csv` | Mínimo mensual por estación y régimen, con su referencia legal y enlace al BOE |
+| `data/context.csv` | Presiones sobre el caudal de la masa de río y estado del acuífero bajo cada estación (planes 2022–2027 vía la AEMA); tendencia piezométrica en el Júcar |
 | `data/excluded.csv` | Puntos del plan y aforos que no se comparan, con el motivo; la web los lista |
 | `data/flows/<estación>.csv` | Media diaria, lecturas recibidas y esperadas, fuente y hora de descarga |
 | `data/wfd/water_bodies.csv` | Cada masa de agua: código europeo, demarcación, categoría, estado, tramo de plazo, fecha de entrega y punto representativo |
@@ -187,6 +209,10 @@ python -m pytest -q
 - Estaciones y masas del Cantábrico: servicios de mapas de la CHC (`nodoide.chcantabrico.es`, red SAIH
   y masas de agua del plan); superficie de cuenca, y código SAIH de cada
   aforo del Guadalquivir: [Anuario de aforos](https://ceh.cedex.es/anuarioaforos/) del CEDEX.
+- Presiones y estado de los acuíferos: [servicios WISE de la Agencia Europea de Medio
+  Ambiente](https://water.discomap.eea.europa.eu/arcgis/rest/services/WISE_WFD) (planes 2022–2027 enviados por
+  España). Niveles piezométricos del Júcar: [red piezométrica de la
+  CHJ](https://www.chj.es/es-es/medioambiente/redescontrol/Paginas/Piezometria.aspx).
 - Mínimos: [Real Decreto 35/2023](https://www.boe.es/buscar/act.php?id=BOE-A-2023-3511), BOE,
   vía su API de datos abiertos.
 - Estado, excepciones y nombres de las masas: [WISE WFD](https://discodata.eea.europa.eu/), Agencia
