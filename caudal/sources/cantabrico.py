@@ -14,6 +14,7 @@ from datetime import date, datetime
 from zoneinfo import ZoneInfo
 
 from ..compliance import daily_mean
+from ..config import DATA_DIR
 from . import DailyFlow, expected_readings, local_day_bounds_utc, session
 
 URL = "https://visor.saichcantabrico.es/wp-admin/admin-ajax.php"
@@ -30,6 +31,8 @@ SAIH_LAYER = f"{ARCGIS}/RedesControl/MapServer/0"
 RIVER_LAYERS = {f"{ARCGIS}/PH3_Masas_de_Agua/MapServer/4": "MSPF_EM_CD",    # Oriental
                 f"{ARCGIS}/PH3_Masas_de_Agua/MapServer/11": "thematicId"}   # Occidental
 CEDEX_STATIONS = "https://ceh.cedex.es/anuarioaforos/anuario-2021-2022/CANTABRICO/estaf.csv"
+# A fixed edition, kept in the repository: the CEDEX server resets connections from GitHub's runners.
+CEDEX_COPY = DATA_DIR / "cedex" / "cantabrico-estaf.csv"
 UTM30 = 25830   # ETRS89 / UTM 30N, the frame of the BOE coordinates
 
 
@@ -66,10 +69,12 @@ def fetch_gauges(http=None) -> dict[str, Gauge]:
 
 def fetch_catchments(http=None) -> dict[str, float]:
     """Catchment area (km²) upstream of each gauge, by ROEA code, from the CEDEX yearbook."""
-    http = http or session()
-    resp = http.get(CEDEX_STATIONS, timeout=120)
-    resp.raise_for_status()
-    rows = csv.DictReader(io.StringIO(resp.content.decode("latin-1")), delimiter=";")
+    if not CEDEX_COPY.exists():
+        resp = (http or session()).get(CEDEX_STATIONS, timeout=120)
+        resp.raise_for_status()
+        CEDEX_COPY.parent.mkdir(parents=True, exist_ok=True)
+        CEDEX_COPY.write_bytes(resp.content)
+    rows = csv.DictReader(io.StringIO(CEDEX_COPY.read_bytes().decode("latin-1")), delimiter=";")
     return {r["indroea"].strip(): float(r["suprest"]) for r in rows if (r.get("suprest") or "").strip()}
 
 

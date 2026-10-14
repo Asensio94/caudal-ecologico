@@ -190,6 +190,7 @@ python -m pytest -q
 | `data/stations.csv` | Puntos de control: estación, río, masa de agua, ROEA, longitud y latitud (ETRS89) |
 | `data/requirements/<cuenca>.csv` | Mínimo mensual por estación y régimen, con su referencia legal y enlace al BOE |
 | `data/context.csv` | Presiones sobre el caudal de la masa de río y estado del acuífero bajo cada estación (planes 2022–2027 vía la AEMA); tendencia piezométrica en el Júcar |
+| `data/cedex/cantabrico-estaf.csv` | Copia del anuario de aforos 2021–2022 del CEDEX (Cantábrico): el servidor del CEDEX corta las conexiones de GitHub, y la edición no cambia |
 | `data/excluded.csv` | Puntos del plan y aforos que no se comparan, con el motivo; la web los lista |
 | `data/flows/<estación>.csv` | Media diaria, lecturas recibidas y esperadas, fuente y hora de descarga |
 | `data/wfd/water_bodies.csv` | Cada masa de agua: código europeo, demarcación, categoría, estado, tramo de plazo, fecha de entrega y punto representativo |

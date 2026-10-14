@@ -200,7 +200,8 @@ def sources_html(links: dict[str, str]) -> str:
   <a href="{links["guadalquivir"]}">SAIH Guadalquivir</a>, Confederación Hidrográfica del Guadalquivir. Sus avisos
   legales permiten reproducir los datos citando la fuente. Estaciones y masas del Cantábrico: servicios de mapas de
   la Confederación Hidrográfica del Cantábrico. Superficie de cuenca y códigos SAIH de los aforos:
-  <a href="{CEDEX}">anuario de aforos del CEDEX</a>. Mínimos: <a href="{BOE}">Real Decreto 35/2023</a>, BOE.
+  <a href="{CEDEX}">anuario de aforos del CEDEX</a> (edición 2021–2022; guardamos una copia en el
+  repositorio porque su servidor no responde a las ejecuciones automáticas). Mínimos: <a href="{BOE}">Real Decreto 35/2023</a>, BOE.
   Presiones y estado de los acuíferos: planes hidrológicos 2022–2027 tal como España los envió a la Unión Europea,
   en los <a href="{EEA_WFD}">servicios WISE de la Agencia Europea de Medio Ambiente</a> (los mismos que publica el
   <a href="{MITECO_GW}">Ministerio</a>); reutilización libre citando la fuente. Niveles de los acuíferos del Júcar:
