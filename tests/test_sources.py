@@ -44,3 +44,20 @@ def test_jucar_gauges_map_ea_numbers_to_roea():
     gauges = jucar.parse_gauges(page)
     assert list(gauges) == ["08089"]
     assert gauges["08089"].variable_id == "13070" and gauges["08089"].river == "Júcar"
+
+
+def test_guadalquivir_hourly_xml_is_cut_to_the_local_day():
+    from caudal.sources import guadalquivir
+    # 2026-10-12 local starts at 2026-10-11 22:00 UTC (epoch 1791756000).
+    xs = [1791756000 - 3600] + [1791756000 + 3600 * h for h in range(24)]
+    ys = ["99.0"] + ["2.0"] * 22 + ["-999", "4.0"]
+    xml = f"<datos><sen><x>{';'.join(map(str, xs))}</x><y>{';'.join(ys)}</y></sen></datos>"
+    series = guadalquivir.parse(xml)
+    assert len(series) == 24 and guadalquivir.parse("<Error>SQL return null</Error>") == []
+
+    class Http:
+        def get(self, url, timeout):
+            assert "saihhist4.aspx?b=" in url
+            return type("R", (), {"text": xml, "raise_for_status": lambda self: None})()
+    (day,) = guadalquivir.fetch_range("A08_211_X", date(2026, 10, 12), date(2026, 10, 12), http=Http())
+    assert day.readings == 23 and day.expected == 24 and abs(day.mean - 48 / 23) < 1e-9

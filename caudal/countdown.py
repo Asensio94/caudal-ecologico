@@ -24,7 +24,8 @@ DISCODATA_URL = "https://discodata.eea.europa.eu/"
 BOE_URL = "https://www.boe.es/buscar/act.php?id=BOE-A-2023-3511"
 CATEGORIES = {"RW": "Río", "LW": "Lago o embalse", "TW": "Transición", "CW": "Costera", "GW": "Subterránea"}
 # Basins of the stations (data/stations.csv) and the districts their water bodies fall in.
-STATION_RBD = {"jucar": ("ES080",), "guadiana": ("ES040",), "cantabrico": ("ES017", "ES018")}
+STATION_RBD = {"jucar": ("ES080",), "guadiana": ("ES040",), "cantabrico": ("ES017", "ES018"),
+               "guadalquivir": ("ES050",)}
 ORDER = ["good", "by_2027", "beyond_natural", "beyond_other", "less_stringent", "unknown"]
 REASONS = {"natural conditions": "condiciones naturales", "technical feasibility": "viabilidad técnica",
            "disproportionate cost": "coste desproporcionado", "new modification": "nueva modificación",

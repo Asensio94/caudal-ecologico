@@ -74,7 +74,7 @@ def build(rows: list[dict], bodies: list[dict], now: datetime | None = None) -> 
     return {
         "source": SOURCE, "version": 1, "generated": now.strftime("%Y-%m-%dT%H:%MZ"),
         "coverage": {"label": "Toda España", "sites": None,
-                     "note": "Caudal diario frente al mínimo ecológico en Júcar, Guadiana y Cantábrico; "
+                     "note": "Caudal diario frente al mínimo ecológico en Júcar, Guadiana, Cantábrico y Guadalquivir; "
                              "estado y plazo de la Directiva Marco del Agua de todas las masas de agua."},
         "signals": river_flow(rows) + water_status(bodies),
     }

@@ -4,10 +4,10 @@ Compara cada día el caudal medio de los ríos con el caudal mínimo ecológico 
 hidrológico para ese punto y ese mes. Caudales del SAIH de cada confederación; mínimos leídos
 directamente del BOE. Web: https://asensio94.github.io/caudal-ecologico/
 
-De momento cubre tres: el Júcar (42 de los 45 puntos de control del plan), el Guadiana
+De momento cubre cuatro: el Júcar (42 de los 45 puntos de control del plan), el Guadiana
 (13 de 35: los aforos de río; los de salida de embalse no publican el caudal soltado) y el Cantábrico
 Oriental y Occidental (33 de los 108 aforos de río del SAIH, los que miden justo donde el plan fija
-el mínimo).
+el mínimo) y el Guadalquivir (16 de los 17 puntos de su red de seguimiento).
 
 Una segunda página, [«¿Llegará a 2027?»](https://asensio94.github.io/caudal-ecologico/2027.html),
 reúne para las 6 274 masas de agua superficiales y subterráneas de España su estado ecológico y químico
@@ -16,6 +16,9 @@ de la Directiva Marco del Agua que se le aplican. 2027 es el último plazo: desp
 prórroga por condiciones naturales o rebajar el objetivo.
 
 ## Cómo funciona
+
+La web explica todo esto por sí sola: el método cuenca a cuenca, por qué cada estación mide su
+mínimo (una nota en cada fila), qué se deja fuera y por qué, los límites y las fuentes.
 
 1. **Mínimos.** El Real Decreto 35/2023 aprobó los planes hidrológicos 2022–2027. Cada demarcación
    tiene su anexo con un mínimo por mes para cada masa de agua, en régimen ordinario y de sequía
@@ -31,6 +34,11 @@ prórroga por condiciones naturales o rebajar el objetivo.
      fijados en el extremo de aguas abajo de la masa, del que se da la superficie de cuenca. El
      Oriental parte algunas masas en tramos, cada uno con su punto; el régimen de sequía es
      «sequía prolongada» en el Oriental y «emergencia por sequía declarada» en el Occidental.
+   - Guadalquivir: anexo VII, apéndice 6. Las tablas 6.1.3 (ordinario) y 6.2.2 (sequía prolongada)
+     fijan en l/s el mínimo de 17 puntos con nombre, en cinco periodos (octubre–noviembre,
+     diciembre–abril, mayo, junio y julio–septiembre). Las filas de sequía se emparejan con las
+     ordinarias por río y lugar, ya que algún nombre cambia de grafía entre tablas («Posito», «Presa
+     Pedro Marin»). Una cifra con coma decimal en una tabla en l/s queda sin valor (ver Límites).
 2. **Estaciones.** La estación «EA 89» del SAIH Júcar es la ROEA 08089 del plan; en el Guadiana el
    plan ya nombra la estación del SIRA («CR2 25» → CR2-25). Así cada punto de control se une con su
    serie de caudal sin tabla manual. Las coordenadas se guardan en longitud y latitud (el Júcar las da
@@ -42,7 +50,15 @@ prórroga por condiciones naturales o rebajar el objetivo.
    anuario de aforos del CEDEX, difiere menos de un 10 % de la del punto del plan. Con eso se distingue,
    en una confluencia, a qué río mide la estación, y se descartan las que están en mitad de una masa
    larga, que drenan bastante menos cuenca que el punto donde rige el mínimo.
-3. **Caudal diario.** Se descargan las lecturas cada cinco (Júcar, Cantábrico) o diez minutos (Guadiana) de cada día (hora peninsular,
+   El Guadalquivir nombra sus puntos pero no da códigos, así que aquí sí hay una tabla breve en
+   `caudal/sources/guadalquivir.py`, con la justificación de cada fila. Las estaciones de aforo se
+   unen por el código SAIH que el anuario del CEDEX da a cada ROEA. Las presas y azudes usan la
+   señal que la propia CHG muestra en su mapa de caudales: caudal circulante o desembalsado al río.
+   Écija se lee en El Villar (ROEA 5165), como hace ese mapa, porque el aforo de Écija está fuera de
+   servicio y El Villar, justo aguas arriba, drena la misma cuenca. Si el BOE dejara de listar un
+   punto de la tabla, `plan` falla en vez de seguir con datos viejos.
+3. **Caudal diario.** Se descargan las lecturas cada cinco (Júcar, Cantábrico) o diez minutos (Guadiana), o cada
+   hora (Guadalquivir), de cada día (hora peninsular,
    días de 23 y 25 horas incluidos) y se hace la media. Con menos del 75 % de las lecturas, el día
    se queda sin dato.
 4. **Comparación.** Un día queda «por debajo del mínimo» si su media está más de un 5 % por debajo
@@ -111,6 +127,18 @@ prórroga por condiciones naturales o rebajar el objetivo.
   infracción: la memoria del plan puede justificar más de lo que recoge la base europea.
 - En las masas marcadas ** del Cantábrico Occidental el mínimo de sequía no rige para los
   aprovechamientos en ZEC o ZEPA; da igual mientras se aplique siempre el régimen ordinario.
+- En el Guadalquivir solo se comparan los puntos de la red de seguimiento (6.1.3). Los mínimos por
+  masa del apéndice 6.1.1 (402 masas, sin estación asignada) y los de salida de embalse (6.1.4)
+  quedan para más adelante. La presa de Cordobilla (Genil) no se compara: el SAIH publica lo que
+  alivian sus compuertas y lo que se bombea, no lo que circula río abajo.
+- En Arroyo María el BOE dice «1,22» en mayo y junio dentro de una tabla en l/s, frente a 370–610 l/s
+  el resto del año. Parece una errata (¿1.220 l/s? ¿1,22 m³/s?) y esos dos meses quedan sin mínimo en
+  lugar de adivinar el valor.
+- En el Corbones (Carmona), el mínimo de sequía de diciembre a abril es mayor que el ordinario
+  (352 l/s frente a 300). Se guarda tal cual lo publica el BOE.
+- El aforo del Guadiamar en Aznalcázar marca 0 desde julio. No es una avería: registró las crecidas
+  del invierno, y El Guijo, aguas arriba, lleva entre 1 y 5 l/s. El río está casi seco frente a un
+  mínimo de 400–650 l/s fijado por estudios específicos de ese tramo, aguas arriba de Doñana.
 
 ## Pendiente
 
@@ -140,6 +168,7 @@ python -m pytest -q
 |---|---|
 | `data/stations.csv` | Puntos de control: estación, río, masa de agua, ROEA, longitud y latitud (ETRS89) |
 | `data/requirements/<cuenca>.csv` | Mínimo mensual por estación y régimen, con su referencia legal y enlace al BOE |
+| `data/excluded.csv` | Puntos del plan y aforos que no se comparan, con el motivo; la web los lista |
 | `data/flows/<estación>.csv` | Media diaria, lecturas recibidas y esperadas, fuente y hora de descarga |
 | `data/wfd/water_bodies.csv` | Cada masa de agua: código europeo, demarcación, categoría, estado, tramo de plazo, fecha de entrega y punto representativo |
 | `data/wfd/exemptions.csv` | Excepciones por masa y aspecto: artículo, motivo y presiones |
@@ -151,10 +180,13 @@ python -m pytest -q
   [SIRA](https://siraguadiana.com/), Confederación Hidrográfica del Guadiana (perfil público del visor,
   sin cuenta; su aviso legal permite reproducir citando la fuente);
   [SAIH Cantábrico](https://visor.saichcantabrico.es/), Confederación Hidrográfica del Cantábrico
-  (descarga histórica del visor; su aviso legal permite reutilizar citando la fuente).
+  (descarga histórica del visor; su aviso legal permite reutilizar citando la fuente);
+  [SAIH Guadalquivir](https://www.chguadalquivir.es/saih/), Confederación Hidrográfica del
+  Guadalquivir (gráfica histórica del visor, sesión anónima; su aviso legal permite reproducir
+  citando el origen).
 - Estaciones y masas del Cantábrico: servicios de mapas de la CHC (`nodoide.chcantabrico.es`, red SAIH
-  y masas de agua del plan); superficie de cuenca: [Anuario de aforos](https://ceh.cedex.es/anuarioaforos/)
-  del CEDEX.
+  y masas de agua del plan); superficie de cuenca, y código SAIH de cada
+  aforo del Guadalquivir: [Anuario de aforos](https://ceh.cedex.es/anuarioaforos/) del CEDEX.
 - Mínimos: [Real Decreto 35/2023](https://www.boe.es/buscar/act.php?id=BOE-A-2023-3511), BOE,
   vía su API de datos abiertos.
 - Estado, excepciones y nombres de las masas: [WISE WFD](https://discodata.eea.europa.eu/), Agencia

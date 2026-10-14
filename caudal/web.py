@@ -7,7 +7,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from . import store
-from .plan import CATCHMENT_TOLERANCE
+from .explain import method_html, sources_html
 from .compliance import DayResult, Status, episodes, evaluate
 from .config import DOCS_DIR, TOLERANCE
 from .logo import LOGO_SVG, favicon_link
@@ -18,7 +18,8 @@ COMMON_CSS = (Path(__file__).parent / "common.css").read_text(encoding="utf-8")
 SAIH_JUCAR = "https://saih.chj.es/mapa-aforos"
 SIRA_GUADIANA = "https://siraguadiana.com/"
 SAIH_CANTABRICO = "https://visor.saichcantabrico.es/"
-BASINS = {"jucar": "Júcar", "guadiana": "Guadiana", "cantabrico": "Cantábrico"}
+SAIH_GUADALQUIVIR = "https://www.chguadalquivir.es/saih/"
+BASINS = {"jucar": "Júcar", "guadiana": "Guadiana", "cantabrico": "Cantábrico", "guadalquivir": "Guadalquivir"}
 REPO = "https://github.com/Asensio94/caudal-ecologico"
 
 SIBLINGS = [
@@ -57,6 +58,11 @@ svg.spark{{width:180px;max-width:none;height:36px;display:block}}
 .spark .bd{{fill:var(--below);opacity:.25}}
 tr[hidden]{{display:none}}
 .legend{{color:var(--muted);font-size:.85rem;margin:8px 0 0}}
+.points .note{{display:block;color:var(--muted);font-size:.78rem;max-width:42ch;margin-top:2px}}
+.points .sub a,.points .note a{{color:inherit}}
+.method details{{margin:6px 0;max-width:72ch}}
+.method summary{{cursor:pointer;font-weight:600}}
+.method details ul{{font-size:.9rem;margin:6px 0 12px}}
 """
 
 
@@ -96,7 +102,7 @@ def build_rows(today: date) -> tuple[list[dict], date]:
     last = today - timedelta(days=1)
     start = last - timedelta(days=WINDOW_DAYS - 1)
     reqs = store.load_requirements()
-    rows = []
+    rows, refs = [], store.legal_refs()
     for s in store.load_stations():
         series = store.flow_series(s["station_id"])
         window = {start + timedelta(days=i): series.get(start + timedelta(days=i)) for i in range(WINDOW_DAYS)}
@@ -106,7 +112,8 @@ def build_rows(today: date) -> tuple[list[dict], date]:
         ongoing = eps[-1] if eps and latest and latest.status is Status.BELOW and eps[-1].end == latest.day else None
         rows.append({"station": s, "results": results, "latest": latest,
                      "below_days": sum(r.status is Status.BELOW for r in results),
-                     "deficit": sum(r.deficit_hm3 for r in results), "ongoing": ongoing})
+                     "deficit": sum(r.deficit_hm3 for r in results), "ongoing": ongoing,
+                     "ref": refs.get(s["station_id"], ("", ""))})
     order = {Status.BELOW: 0, Status.OK: 2, Status.NO_DATA: 1, Status.NO_RULE: 3}
     rows.sort(key=lambda r: (order[r["latest"].status] if r["latest"] else 1, -(r["below_days"]), r["station"]["name"]))
     return rows, start
@@ -114,7 +121,7 @@ def build_rows(today: date) -> tuple[list[dict], date]:
 
 def _gauge_label(s: dict) -> str:
     basin = BASINS.get(s["basin"], s["basin"])
-    return f'{basin} · ROEA {s["roea"]}' if s["roea"] else f'{basin} · estación {escape(s["source_id"])}'
+    return f'{basin} · ROEA {s["roea"]}' if s["roea"] else f'{basin} · {"señal SAIH" if s["source"] == "saih-guadalquivir" else "estación"} {escape(s["source_id"])}'
 
 
 def _row_html(r: dict, start: date) -> str:
@@ -130,7 +137,9 @@ def _row_html(r: dict, start: date) -> str:
     return (
         f'<tr id="{s["station_id"]}" data-status="{status}" data-basin="{s["basin"]}"><td><span class="state {status}" title="{label}"></span>'
         f'<b>{escape(s["name"])}</b><span class="sub">Río {escape(s["river"])} · {_gauge_label(s)}</span></td>'
-        f'<td>{escape(s["water_body_name"])}<span class="sub">Masa {s["water_body_code"]}{protected}</span></td>'
+        f'<td>{escape(s["water_body_name"])}<span class="sub">{"Masa " + s["water_body_code"] if s["water_body_code"] else "Punto de control del plan"}{protected}</span>'
+        f'<span class="sub"><a href="{escape(r["ref"][1])}">{escape(r["ref"][0])}</a></span>'
+        f'<span class="note">{escape(s.get("note") or "")}</span></td>'
         f'<td class="num {status}"><b>{q}</b><span class="sub">{pct}</span></td>'
         f'<td class="num">{qmin}</td>'
         f'<td class="num">{r["below_days"]}{ongoing}</td>'
@@ -148,6 +157,13 @@ def render(today: date | None = None) -> Path:
     n_any = sum(1 for r in rows if r["below_days"])
     deficit = sum(r["deficit"] for r in rows)
     month = MONTHS[last.month - 1]
+    links = {"jucar": SAIH_JUCAR, "guadiana": SIRA_GUADIANA, "cantabrico": SAIH_CANTABRICO,
+             "guadalquivir": SAIH_GUADALQUIVIR}
+    compared = {b: sum(r["station"]["basin"] == b for r in rows) for b in BASINS}
+    excluded: dict[str, list[str]] = {}
+    for x in store.load_excluded():
+        excluded.setdefault(x["basin"], []).append(x["reason"])
+    method, sources = method_html(compared, excluded, links), sources_html(links)
     siblings = "\n".join(
         f'    <li{" aria-current=\"page\"" if slug == "caudal-ecologico" else ""}>'
         f'<a href="https://asensio94.github.io/{slug}/">{name}</a></li>' for slug, name in SIBLINGS)
@@ -200,58 +216,12 @@ def render(today: date | None = None) -> Path:
   Línea continua: caudal medio diario; discontinua: mínimo; sombreado: día por debajo. Datos provisionales del SAIH,
   actualizados {now:%d/%m/%Y a las %H:%M} (hora peninsular).</p>
 
-  <section class="method">
-    <h2>Cómo se calcula</h2>
-    <ol>
-      <li><b>El mínimo sale del BOE.</b> El Real Decreto 35/2023 aprobó los planes hidrológicos 2022–2027.
-      Cada demarcación tiene su anexo (el XI para el Júcar, el VI para el Guadiana, el I y el II para el
-      Cantábrico Oriental y Occidental), que fija para cada masa de agua un caudal mínimo por mes o por estación
-      del año. El programa lee esas tablas directamente del BOE, sin copiarlas a mano.</li>
-      <li><b>Cada mínimo, con su estación.</b> En el Júcar y el Guadiana el propio plan nombra la estación de
-      aforo de cada masa. El Cantábrico no lo hace: fija el mínimo en el extremo de aguas abajo de cada masa y
-      da la superficie de cuenca de ese punto. Una estación se compara solo si está sobre el cauce de la masa
-      y su cuenca (según el anuario de aforos del CEDEX) difiere menos de un {CATCHMENT_TOLERANCE * 100:.0f} %
-      de la del punto del plan, es decir, si mide prácticamente el mismo río en el mismo sitio.</li>
-      <li><b>El caudal sale del SAIH.</b> El Sistema Automático de Información Hidrológica de cada confederación
-      publica el caudal cada cinco minutos (Júcar y Cantábrico) o cada diez (Guadiana). Se juntan las lecturas de cada día
-      (hora peninsular) y se calcula la media.</li>
-      <li><b>Se comparan.</b> Un día queda «por debajo del mínimo» si su caudal medio es más de un
-      {TOLERANCE * 100:.0f} % inferior al mínimo de ese mes. Ese margen absorbe el error de medida, que es mayor
-      cuanto menos agua lleva el río.</li>
-      <li><b>Se suma lo que faltó.</b> El déficit es la diferencia entre el mínimo y el caudal, multiplicada por
-      los segundos del día: el volumen de agua que habría hecho falta, en hectómetros cúbicos.</li>
-    </ol>
-    <table class="params">
-      <tr><th>Parámetro</th><th class="num">Valor</th></tr>
-      <tr><td>Lecturas mínimas para dar un día por bueno</td><td class="num">75 %</td></tr>
-      <tr><td>Margen por error de medida</td><td class="num">{TOLERANCE * 100:.0f} %</td></tr>
-      <tr><td>Días sin datos dentro de un episodio que no lo cortan</td><td class="num">1</td></tr>
-      <tr><td>Días que se vuelven a leer cada mañana</td><td class="num">7</td></tr>
-    </table>
-    <h3>Límites</h3>
-    <ul>
-      <li>Los datos del SAIH son provisionales: la confederación los revisa y publica los definitivos en el anuario
-      de aforos meses después. Un día por debajo aquí es un indicio, no una infracción.</li>
-      <li>Se aplica siempre el régimen ordinario. En sequía prolongada declarada, el plan permite un mínimo menor
-      fuera de los espacios protegidos; aún no se cruza con las declaraciones de sequía.</li>
-      <li>El plan mide el cumplimiento en conjunto por meses y años, no día a día; esta página enseña el detalle diario.</li>
-      <li>No aparecen los puntos de control sin aforo con datos públicos: tres en el Júcar y, en el Guadiana, los
-      que se miden a la salida de un embalse, cuyo caudal soltado al río no publica el visor.</li>
-      <li>Dos tramos del Alto Guadiana tienen mínimo solo cuando se recuperen sus acuíferos; el plan aún no lo
-      exige y no se comparan.</li>
-      <li>En el Cantábrico quedan fuera las estaciones situadas en mitad de una masa larga: miden menos cuenca
-      que el punto donde el plan fija el mínimo, y compararlas exageraría los incumplimientos. También las
-      masas con un tramo declarado reserva natural fluvial, que tiene mínimos propios.</li>
-      <li>De momento, Júcar, Guadiana y Cantábrico; el resto de cuencas se irá sumando.</li>
-    </ul>
-  </section>
+{method}
 </main>
 <footer class="site-footer">
   <p class="principle">Datos públicos, reglas a la vista y cada cifra enlazada a su fuente. Indicios, no veredictos.</p>
-  <p>Caudales: <a href="{SAIH_JUCAR}">SAIH Júcar</a>, Confederación Hidrográfica del Júcar;
-  <a href="{SIRA_GUADIANA}">SIRA</a>, Confederación Hidrográfica del Guadiana;
-  <a href="{SAIH_CANTABRICO}">SAIH Cantábrico</a>, Confederación Hidrográfica del Cantábrico. Mínimos:
-  <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2023-3511">Real Decreto 35/2023</a>, BOE. Código en
+  {sources}
+  <p>Código en
   <a href="{REPO}">GitHub</a> (MIT); datos propios CC BY 4.0.</p>
   <nav aria-label="Proyectos hermanos"><ul class="siblings">
 {siblings}

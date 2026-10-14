@@ -163,7 +163,7 @@ def _body_key(name: str) -> str:
     return " ".join(w for w in re.sub(r"[.,]", " ", plain).split() if w not in skip)
 
 
-def guadiana_minimums(html: str) -> tuple[dict[str, WaterBodyMinimum], dict[str, list[str]], list[str], list[str]]:
+def guadiana_minimums(html: str) -> tuple[dict[str, WaterBodyMinimum], dict[str, list[str]], list[str], list[tuple[str, str]]]:
     """Minimums per water body, SAIH stations per water body, bodies not yet enforceable and
     the 6.1 rows whose code had to be corrected.
 
@@ -203,7 +203,8 @@ def guadiana_minimums(html: str) -> tuple[dict[str, WaterBodyMinimum], dict[str,
             if code in names and names[code] != _body_key(r[1]):
                 match = by_name.get(_body_key(r[1]), [])
                 if len(match) == 1:
-                    corrected.append(f"{station}: {code} cambiado a {match[0]} ({r[1].strip(' .')})")
+                    corrected.append((station, f"El BOE pone junto a esta estación el código {code}, que es de otra "
+                                      f"masa, y el nombre {title_es(r[1].strip(' .'))}; se usa la masa del nombre, {match[0]}."))
                     code = match[0]
             control.setdefault(code, []).append(station)
     return minimums, control, pending, corrected
@@ -213,21 +214,26 @@ def build_guadiana(boe_html: str, stations: dict) -> tuple[list[dict], list[dict
     """`stations` is the SIRA catalogue keyed by station code (see sources.guadiana)."""
     minimums, control, pending, corrected = guadiana_minimums(boe_html)
     out_st, reqs = [], []
-    unread = [f"{c} (exigible cuando se recupere el acuífero)" for c in pending if c in control]
-    unread += [f"código corregido por nombre en 6.1 — {c}" for c in corrected]
+    unread = [f"Masa {c}: tramo del Alto Guadiana marcado (*), exigible solo cuando se recupere el acuífero"
+              for c in pending if c in control]
+    fixed = dict(corrected)
     for code, codes in sorted(control.items()):
         wb = minimums.get(code)
         for sc in codes:
             st = stations.get(sc)
             if wb is None or st is None or not st.flow_published:
                 if code not in pending:
-                    unread.append(f"{code} {sc}")
+                    why = ("la masa no tiene mínimo en las tablas 6.2 y 6.3" if wb is None
+                           else "la estación no está en el visor SIRA" if st is None
+                           else "salida de embalse o azud: el SIRA no publica el caudal soltado al río")
+                    unread.append(f"{st.name + ' ' if st else ''}({sc}), masa {code}: {why}")
                 continue
             sid = f"guadiana-{sc}"
             out_st.append({"station_id": sid, "basin": "guadiana", "source": "sira-guadiana", "source_id": sc,
                            "name": st.name, "river": st.river, "water_body_code": code,
                            "water_body_name": title_es(wb.name), "protected": 0, "roea": "",
-                           "lon": st.lon, "lat": st.lat})
+                           "lon": st.lon, "lat": st.lat,
+                           "note": fixed.get(sc, f"El plan nombra la estación {sc} para controlar esta masa.")})
             reqs += requirement_rows(sid, wb)
     return out_st, reqs, unread
 
@@ -334,8 +340,86 @@ def build_cantabrico(boe_html: dict[str, str], gauges: dict, catchments: dict[st
         stations.append({"station_id": sid, "basin": "cantabrico", "source": "saih-cantabrico", "source_id": roea,
                          "name": title_es(g.name), "river": title_es(g.river), "water_body_code": p.minimum.code,
                          "water_body_name": p.minimum.name, "protected": 0, "roea": roea,
-                         **dict(zip(("lon", "lat"), utm30_to_lonlat(g.x, g.y)))})
+                         **dict(zip(("lon", "lat"), utm30_to_lonlat(g.x, g.y))),
+                         "note": f"A {_distance_to_line(g.x, g.y, river_bodies[p.minimum.code]):.0f} m del cauce de la masa; "
+                                 f"cuenca de {area:,.0f} km² frente a {p.km2:,.0f} km² en el punto del plan.".replace(",", ".")})
         reqs += requirement_rows(sid, p.minimum)
+    return stations, reqs, unread
+
+
+# ---- Guadalquivir (anexo VII, apéndice 6) ----------------------------------------
+
+GUADALQUIVIR_BLOCK = "a6-30"
+# 6.1.3 (ordinary) and 6.2.2 (prolonged drought) set the minimums of the monitoring
+# network in l/s over five periods: Oct–Nov, Dec–Apr, May, Jun and Jul–Sep.
+PERIOD_OF_MONTH = (1, 1, 1, 1, 2, 3, 4, 4, 4, 0, 0, 1)
+LITRES = 0.001
+MONTHS_ES = ("enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre",
+             "octubre", "noviembre", "diciembre")
+
+
+def _place_key(text: str) -> str:
+    """'Estación de aforos de Écija(*).' → 'ecija'; 'Presa de Alcalá del Río.' → 'alcala rio'."""
+    import unicodedata
+    plain = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode().lower()
+    skip = {"estacion", "aforos", "presa", "azud", "de", "del", "el", "la"}
+    return " ".join(w for w in re.sub(r"[^a-z ]", " ", plain).split() if w not in skip)
+
+
+def _litres(cell: str) -> float | None:
+    """'1.600' l/s → 1.6 m³/s. A decimal comma has no place in an l/s table (Arroyo María
+    reads '1,22' in May and June, against 370–610 the rest of the year): left blank, not guessed."""
+    return None if "," in cell else to_m3s(cell, LITRES)
+
+
+def guadalquivir_points(html: str) -> dict[tuple[str, str], WaterBodyMinimum]:
+    """Minimums per control point, keyed by (river, place) as `_place_key` writes them.
+    A row of seven cells opens a river; the rows after it, of six, are further points on it."""
+    by_app = tables_by_appendix(html)
+    url = CONSOLIDATED_URL.format(boe=BOE_ID, block=GUADALQUIVIR_BLOCK)
+
+    def rows(app):
+        river, out = "", {}
+        for r in (r for t in by_app.get(app, []) for r in t):
+            if len(r) not in (6, 7) or r[-5] == "Oct.-Nov.":
+                continue
+            if len(r) == 7:
+                river = r[0].strip(" .")
+            periods = [_litres(c) for c in r[-5:]]
+            out[(_place_key(river), _place_key(r[-6]))] = (river, r[-6], tuple(periods[p] for p in PERIOD_OF_MONTH))
+        return out
+
+    drought = rows("6.2.2")
+    points = {}
+    for key, (_, place, ordinary) in rows("6.1.3").items():
+        name = re.sub(r"\s*\(\*\)", "", place).strip(" .")
+        points[key] = WaterBodyMinimum(
+            code="", name=name.replace("Marin", "Marín"), protected=False, temporality="", ordinary=ordinary,
+            drought=drought[key][2] if key in drought else None,
+            legal_ref="RD 35/2023, anexo VII, apéndices 6.1.3 y 6.2.2", source_url=url)
+    return points
+
+
+def build_guadalquivir(boe_html: str, gauges: dict) -> tuple[list[dict], list[dict], list[str]]:
+    """`gauges` maps the plan's (river, place) to the SAIH signal read there (sources.guadalquivir)."""
+    points = guadalquivir_points(boe_html)
+    if missing := set(gauges) - set(points):   # the BOE text changed under the curated table
+        raise ValueError(f"control points not found in the BOE: {sorted(missing)}")
+    stations, reqs, unread = [], [], []
+    for key, wb in sorted(points.items()):
+        blank = [MONTHS_ES[i] for i, v in enumerate(wb.ordinary) if v is None]
+        g = gauges.get(key)
+        if g is None:
+            unread.append(f"{wb.name}: el SAIH no publica el caudal que circula por el punto")
+            continue
+        sid = f"guadalquivir-{g.signal.split('_')[0].lower()}"
+        stations.append({"station_id": sid, "basin": "guadalquivir", "source": "saih-guadalquivir",
+                         "source_id": g.signal, "name": g.name, "river": g.river, "water_body_code": "",
+                         "water_body_name": wb.name, "protected": 0, "roea": g.roea,
+                         **dict(zip(("lon", "lat"), utm30_to_lonlat(g.x, g.y))),
+                         "note": g.note + (f" En {' y '.join(blank)} el BOE no da un valor legible en l/s: esos meses "
+                                           "quedan sin mínimo." if blank else "")})
+        reqs += requirement_rows(sid, wb)
     return stations, reqs, unread
 
 
@@ -367,7 +451,7 @@ def requirement_rows(station_id: str, wb: WaterBodyMinimum, valid_from="2023-02-
 
 
 STATION_FIELDS = ["station_id", "basin", "source", "source_id", "name", "river",
-                  "water_body_code", "water_body_name", "protected", "roea", "lon", "lat"]
+                  "water_body_code", "water_body_name", "protected", "roea", "lon", "lat", "note"]
 
 
 def build_jucar(boe_html: str, gauges: dict) -> tuple[list[dict], list[dict], list[str]]:
@@ -379,13 +463,15 @@ def build_jucar(boe_html: str, gauges: dict) -> tuple[list[dict], list[dict], li
         for roea in roeas:
             g = gauges.get(roea)
             if wb is None or g is None:
-                unread.append(f"{code} ROEA {roea}")
+                why = "la masa no tiene mínimo en las tablas 5.1 y 5.2" if wb is None else "el SAIH no publica un aforo con ese código"
+                unread.append(f"ROEA {roea}, masa {code}{' (' + wb.name + ')' if wb else ''}: {why}")
                 continue
             sid = f"jucar-{roea}"
             stations.append({"station_id": sid, "basin": "jucar", "source": "saih-jucar", "source_id": g.variable_id,
                              "name": title_es(re.sub(r"^EA\s*\d+\s*", "", g.name)), "river": title_es(g.river),
                              "water_body_code": code, "water_body_name": wb.name, "protected": int(wb.protected),
-                             "roea": roea, **dict(zip(("lon", "lat"), utm30_to_lonlat(g.utm_x, g.utm_y)))})
+                             "roea": roea, **dict(zip(("lon", "lat"), utm30_to_lonlat(g.utm_x, g.utm_y))),
+                             "note": f"El plan nombra el aforo ROEA {roea} para controlar esta masa."})
             reqs += requirement_rows(sid, wb)
     return stations, reqs, unread
 
@@ -435,6 +521,15 @@ def title_es(text: str) -> str:
     return " ".join("(" + w[1:2].upper() + w[2:] if w.startswith("(")
                     else w.upper() if i and _ORDINAL.match(w) else w if i and w in _LOWER else w[:1].upper() + w[1:]
                     for i, w in enumerate(words))
+
+
+def write_excluded(rows: list[tuple[str, str]]) -> None:
+    """(basin, reason) for every plan point or gauge left out, so the page can list them."""
+    from .config import EXCLUDED_FILE
+    with EXCLUDED_FILE.open("w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["basin", "reason"])
+        w.writerows(rows)
 
 
 def write_stations(rows: list[dict]) -> None:

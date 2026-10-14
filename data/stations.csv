@@ -1,89 +1,105 @@
-station_id,basin,source,source_id,name,river,water_body_code,water_body_name,protected,roea,lon,lat
-cantabrico-1105,cantabrico,saih-cantabrico,1105,Ereñozu,Urumea,ES018MAR002491,Río Urumea II,0,1105,-1.94154,43.24356
-cantabrico-1106,cantabrico,saih-cantabrico,1106,Endarlatsa,Bidasoa,ES010MAR002420,Río Bidasoa III,0,1106,-1.72975,43.295
-cantabrico-1163,cantabrico,saih-cantabrico,1163,Lemoa,Ibaizabal,ES068MAR002842,Río Ibaizabal III,0,1163,-2.75491,43.21168
-cantabrico-1164,cantabrico,saih-cantabrico,1164,Lemoa,Arratia,ES067MAR002790,Río Arratia,0,1164,-2.77144,43.20116
-cantabrico-1166,cantabrico,saih-cantabrico,1166,La Peña,Nervión,ES068MAR002850,Río Ibaizabal IV,0,1166,-2.91937,43.24233
-cantabrico-1178,cantabrico,saih-cantabrico,1178,Alonsotegi,Cadagua,ES073MAR002920,Río Cadagua IV,0,1178,-2.99431,43.24302
-cantabrico-1196,cantabrico,saih-cantabrico,1196,Coterillo,Asón,ES018MSPFES084MAR000060,Río Asón III,0,1196,-3.43617,43.33005
-cantabrico-1205,cantabrico,saih-cantabrico,1205,Entrambasaguas,Aguanaz,ES018MSPFES086MAR000120,Río Aguanaz,0,1205,-3.68793,43.38202
-cantabrico-1216,cantabrico,saih-cantabrico,1216,Carandia,Pas,ES018MSPFES092MAR000230,Río Pas IV,0,1216,-3.96993,43.33343
-cantabrico-1240,cantabrico,saih-cantabrico,1240,Torrelavega,Saja,ES018MSPFES112MAR000380,Río Besaya III,0,1240,-4.04831,43.36573
-cantabrico-1245,cantabrico,saih-cantabrico,1245,Santa Lucía,Saja,ES018MSPFES098MAR000291,Río Saja III,0,1245,-4.23578,43.28371
-cantabrico-1268,cantabrico,saih-cantabrico,1268,Puentelles,Deva,ES018MSPFES132MAR000621,Río Deva III,0,1268,-4.60717,43.31714
-cantabrico-1269,cantabrico,saih-cantabrico,1269,Panes,Deva,ES018MSPFES132MAR000620,Río Cares III- Deva IV,0,1269,-4.58508,43.32629
-cantabrico-1274,cantabrico,saih-cantabrico,1274,Poncebos,Cares,ES018MSPFES131MAR000610,Río Cares II,0,1274,-4.83055,43.25915
-cantabrico-1277,cantabrico,saih-cantabrico,1277,Las Arenas,Casaño,ES018MSPFES130MAR000600,Río Casaño,0,1277,-4.81838,43.30227
-cantabrico-1292,cantabrico,saih-cantabrico,1292,Arriondas,Sella,ES018MSPFES144MAR000820,Río Sella III,0,1292,-5.18258,43.39549
-cantabrico-1293,cantabrico,saih-cantabrico,1293,Pervís,Sella,ES018MSPFES139MAR000710,Río Sella II,0,1293,-5.13414,43.28941
-cantabrico-1294,cantabrico,saih-cantabrico,1294,Cangas de Onís,Güeña,ES018MSPFES142MAR000750,Río Güeña,0,1294,-5.1264,43.35186
-cantabrico-1300,cantabrico,saih-cantabrico,1300,Fuentes,Sella,ES018MSPFES144MAR000820,Río Sella III,0,1300,-5.14054,43.40195
-cantabrico-1301,cantabrico,saih-cantabrico,1301,Arriondas,Piloña,ES018MSPFES144MAR000840,Río Piloña III,0,1301,-5.18472,43.38282
-cantabrico-1302,cantabrico,saih-cantabrico,1302,Ozanes,Piloña,ES018MSPFES144MAR000840,Río Piloña III,0,1302,-5.1846,43.36698
-cantabrico-1304,cantabrico,saih-cantabrico,1304,Salinas,Raíces,ES018MSPFES145MAR000900,Río Raíces,0,1304,-5.95774,43.57225
-cantabrico-1305,cantabrico,saih-cantabrico,1305,Villaviciosa,Linares,ES018MSPFES145MAR000970,Arroyo de la Ría,0,1305,-5.44576,43.46974
-cantabrico-1306,cantabrico,saih-cantabrico,1306,Gijón,Piles,ES018MSPFES145MAR000920,Río Piles I,0,1306,-5.65297,43.52073
-cantabrico-1348,cantabrico,saih-cantabrico,1348,Cornellana,Nonaya,ES018MSPFES193MAR001690,Río Nonaya,0,1348,-6.16639,43.41086
-cantabrico-1358,cantabrico,saih-cantabrico,1358,Puente San Martín,Pigüeña,ES018MSPFES193MAR001700,Río Somiedo y Pigüeña,0,1358,-6.204,43.3439
-cantabrico-1361,cantabrico,saih-cantabrico,1361,Arganza,Arganza,ES018MSPFES189MAR001640,Río Arganza II,0,1361,-6.49747,43.26014
-cantabrico-1375,cantabrico,saih-cantabrico,1375,Trubia (Machón),Trubia,ES018MSPFES170MAR001320,Río Trubia III,0,1375,-5.98351,43.33993
-cantabrico-1376,cantabrico,saih-cantabrico,1376,Trubia (Desembocadura),Trubia,ES018MSPFES170MAR001320,Río Trubia III,0,1376,-5.96902,43.34924
-cantabrico-1378,cantabrico,saih-cantabrico,1378,Grado,Cubia,ES018MSPFES175MAR001450,Río Cubia II,0,1378,-6.06646,43.38827
-cantabrico-1398,cantabrico,saih-cantabrico,1398,Luarca,Negro,ES018MSPFES202MAR001800,Río Negro II,0,1398,-6.53497,43.52995
-cantabrico-1405,cantabrico,saih-cantabrico,1405,San Pelayo,Navia,ES018MSPFES234MAR002150,Río Navia V,0,1405,-6.72387,43.49273
-cantabrico-1407,cantabrico,saih-cantabrico,1407,Ponte da Muria,Navia,ES018MSPFES208MAR001902,Río Navia IV,0,1407,-6.96232,43.02455
-guadiana-CR1-07,guadiana,sira-guadiana,CR1-07,Gigüela en Villafranca,Ciguela,ES040MSPF00013474D,Río Gigüela IV,0,,-3.310165,39.414914
-guadiana-CR1-21,guadiana,sira-guadiana,CR1-21,Bullaque en Luciana,Bullaque,ES040MSPF00014160B,Río Bullaque II B,0,,-4.287334,38.985086
-guadiana-CR2-01,guadiana,sira-guadiana,CR2-01,Guadiana en Puebla de Don Rodrigo,Guadiana,ES040MSPF00013353B,Río Guadiana IV B,0,,-4.583657,39.10164
-guadiana-CR2-04,guadiana,sira-guadiana,CR2-04,Fresnedoso en Sevilleja,Fresnedoso,ES040MSPF000134420,Río de Fresnedoso,0,,-4.977757,39.454622
-guadiana-CR2-19,guadiana,sira-guadiana,CR2-19,Ruecas en Hernán Cortés,Ruecas,ES040MSPF000134140,Río Ruecas IV,0,,-5.91138,39.032146
-guadiana-CR2-20,guadiana,sira-guadiana,CR2-20,Ortiga en las Cruces,Ortiga,ES040MSPF000134120,Río Ortiga,0,,-5.930324668,38.950140117
-guadiana-CR2-23,guadiana,sira-guadiana,CR2-23,Búrdalo en Sta. Amalia,Búrdalo,ES040MSPF000142000,Río Burdalo II,0,,-6.049714,39.014094
-guadiana-CR2-25,guadiana,sira-guadiana,CR2-25,Guadiana en Valverde de Mérida,Guadiana,ES040MSPF00013355B,Río Guadiana V B,0,,-6.189537,38.889587
-guadiana-CR2-27,guadiana,sira-guadiana,CR2-27,San Juan en Oliva,San Juan,ES040MSPF00013399B,Río San Juan II,0,,-6.139779076,38.726185427
-guadiana-CR2-37,guadiana,sira-guadiana,CR2-37,Guadajira en Guadajira,Guadajira,ES040MSPF000142300,Río Guadajira II,0,,-6.68945,38.852367
-guadiana-CR2-42,guadiana,sira-guadiana,CR2-42,Albuera en Talavera,Rivera de los Limonetes,ES040MSPF000133870,Rivera de los Limonetes,0,,-6.776837,38.879849
-guadiana-CR2-50,guadiana,sira-guadiana,CR2-50,Ardila en Oliva de la Frontera,Ardila,ES040MSPF000133590,Río Ardila II,0,,-6.885452846,38.230532935
-guadiana-E2-25,guadiana,sira-guadiana,E2-25,Azud de Badajoz,Guadiana,ES040MSPF000132180,Río Guadiana VII,0,,-7.014748,38.861804
-jucar-08005,jucar,saih-jucar,2700,La Presa de Vila-real,Mijares,10-11A,Río Mijares: canal cota 100 - azud Vila-real,0,08005,-0.122,39.9597
-jucar-08014,jucar,saih-jucar,2737,Tramacastilla,Guadalaviar,15-01A,Río Guadalaviar (Turia): cabecera - río de la Garganta,1,08014,-1.57613,40.41697
-jucar-08015,jucar,saih-jucar,12927,Teruel Turia,Turia,15-05,Río Turia: río Alfambra - rambla de la Matanza,1,08015,-1.11143,40.34299
-jucar-08018,jucar,saih-jucar,13670,Zagra,Turia,15-09,Río Turia: paraje de El Villarejo - embalse de Benagéber,1,08018,-1.1461,39.84016
-jucar-08022,jucar,saih-jucar,13337,Bugarra,Turia,15-14A,Río Turia: río Sot - rambla Castellana,1,08022,-0.78252,39.60601
-jucar-08025,jucar,saih-jucar,1523,Aguas Potables,Turia,15-17,Río Turia: azud de Manises - azud de la acequia de Tormos,0,08025,-0.50561,39.52114
-jucar-08027,jucar,saih-jucar,12924,Teruel Alfambra,Alfambra,15-04-01-02,Río Alfambra: rambla de la Hoz - río Turia,1,08027,-1.12126,40.35714
-jucar-08028,jucar,saih-jucar,13683,Villalba Alta,Alfambra,15-04-01-01B,Río Alfambra: río de Sollavientos - rambla de la Hoz,1,08028,-0.97563,40.61434
-jucar-08029,jucar,saih-jucar,12827,Montaverner,Albaida,18-29-01-01B,Río Albaida: río Clariano - embalse de Bellús,1,08029,-0.49525,38.89167
-jucar-08030,jucar,saih-jucar,13526,El Terde,Mijares,10-03A,Río Mijares: río Valbona - manantial de Babor,0,08030,-0.77372,40.16327
-jucar-08032,jucar,saih-jucar,2736,Cuenca,Júcar,18-06A,Río Júcar: río Huécar - río San Martín,1,08032,-2.14275,40.07302
-jucar-08036,jucar,saih-jucar,2691,Los Frailes,Júcar,18-12,Río Júcar: paraje de Los Guardas - río Valdemembra,0,08036,-1.74951,39.13751
-jucar-08042,jucar,saih-jucar,13080,Salida de Tous,Júcar,18-26,Río Júcar: embalse de Tous - azud de la acequia de Escalona,1,08042,-0.6451,39.12569
-jucar-08060,jucar,saih-jucar,13403,Requena,Magro,18-32-01-04,Río Magro: barranco Hondo - barranco Rubio,0,08060,-1.11647,39.47799
-jucar-08071,jucar,saih-jucar,2697,Villalonga,Serpis,21-06,Río Serpis: Lorcha - paraje de La Reprimala,1,08071,-0.2832,38.87065
-jucar-08074,jucar,saih-jucar,12810,Fuente del Baño,Palancia,13-05,Río Palancia: embalse del Regajo - rambla Seca,1,08074,-0.51463,39.88348
-jucar-08087,jucar,saih-jucar,14051,Marimota,Marimota,18-07-01-01,Río Marimota,0,08087,-2.34501,39.8183
-jucar-08089,jucar,saih-jucar,13070,Huerto Mulet,Júcar,18-33,Río Júcar: río Magro - Albalat de la Ribera,1,08089,-0.40949,39.18819
-jucar-08090,jucar,saih-jucar,2735,Pajaroncillo,Cabriel,18-21-01-04,Río Cabriel: río Mayor del Molinillo - embalse de El Bujioso,1,08090,-1.71094,39.94014
-jucar-08091,jucar,saih-jucar,2695,San Lorenzo de la Parrilla,Júcar,18-06B,Río Júcar: río San Martín - embalse de Alarcón,1,08091,-2.28834,39.85224
-jucar-08093,jucar,saih-jucar,16915,Macastre,Magro,18-32-01-07,Río Magro: embalse Forata - paraje del Puntal de los Bonetes,1,08093,-0.82529,39.34398
-jucar-08096,jucar,saih-jucar,13952,Salida de Arquillo,Guadalaviar,15-04,Río Guadalaviar (Turia): embalse Arquillo San Blas - río Alfambra,0,08096,-1.19589,40.3593
-jucar-08097,jucar,saih-jucar,2693,Montemayor,Mirón (S. Pedro),18-14-01-03-01-01,Río Mirón: cabecera - rambla de Fuentecarrasca,1,08097,-2.22425,38.72516
-jucar-08098,jucar,saih-jucar,2749,Río Jardín,Jardín,18-14-01-02,Río Arquillo: laguna del Arquillo - azud de Carrasca del Sombrero,1,08098,-2.27726,38.82313
-jucar-08099,jucar,saih-jucar,12812,Salida Ulldecona,Cenia,01-03A,Río de la Sénia: embalse de Ulldecona - azud presa del Martinet,1,08099,0.23932,40.67136
-jucar-08103,jucar,saih-jucar,2690,Torrealta,Túria,15-06,Río Turia: rambla de la Matanza - rambla del Barrancón,1,08103,-1.25822,40.11561
-jucar-08104,jucar,saih-jucar,2683,Los Santos,Ebrón,15-06-02-01B,Río Ebrón: rambla del Torcanejo - río Turia,1,08104,-1.28862,40.10803
-jucar-08107,jucar,saih-jucar,2716,Salida Alarcón,Júcar,18-08,Río Júcar: embalse de Alarcón - azud Henchideros,1,08107,-2.11528,39.56109
-jucar-08120,jucar,saih-jucar,13617,Calles,Tuéjar,15-12-01-02,Río Tuéjar: barranco del Prado - embalse de Loriguilla,1,08120,-0.95504,39.71881
-jucar-08126,jucar,saih-jucar,2689,Molino de Juan Romero,Júcar,18-01-02,Río Júcar: cabecera - embalse de la Toba,1,08126,-1.8482,40.22194
-jucar-08129,jucar,saih-jucar,2696,El Picazo,Júcar,18-10,Río Júcar: central hidroeléctrica de El Picazo - carretera de Fuensanta,0,08129,-2.08624,39.46344
-jucar-08130,jucar,saih-jucar,12962,Salida Contreras,Cabriel,18-21-01-08,Río Cabriel: embalse de Contreras - rambla de Consolación,1,08130,-1.50602,39.53016
-jucar-08132,jucar,saih-jucar,15280,El Carrasco,Júcar,18-11,Río Júcar: carretera de Fuensanta - paraje de Los Guardas,0,08132,-2.0193,39.21278
-jucar-08134,jucar,saih-jucar,2725,Los Cantos,Mijares,10-04A,Río Mijares: río Mora - embalse de Arenós,1,08134,-0.60538,40.11538
-jucar-08138,jucar,saih-jucar,2679,Balazote,Don Juan,18-14-01-04,Río Arquillo: río Mirón - azud de Volada La Choriza,0,08138,-2.11902,38.90214
-jucar-08139,jucar,saih-jucar,12799,Víllora,Cabriel,18-21-01-06A,Río Cabriel: embalse de El Bujioso - río Guadazaón,0,08139,-1.63512,39.73883
-jucar-08140,jucar,saih-jucar,2680,Río Huércemes,Guadazaón,18-21-01-06-01-02A,Río Guadazaón: arroyo del Sargal - río Cabriel,1,08140,-1.70416,39.72032
-jucar-08144,jucar,saih-jucar,12836,Alcalá del Júcar,Júcar,18-17,Río Júcar: Alcalá del Júcar - presa del Bosque,1,08144,-1.42533,39.19648
-jucar-08145,jucar,saih-jucar,2726,Salida de Arenós,Mijares,10-06A,Río Mijares: embalse de Arenós - embalse de Cirat,1,08145,-0.53984,40.08714
-jucar-08147,jucar,saih-jucar,12905,Salida Loriguilla,Turia,15-13,Río Turia: embalse Loriguilla - río Sot,1,08147,-0.90567,39.66313
-jucar-08148,jucar,saih-jucar,2720,Jérica,Palancia,13-03,Río Palancia: azud del Sargal - embalse del Regajo,1,08148,-0.54502,39.89406
-jucar-08149,jucar,saih-jucar,2688,Gea de Albarracín,Guadalaviar,15-02,Río Guadalaviar (Turia): rambla de Monterde - embalse de Arquillo de San Blas,1,08149,-1.29066,40.39403
+station_id,basin,source,source_id,name,river,water_body_code,water_body_name,protected,roea,lon,lat,note
+cantabrico-1105,cantabrico,saih-cantabrico,1105,Ereñozu,Urumea,ES018MAR002491,Río Urumea II,0,1105,-1.94154,43.24356,A 16 m del cauce de la masa; cuenca de 215 km² frente a 219 km² en el punto del plan.
+cantabrico-1106,cantabrico,saih-cantabrico,1106,Endarlatsa,Bidasoa,ES010MAR002420,Río Bidasoa III,0,1106,-1.72975,43.295,A 24 m del cauce de la masa; cuenca de 681 km² frente a 673 km² en el punto del plan.
+cantabrico-1163,cantabrico,saih-cantabrico,1163,Lemoa,Ibaizabal,ES068MAR002842,Río Ibaizabal III,0,1163,-2.75491,43.21168,A 1 m del cauce de la masa; cuenca de 251 km² frente a 255 km² en el punto del plan.
+cantabrico-1164,cantabrico,saih-cantabrico,1164,Lemoa,Arratia,ES067MAR002790,Río Arratia,0,1164,-2.77144,43.20116,A 0 m del cauce de la masa; cuenca de 136 km² frente a 136 km² en el punto del plan.
+cantabrico-1166,cantabrico,saih-cantabrico,1166,La Peña,Nervión,ES068MAR002850,Río Ibaizabal IV,0,1166,-2.91937,43.24233,A 24 m del cauce de la masa; cuenca de 997 km² frente a 1.008 km² en el punto del plan.
+cantabrico-1178,cantabrico,saih-cantabrico,1178,Alonsotegi,Cadagua,ES073MAR002920,Río Cadagua IV,0,1178,-2.99431,43.24302,A 21 m del cauce de la masa; cuenca de 562 km² frente a 581 km² en el punto del plan.
+cantabrico-1196,cantabrico,saih-cantabrico,1196,Coterillo,Asón,ES018MSPFES084MAR000060,Río Asón III,0,1196,-3.43617,43.33005,A 13 m del cauce de la masa; cuenca de 485 km² frente a 521 km² en el punto del plan.
+cantabrico-1205,cantabrico,saih-cantabrico,1205,Entrambasaguas,Aguanaz,ES018MSPFES086MAR000120,Río Aguanaz,0,1205,-3.68793,43.38202,A 5 m del cauce de la masa; cuenca de 49 km² frente a 51 km² en el punto del plan.
+cantabrico-1216,cantabrico,saih-cantabrico,1216,Carandia,Pas,ES018MSPFES092MAR000230,Río Pas IV,0,1216,-3.96993,43.33343,A 35 m del cauce de la masa; cuenca de 562 km² frente a 619 km² en el punto del plan.
+cantabrico-1240,cantabrico,saih-cantabrico,1240,Torrelavega,Saja,ES018MSPFES112MAR000380,Río Besaya III,0,1240,-4.04831,43.36573,A 49 m del cauce de la masa; cuenca de 981 km² frente a 965 km² en el punto del plan.
+cantabrico-1245,cantabrico,saih-cantabrico,1245,Santa Lucía,Saja,ES018MSPFES098MAR000291,Río Saja III,0,1245,-4.23578,43.28371,A 5 m del cauce de la masa; cuenca de 341 km² frente a 341 km² en el punto del plan.
+cantabrico-1268,cantabrico,saih-cantabrico,1268,Puentelles,Deva,ES018MSPFES132MAR000621,Río Deva III,0,1268,-4.60717,43.31714,A 13 m del cauce de la masa; cuenca de 643 km² frente a 648 km² en el punto del plan.
+cantabrico-1269,cantabrico,saih-cantabrico,1269,Panes,Deva,ES018MSPFES132MAR000620,Río Cares III- Deva IV,0,1269,-4.58508,43.32629,A 13 m del cauce de la masa; cuenca de 1.147 km² frente a 1.178 km² en el punto del plan.
+cantabrico-1274,cantabrico,saih-cantabrico,1274,Poncebos,Cares,ES018MSPFES131MAR000610,Río Cares II,0,1274,-4.83055,43.25915,A 3 m del cauce de la masa; cuenca de 270 km² frente a 284 km² en el punto del plan.
+cantabrico-1277,cantabrico,saih-cantabrico,1277,Las Arenas,Casaño,ES018MSPFES130MAR000600,Río Casaño,0,1277,-4.81838,43.30227,A 17 m del cauce de la masa; cuenca de 93 km² frente a 94 km² en el punto del plan.
+cantabrico-1292,cantabrico,saih-cantabrico,1292,Arriondas,Sella,ES018MSPFES144MAR000820,Río Sella III,0,1292,-5.18258,43.39549,A 34 m del cauce de la masa; cuenca de 1.177 km² frente a 1.252 km² en el punto del plan.
+cantabrico-1293,cantabrico,saih-cantabrico,1293,Pervís,Sella,ES018MSPFES139MAR000710,Río Sella II,0,1293,-5.13414,43.28941,A 17 m del cauce de la masa; cuenca de 356 km² frente a 358 km² en el punto del plan.
+cantabrico-1294,cantabrico,saih-cantabrico,1294,Cangas de Onís,Güeña,ES018MSPFES142MAR000750,Río Güeña,0,1294,-5.1264,43.35186,A 26 m del cauce de la masa; cuenca de 139 km² frente a 146 km² en el punto del plan.
+cantabrico-1300,cantabrico,saih-cantabrico,1300,Fuentes,Sella,ES018MSPFES144MAR000820,Río Sella III,0,1300,-5.14054,43.40195,A 23 m del cauce de la masa; cuenca de 1.202 km² frente a 1.252 km² en el punto del plan.
+cantabrico-1301,cantabrico,saih-cantabrico,1301,Arriondas,Piloña,ES018MSPFES144MAR000840,Río Piloña III,0,1301,-5.18472,43.38282,A 12 m del cauce de la masa; cuenca de 510 km² frente a 512 km² en el punto del plan.
+cantabrico-1302,cantabrico,saih-cantabrico,1302,Ozanes,Piloña,ES018MSPFES144MAR000840,Río Piloña III,0,1302,-5.1846,43.36698,A 27 m del cauce de la masa; cuenca de 486 km² frente a 512 km² en el punto del plan.
+cantabrico-1304,cantabrico,saih-cantabrico,1304,Salinas,Raíces,ES018MSPFES145MAR000900,Río Raíces,0,1304,-5.95774,43.57225,A 0 m del cauce de la masa; cuenca de 37 km² frente a 39 km² en el punto del plan.
+cantabrico-1305,cantabrico,saih-cantabrico,1305,Villaviciosa,Linares,ES018MSPFES145MAR000970,Arroyo de la Ría,0,1305,-5.44576,43.46974,A 4 m del cauce de la masa; cuenca de 98 km² frente a 101 km² en el punto del plan.
+cantabrico-1306,cantabrico,saih-cantabrico,1306,Gijón,Piles,ES018MSPFES145MAR000920,Río Piles I,0,1306,-5.65297,43.52073,A 7 m del cauce de la masa; cuenca de 44 km² frente a 46 km² en el punto del plan.
+cantabrico-1348,cantabrico,saih-cantabrico,1348,Cornellana,Nonaya,ES018MSPFES193MAR001690,Río Nonaya,0,1348,-6.16639,43.41086,A 0 m del cauce de la masa; cuenca de 94 km² frente a 96 km² en el punto del plan.
+cantabrico-1358,cantabrico,saih-cantabrico,1358,Puente San Martín,Pigüeña,ES018MSPFES193MAR001700,Río Somiedo y Pigüeña,0,1358,-6.204,43.3439,A 17 m del cauce de la masa; cuenca de 403 km² frente a 404 km² en el punto del plan.
+cantabrico-1361,cantabrico,saih-cantabrico,1361,Arganza,Arganza,ES018MSPFES189MAR001640,Río Arganza II,0,1361,-6.49747,43.26014,A 16 m del cauce de la masa; cuenca de 201 km² frente a 217 km² en el punto del plan.
+cantabrico-1375,cantabrico,saih-cantabrico,1375,Trubia (Machón),Trubia,ES018MSPFES170MAR001320,Río Trubia III,0,1375,-5.98351,43.33993,A 21 m del cauce de la masa; cuenca de 479 km² frente a 473 km² en el punto del plan.
+cantabrico-1376,cantabrico,saih-cantabrico,1376,Trubia (Desembocadura),Trubia,ES018MSPFES170MAR001320,Río Trubia III,0,1376,-5.96902,43.34924,A 15 m del cauce de la masa; cuenca de 484 km² frente a 473 km² en el punto del plan.
+cantabrico-1378,cantabrico,saih-cantabrico,1378,Grado,Cubia,ES018MSPFES175MAR001450,Río Cubia II,0,1378,-6.06646,43.38827,A 3 m del cauce de la masa; cuenca de 210 km² frente a 218 km² en el punto del plan.
+cantabrico-1398,cantabrico,saih-cantabrico,1398,Luarca,Negro,ES018MSPFES202MAR001800,Río Negro II,0,1398,-6.53497,43.52995,A 14 m del cauce de la masa; cuenca de 82 km² frente a 88 km² en el punto del plan.
+cantabrico-1405,cantabrico,saih-cantabrico,1405,San Pelayo,Navia,ES018MSPFES234MAR002150,Río Navia V,0,1405,-6.72387,43.49273,A 22 m del cauce de la masa; cuenca de 2.515 km² frente a 2.512 km² en el punto del plan.
+cantabrico-1407,cantabrico,saih-cantabrico,1407,Ponte da Muria,Navia,ES018MSPFES208MAR001902,Río Navia IV,0,1407,-6.96232,43.02455,A 22 m del cauce de la masa; cuenca de 829 km² frente a 832 km² en el punto del plan.
+guadalquivir-a07,guadalquivir,saih-guadalquivir,A07_211_X,Mengíbar,Guadalbullón,,Estación de aforos de Mengíbar,0,5029,-3.7809,37.97458,El anuario de aforos del CEDEX asigna al ROEA 5029 la señal A07_211_X del SAIH.
+guadalquivir-a08,guadalquivir,saih-guadalquivir,A08_211_X,Mengíbar,Guadalquivir,,Presa de Mengíbar,0,5004,-3.79905,37.98393,"El plan pone el punto en la presa de Mengíbar; se lee el aforo del Guadalquivir en Mengíbar (ROEA 5004, señal A08_211_X), junto a ella y el que usa el mapa de caudales de la CHG."
+guadalquivir-a13,guadalquivir,saih-guadalquivir,A13_211_X,El Pósito,Guadiana Menor,,Estación de aforos el Pósito,0,5023,-3.21168,37.88161,El anuario de aforos del CEDEX asigna al ROEA 5023 la señal A13_211_X del SAIH.
+guadalquivir-a14,guadalquivir,saih-guadalquivir,A14_211_X,Valchillón,Guadajoz,,Estación de aforos de Valchillón,0,5016,-4.80452,37.82046,El anuario de aforos del CEDEX asigna al ROEA 5016 la señal A14_211_X del SAIH.
+guadalquivir-a15,guadalquivir,saih-guadalquivir,A15_211_X,Loja,Genil,,Estación de aforos de Loja,0,5045,-4.16705,37.17523,El anuario de aforos del CEDEX asigna al ROEA 5045 la señal A15_211_X del SAIH.
+guadalquivir-a18,guadalquivir,saih-guadalquivir,A18_211_X,Carmona,Corbones,,Estación de aforos de Carmona,0,,-5.60695,37.56374,"Señal A18_211_X, aforo «Carmona 2» del SAIH, en el tramo Carmona–Lora. El anuario del CEDEX la asigna a la estación de Carmona (ROEA 5125)."
+guadalquivir-a22,guadalquivir,saih-guadalquivir,A22_211_X,Aznalcázar,Guadiamar,,Estación de aforos de Aznalcázar,0,5076,-6.25989,37.3029,El anuario de aforos del CEDEX asigna al ROEA 5076 la señal A22_211_X del SAIH.
+guadalquivir-a23,guadalquivir,saih-guadalquivir,A23_211_X,Pinos Genil,Genil,,Estación de aforos de Canales Pinos,0,5020,-3.49305,37.16252,"El plan lo llama «Canales Pinos», entre el embalse de Canales y Pinos Genil. El anuario de aforos del CEDEX asigna al ROEA 5020 la señal A23_211_X del SAIH."
+guadalquivir-a40,guadalquivir,saih-guadalquivir,A40_211_X,Arroyo María,Guadalquivir,,Estación de aforos Arroyo María,0,5001,-2.83585,38.17893,El anuario de aforos del CEDEX asigna al ROEA 5001 la señal A40_211_X del SAIH. En mayo y junio el BOE no da un valor legible en l/s: esos meses quedan sin mínimo.
+guadalquivir-a64,guadalquivir,saih-guadalquivir,A64_211_X,Linares,Guadalimar,,Estación de aforos de Linares,0,5171,-3.58487,38.06802,El anuario de aforos del CEDEX asigna al ROEA 5171 la señal A64_211_X del SAIH.
+guadalquivir-e53,guadalquivir,saih-guadalquivir,E53_221_X,Presa de Peñaflor,Guadalquivir,,Presa de Peñaflor,0,,-5.33083,37.69429,"Señal E53_221_X, caudal desembalsado al río: la que usa el mapa de caudales de la CHG para este punto."
+guadalquivir-h04,guadalquivir,saih-guadalquivir,H04_222_X,Presa de Pedro Marín,Guadalquivir,,Presa de Pedro Marín,0,,-3.41275,37.90912,"Señal H04_222_X, caudal circulante en la presa: la que usa el mapa de caudales de la CHG para este punto."
+guadalquivir-h07,guadalquivir,saih-guadalquivir,H07_221_X,Presa de Villafranca,Guadalquivir,,Presa de Villafranca,0,,-4.59893,37.95569,"Señal H07_221_X, caudal circulante en la presa: la que usa el mapa de caudales de la CHG para este punto."
+guadalquivir-h09,guadalquivir,saih-guadalquivir,H09_215_X,Presa de Alcalá del Río,Guadalquivir,,Presa de Alcalá del Río,0,,-5.97617,37.51855,"Señal H09_215_X, caudal circulante en la presa: la que usa el mapa de caudales de la CHG para este punto."
+guadalquivir-i11,guadalquivir,saih-guadalquivir,I11_211_X,Azud de Fuente Palmera,Guadalquivir,,Azud Fuente Palmera,0,,-5.1319,37.76804,"Señal I11_211_X, caudal del río en el azud: la que usa el mapa de caudales de la CHG para este punto."
+guadalquivir-i15,guadalquivir,saih-guadalquivir,I15_211_X,Écija (El Villar),Genil,,Estación de aforos de Écija,0,5165,-5.10741,37.60348,"El aforo de Écija (ROEA 5048) está fuera de servicio. Se lee El Villar (ROEA 5165, señal I15_211_X), justo aguas arriba y con la misma cuenca (8.022 km² frente a 8.028), como hace el mapa de caudales de la CHG."
+guadiana-CR1-07,guadiana,sira-guadiana,CR1-07,Gigüela en Villafranca,Ciguela,ES040MSPF00013474D,Río Gigüela IV,0,,-3.310165,39.414914,El plan nombra la estación CR1-07 para controlar esta masa.
+guadiana-CR1-21,guadiana,sira-guadiana,CR1-21,Bullaque en Luciana,Bullaque,ES040MSPF00014160B,Río Bullaque II B,0,,-4.287334,38.985086,El plan nombra la estación CR1-21 para controlar esta masa.
+guadiana-CR2-01,guadiana,sira-guadiana,CR2-01,Guadiana en Puebla de Don Rodrigo,Guadiana,ES040MSPF00013353B,Río Guadiana IV B,0,,-4.583657,39.10164,El plan nombra la estación CR2-01 para controlar esta masa.
+guadiana-CR2-04,guadiana,sira-guadiana,CR2-04,Fresnedoso en Sevilleja,Fresnedoso,ES040MSPF000134420,Río de Fresnedoso,0,,-4.977757,39.454622,El plan nombra la estación CR2-04 para controlar esta masa.
+guadiana-CR2-19,guadiana,sira-guadiana,CR2-19,Ruecas en Hernán Cortés,Ruecas,ES040MSPF000134140,Río Ruecas IV,0,,-5.91138,39.032146,El plan nombra la estación CR2-19 para controlar esta masa.
+guadiana-CR2-20,guadiana,sira-guadiana,CR2-20,Ortiga en las Cruces,Ortiga,ES040MSPF000134120,Río Ortiga,0,,-5.930324668,38.950140117,El plan nombra la estación CR2-20 para controlar esta masa.
+guadiana-CR2-23,guadiana,sira-guadiana,CR2-23,Búrdalo en Sta. Amalia,Búrdalo,ES040MSPF000142000,Río Burdalo II,0,,-6.049714,39.014094,El plan nombra la estación CR2-23 para controlar esta masa.
+guadiana-CR2-25,guadiana,sira-guadiana,CR2-25,Guadiana en Valverde de Mérida,Guadiana,ES040MSPF00013355B,Río Guadiana V B,0,,-6.189537,38.889587,El plan nombra la estación CR2-25 para controlar esta masa.
+guadiana-CR2-27,guadiana,sira-guadiana,CR2-27,San Juan en Oliva,San Juan,ES040MSPF00013399B,Río San Juan II,0,,-6.139779076,38.726185427,El plan nombra la estación CR2-27 para controlar esta masa.
+guadiana-CR2-37,guadiana,sira-guadiana,CR2-37,Guadajira en Guadajira,Guadajira,ES040MSPF000142300,Río Guadajira II,0,,-6.68945,38.852367,"El BOE pone junto a esta estación el código ES040MSPF000134230, que es de otra masa, y el nombre Río Guadajira II; se usa la masa del nombre, ES040MSPF000142300."
+guadiana-CR2-42,guadiana,sira-guadiana,CR2-42,Albuera en Talavera,Rivera de los Limonetes,ES040MSPF000133870,Rivera de los Limonetes,0,,-6.776837,38.879849,El plan nombra la estación CR2-42 para controlar esta masa.
+guadiana-CR2-50,guadiana,sira-guadiana,CR2-50,Ardila en Oliva de la Frontera,Ardila,ES040MSPF000133590,Río Ardila II,0,,-6.885452846,38.230532935,El plan nombra la estación CR2-50 para controlar esta masa.
+guadiana-E2-25,guadiana,sira-guadiana,E2-25,Azud de Badajoz,Guadiana,ES040MSPF000132180,Río Guadiana VII,0,,-7.014748,38.861804,El plan nombra la estación E2-25 para controlar esta masa.
+jucar-08005,jucar,saih-jucar,2700,La Presa de Vila-real,Mijares,10-11A,Río Mijares: canal cota 100 - azud Vila-real,0,08005,-0.122,39.9597,El plan nombra el aforo ROEA 08005 para controlar esta masa.
+jucar-08014,jucar,saih-jucar,2737,Tramacastilla,Guadalaviar,15-01A,Río Guadalaviar (Turia): cabecera - río de la Garganta,1,08014,-1.57613,40.41697,El plan nombra el aforo ROEA 08014 para controlar esta masa.
+jucar-08015,jucar,saih-jucar,12927,Teruel Turia,Turia,15-05,Río Turia: río Alfambra - rambla de la Matanza,1,08015,-1.11143,40.34299,El plan nombra el aforo ROEA 08015 para controlar esta masa.
+jucar-08018,jucar,saih-jucar,13670,Zagra,Turia,15-09,Río Turia: paraje de El Villarejo - embalse de Benagéber,1,08018,-1.1461,39.84016,El plan nombra el aforo ROEA 08018 para controlar esta masa.
+jucar-08022,jucar,saih-jucar,13337,Bugarra,Turia,15-14A,Río Turia: río Sot - rambla Castellana,1,08022,-0.78252,39.60601,El plan nombra el aforo ROEA 08022 para controlar esta masa.
+jucar-08025,jucar,saih-jucar,1523,Aguas Potables,Turia,15-17,Río Turia: azud de Manises - azud de la acequia de Tormos,0,08025,-0.50561,39.52114,El plan nombra el aforo ROEA 08025 para controlar esta masa.
+jucar-08027,jucar,saih-jucar,12924,Teruel Alfambra,Alfambra,15-04-01-02,Río Alfambra: rambla de la Hoz - río Turia,1,08027,-1.12126,40.35714,El plan nombra el aforo ROEA 08027 para controlar esta masa.
+jucar-08028,jucar,saih-jucar,13683,Villalba Alta,Alfambra,15-04-01-01B,Río Alfambra: río de Sollavientos - rambla de la Hoz,1,08028,-0.97563,40.61434,El plan nombra el aforo ROEA 08028 para controlar esta masa.
+jucar-08029,jucar,saih-jucar,12827,Montaverner,Albaida,18-29-01-01B,Río Albaida: río Clariano - embalse de Bellús,1,08029,-0.49525,38.89167,El plan nombra el aforo ROEA 08029 para controlar esta masa.
+jucar-08030,jucar,saih-jucar,13526,El Terde,Mijares,10-03A,Río Mijares: río Valbona - manantial de Babor,0,08030,-0.77372,40.16327,El plan nombra el aforo ROEA 08030 para controlar esta masa.
+jucar-08032,jucar,saih-jucar,2736,Cuenca,Júcar,18-06A,Río Júcar: río Huécar - río San Martín,1,08032,-2.14275,40.07302,El plan nombra el aforo ROEA 08032 para controlar esta masa.
+jucar-08036,jucar,saih-jucar,2691,Los Frailes,Júcar,18-12,Río Júcar: paraje de Los Guardas - río Valdemembra,0,08036,-1.74951,39.13751,El plan nombra el aforo ROEA 08036 para controlar esta masa.
+jucar-08042,jucar,saih-jucar,13080,Salida de Tous,Júcar,18-26,Río Júcar: embalse de Tous - azud de la acequia de Escalona,1,08042,-0.6451,39.12569,El plan nombra el aforo ROEA 08042 para controlar esta masa.
+jucar-08060,jucar,saih-jucar,13403,Requena,Magro,18-32-01-04,Río Magro: barranco Hondo - barranco Rubio,0,08060,-1.11647,39.47799,El plan nombra el aforo ROEA 08060 para controlar esta masa.
+jucar-08071,jucar,saih-jucar,2697,Villalonga,Serpis,21-06,Río Serpis: Lorcha - paraje de La Reprimala,1,08071,-0.2832,38.87065,El plan nombra el aforo ROEA 08071 para controlar esta masa.
+jucar-08074,jucar,saih-jucar,12810,Fuente del Baño,Palancia,13-05,Río Palancia: embalse del Regajo - rambla Seca,1,08074,-0.51463,39.88348,El plan nombra el aforo ROEA 08074 para controlar esta masa.
+jucar-08087,jucar,saih-jucar,14051,Marimota,Marimota,18-07-01-01,Río Marimota,0,08087,-2.34501,39.8183,El plan nombra el aforo ROEA 08087 para controlar esta masa.
+jucar-08089,jucar,saih-jucar,13070,Huerto Mulet,Júcar,18-33,Río Júcar: río Magro - Albalat de la Ribera,1,08089,-0.40949,39.18819,El plan nombra el aforo ROEA 08089 para controlar esta masa.
+jucar-08090,jucar,saih-jucar,2735,Pajaroncillo,Cabriel,18-21-01-04,Río Cabriel: río Mayor del Molinillo - embalse de El Bujioso,1,08090,-1.71094,39.94014,El plan nombra el aforo ROEA 08090 para controlar esta masa.
+jucar-08091,jucar,saih-jucar,2695,San Lorenzo de la Parrilla,Júcar,18-06B,Río Júcar: río San Martín - embalse de Alarcón,1,08091,-2.28834,39.85224,El plan nombra el aforo ROEA 08091 para controlar esta masa.
+jucar-08093,jucar,saih-jucar,16915,Macastre,Magro,18-32-01-07,Río Magro: embalse Forata - paraje del Puntal de los Bonetes,1,08093,-0.82529,39.34398,El plan nombra el aforo ROEA 08093 para controlar esta masa.
+jucar-08096,jucar,saih-jucar,13952,Salida de Arquillo,Guadalaviar,15-04,Río Guadalaviar (Turia): embalse Arquillo San Blas - río Alfambra,0,08096,-1.19589,40.3593,El plan nombra el aforo ROEA 08096 para controlar esta masa.
+jucar-08097,jucar,saih-jucar,2693,Montemayor,Mirón (S. Pedro),18-14-01-03-01-01,Río Mirón: cabecera - rambla de Fuentecarrasca,1,08097,-2.22425,38.72516,El plan nombra el aforo ROEA 08097 para controlar esta masa.
+jucar-08098,jucar,saih-jucar,2749,Río Jardín,Jardín,18-14-01-02,Río Arquillo: laguna del Arquillo - azud de Carrasca del Sombrero,1,08098,-2.27726,38.82313,El plan nombra el aforo ROEA 08098 para controlar esta masa.
+jucar-08099,jucar,saih-jucar,12812,Salida Ulldecona,Cenia,01-03A,Río de la Sénia: embalse de Ulldecona - azud presa del Martinet,1,08099,0.23932,40.67136,El plan nombra el aforo ROEA 08099 para controlar esta masa.
+jucar-08103,jucar,saih-jucar,2690,Torrealta,Túria,15-06,Río Turia: rambla de la Matanza - rambla del Barrancón,1,08103,-1.25822,40.11561,El plan nombra el aforo ROEA 08103 para controlar esta masa.
+jucar-08104,jucar,saih-jucar,2683,Los Santos,Ebrón,15-06-02-01B,Río Ebrón: rambla del Torcanejo - río Turia,1,08104,-1.28862,40.10803,El plan nombra el aforo ROEA 08104 para controlar esta masa.
+jucar-08107,jucar,saih-jucar,2716,Salida Alarcón,Júcar,18-08,Río Júcar: embalse de Alarcón - azud Henchideros,1,08107,-2.11528,39.56109,El plan nombra el aforo ROEA 08107 para controlar esta masa.
+jucar-08120,jucar,saih-jucar,13617,Calles,Tuéjar,15-12-01-02,Río Tuéjar: barranco del Prado - embalse de Loriguilla,1,08120,-0.95504,39.71881,El plan nombra el aforo ROEA 08120 para controlar esta masa.
+jucar-08126,jucar,saih-jucar,2689,Molino de Juan Romero,Júcar,18-01-02,Río Júcar: cabecera - embalse de la Toba,1,08126,-1.8482,40.22194,El plan nombra el aforo ROEA 08126 para controlar esta masa.
+jucar-08129,jucar,saih-jucar,2696,El Picazo,Júcar,18-10,Río Júcar: central hidroeléctrica de El Picazo - carretera de Fuensanta,0,08129,-2.08624,39.46344,El plan nombra el aforo ROEA 08129 para controlar esta masa.
+jucar-08130,jucar,saih-jucar,12962,Salida Contreras,Cabriel,18-21-01-08,Río Cabriel: embalse de Contreras - rambla de Consolación,1,08130,-1.50602,39.53016,El plan nombra el aforo ROEA 08130 para controlar esta masa.
+jucar-08132,jucar,saih-jucar,15280,El Carrasco,Júcar,18-11,Río Júcar: carretera de Fuensanta - paraje de Los Guardas,0,08132,-2.0193,39.21278,El plan nombra el aforo ROEA 08132 para controlar esta masa.
+jucar-08134,jucar,saih-jucar,2725,Los Cantos,Mijares,10-04A,Río Mijares: río Mora - embalse de Arenós,1,08134,-0.60538,40.11538,El plan nombra el aforo ROEA 08134 para controlar esta masa.
+jucar-08138,jucar,saih-jucar,2679,Balazote,Don Juan,18-14-01-04,Río Arquillo: río Mirón - azud de Volada La Choriza,0,08138,-2.11902,38.90214,El plan nombra el aforo ROEA 08138 para controlar esta masa.
+jucar-08139,jucar,saih-jucar,12799,Víllora,Cabriel,18-21-01-06A,Río Cabriel: embalse de El Bujioso - río Guadazaón,0,08139,-1.63512,39.73883,El plan nombra el aforo ROEA 08139 para controlar esta masa.
+jucar-08140,jucar,saih-jucar,2680,Río Huércemes,Guadazaón,18-21-01-06-01-02A,Río Guadazaón: arroyo del Sargal - río Cabriel,1,08140,-1.70416,39.72032,El plan nombra el aforo ROEA 08140 para controlar esta masa.
+jucar-08144,jucar,saih-jucar,12836,Alcalá del Júcar,Júcar,18-17,Río Júcar: Alcalá del Júcar - presa del Bosque,1,08144,-1.42533,39.19648,El plan nombra el aforo ROEA 08144 para controlar esta masa.
+jucar-08145,jucar,saih-jucar,2726,Salida de Arenós,Mijares,10-06A,Río Mijares: embalse de Arenós - embalse de Cirat,1,08145,-0.53984,40.08714,El plan nombra el aforo ROEA 08145 para controlar esta masa.
+jucar-08147,jucar,saih-jucar,12905,Salida Loriguilla,Turia,15-13,Río Turia: embalse Loriguilla - río Sot,1,08147,-0.90567,39.66313,El plan nombra el aforo ROEA 08147 para controlar esta masa.
+jucar-08148,jucar,saih-jucar,2720,Jérica,Palancia,13-03,Río Palancia: azud del Sargal - embalse del Regajo,1,08148,-0.54502,39.89406,El plan nombra el aforo ROEA 08148 para controlar esta masa.
+jucar-08149,jucar,saih-jucar,2688,Gea de Albarracín,Guadalaviar,15-02,Río Guadalaviar (Turia): rambla de Monterde - embalse de Arquillo de San Blas,1,08149,-1.29066,40.39403,El plan nombra el aforo ROEA 08149 para controlar esta masa.
