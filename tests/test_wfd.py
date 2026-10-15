@@ -152,6 +152,7 @@ def test_river_flow_only_for_stations_with_a_day_below():
     assert s["kind"] == "river_flow" and s["url"].endswith("#jucar-08030")
     assert s["title"] == "El Terde: 1 de 1 días por debajo del caudal mínimo"
     assert s["details"]["point"] == [-0.7, 40.1]
+    assert s["country"] == "ES" and "municipalities" not in s
 
 
 def test_water_status_only_for_flagged_bodies_and_never_a_deadline():
