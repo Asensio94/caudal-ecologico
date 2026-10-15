@@ -24,6 +24,7 @@ class DailyFlow:
     readings: int
     expected: int
     source: str
+    status: str = ""     # producer's status of the value, where it gives one (Hub'Eau)
 
 
 def local_day_bounds_utc(day: date) -> tuple[datetime, datetime]:
