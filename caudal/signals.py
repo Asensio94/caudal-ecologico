@@ -1,12 +1,14 @@
 """docs/signals.json for estado-iba, following its CONTRATO.md.
 
-Two kinds of signal:
+One kind of signal:
 - `river_flow`: one per gauging station with a day below the minimum in the last 30
   days, as the hub's adapter has read it so far (it stops reading our files once this
   one exists), but with the page's own 5 % margin for measurement error.
-- `water_status`: one per water body short of good status or under an exemption of the
-  Water Framework Directive. A kind of its own, proposed to the hub; until it takes it,
-  the hub drops these signals and keeps the rest.
+
+`water_status` (one per water body short of good status or under an exemption of the Water
+Framework Directive) is built but not sent: the hub's contract has no such kind, and its
+validator would count every one as an error. The bodies stay on docs/2027.html and
+masas-2027.json; once the hub takes the kind, add them back in `build`.
 """
 from __future__ import annotations
 
@@ -69,25 +71,23 @@ def water_status(bodies: list[dict]) -> list[dict]:
     return out
 
 
-def build(rows: list[dict], bodies: list[dict], now: datetime | None = None) -> dict:
+def build(rows: list[dict], now: datetime | None = None) -> dict:
     now = now or datetime.now(ZoneInfo("UTC"))
     return {
         "source": SOURCE, "version": 1, "generated": now.strftime("%Y-%m-%dT%H:%MZ"),
         "coverage": {"label": "Toda España", "sites": None,
-                     "note": "Caudal diario frente al mínimo ecológico en Júcar, Guadiana, Cantábrico y Guadalquivir; "
-                             "estado y plazo de la Directiva Marco del Agua de todas las masas de agua."},
-        "signals": river_flow(rows) + water_status(bodies),
+                     "note": "Caudal diario frente al mínimo ecológico en Júcar, Guadiana, Cantábrico y Guadalquivir."},
+        "signals": river_flow(rows),
     }
 
 
-def write(rows: list[dict], bodies: list[dict]) -> Path:
+def write(rows: list[dict]) -> Path:
     out = DOCS_DIR / "signals.json"
-    out.write_text(json.dumps(build(rows, bodies), ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    out.write_text(json.dumps(build(rows), ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     return out
 
 
 def render(today: date | None = None) -> Path:
-    from .countdown import bodies
     from .web import build_rows
     today = today or datetime.now(ZoneInfo("Europe/Madrid")).date()
-    return write(build_rows(today)[0], bodies())
+    return write(build_rows(today)[0])

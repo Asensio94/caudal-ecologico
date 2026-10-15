@@ -163,7 +163,11 @@ def test_water_status_only_for_flagged_bodies_and_never_a_deadline():
 
 
 def test_document_follows_the_contract():
-    doc = build([station_row(2)], [countdown_body(body(ecological="3", ecological_by="2027 or earlier"))])
+    doc = build([station_row(2)])
     assert doc["source"] == "caudal-ecologico" and doc["version"] == 1 and doc["coverage"]["sites"] is None
     for s in doc["signals"]:
         assert all(s.get(k) for k in ("id", "kind", "date", "title", "url", "precision"))
+
+
+def test_document_leaves_water_status_out_until_the_hub_takes_it():
+    assert {s["kind"] for s in build([station_row(2)])["signals"]} == {"river_flow"}
