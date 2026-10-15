@@ -15,6 +15,8 @@ reúne para las 6 274 masas de agua superficiales y subterráneas de España su 
 de la Directiva Marco del Agua que se le aplican. 2027 es el último plazo: después solo cabe una
 prórroga por condiciones naturales o rebajar el objetivo.
 
+> **Estado: activo.** Se actualiza solo y sigue en desarrollo.
+
 ## Cómo funciona
 
 La web explica todo esto por sí sola: el método cuenca a cuenca, por qué cada estación mide su
