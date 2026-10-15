@@ -39,17 +39,23 @@ jobs:
       # The plan is consolidated text that can be amended: re-read it on the 1st, with the
       # status and deadlines of every water body (EEA WISE, pinned release, and the BOE),
       # and the pressures, aquifer status and Júcar piezometric trends around each point.
+      # France: table C3 of the Adour-Garonne SDAGE (DCR and DOE) and its WISE bodies.
       - name: Monthly plan refresh
         run: |
           if [ "$(date -u +%d)" = "01" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             python -m caudal.cli plan
+            python -m caudal.cli plan-fr || echo "::warning::plan-fr failed; France keeps last month's thresholds"
             python -m caudal.cli wfd
+            python -m caudal.cli wfd --country FR || echo "::warning::wfd FR failed; France keeps last month's bodies"
             python -m caudal.cli context
           fi
 
+      # French stations are read from Hub'Eau inside `fetch` (the last month, which the
+      # producers keep correcting); VigiEau keeps no history, so its level is stored daily.
       - name: Fetch flows and render the page
         run: |
           python -m caudal.cli fetch --days "${{ github.event.inputs.days || '7' }}"
+          python -m caudal.cli restrictions
           python -m caudal.cli page
 
       - name: Commit the series
