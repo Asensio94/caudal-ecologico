@@ -93,9 +93,11 @@ mínimo (una nota en cada fila), qué se deja fuera y por qué, los límites y l
 `docs/signals.json` sigue el contrato de `estado-iba/CONTRATO.md`:
 
 - `river_flow`: una por estación con algún día por debajo del mínimo en 30 días (con el margen del 5 %).
-- `water_status` (tipo propuesto al hub): una por masa que no está en buen estado o tiene una
-  excepción. `deadline` va siempre a `null`: el plazo de la Directiva no es un plazo para alegar.
-  El plazo y los motivos van en `details`.
+
+El estado de las masas de agua frente a 2027 no se envía: el contrato del hub no tiene ese tipo y
+su validador lo contaría como error. Sigue en `docs/2027.html` y `docs/masas-2027.json`. El código
+(`signals.water_status`) está listo para cuando el hub lo acepte: una señal por masa que no está en
+buen estado o tiene una excepción, con `deadline` a `null`.
 
 ## Por qué puede faltar agua
 
