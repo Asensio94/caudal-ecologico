@@ -54,10 +54,12 @@ UI: dict[str, dict[str, str]] = {
         "title": "Débit écologique",
         "h1": "Débit <span>écologique</span>",
         "description": "Débit journalier des rivières face au débit de crise (DCR) fixé par le SDAGE.",
-        "lede": ("Chaque jour, le débit moyen journalier aux points nodaux du bassin Adour-Garonne face au débit "
-                 "de crise (DCR) que fixe le SDAGE 2022-2027. Débits de Hub'Eau ; seuils lus dans le fichier "
-                 "ouvert de l'agence de l'eau."),
-        "fig_points": "points nodaux (Adour-Garonne)",
+        "lede": ("Chaque jour, le débit moyen journalier aux points nodaux des bassins Adour-Garonne, "
+                 "Loire-Bretagne et Rhône-Méditerranée face au débit de crise (DCR) que fixe chaque SDAGE "
+                 "2022-2027. Débits de Hub'Eau ; seuils lus dans le fichier ouvert de l'agence de l'eau ou "
+                 "recopiés du SDAGE."),
+        "fig_points": "points nodaux comparés (trois bassins)",
+        "fig_per_basin": "Par bassin : {list}.",
         "fig_below_now": "sous le DCR le dernier jour avec données",
         "fig_below_any": "avec au moins un jour sous le DCR en {days} jours",
         "fig_crisis": "en zone de crise sécheresse aujourd'hui (VigiEau)",
@@ -67,6 +69,8 @@ UI: dict[str, dict[str, str]] = {
         "f_below": "Sous le DCR maintenant",
         "f_history": "Au moins un jour sous le DCR",
         "f_crisis": "En crise (VigiEau)",
+        "f_basin": "Bassin",
+        "basin_all": "Tous les bassins",
         "th_point": "Point nodal",
         "th_thresholds": "Seuils du SDAGE",
         "th_flow": "Débit dernier jour<br>m³/s",
@@ -87,6 +91,8 @@ UI: dict[str, dict[str, str]] = {
         "validated": "donnée validée",
         "doe": "DOE {doe} m³/s",
         "doe_note": "objectif d'étiage, à tenir 8 années sur 10 : un jour en dessous n'est pas un manquement",
+        "dsa": "DSA {dsa} m³/s",
+        "dsa_note": "débit seuil d'alerte : en dessous, le préfet prend les premières restrictions",
         "no_order": "Aucun arrêté",
         "order_since": "depuis le {date}",
         "level_vigilance": "Vigilance",

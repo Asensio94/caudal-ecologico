@@ -72,14 +72,15 @@ def load_requirements() -> dict[str, list[Requirement]]:
     return out
 
 
-def objectives() -> dict[str, str]:
-    """Low-water objective (DOE) of each French station, as the SDAGE table writes it."""
+def objectives(field: str = "objective") -> dict[str, str]:
+    """Low-water objective (DOE) of each French station, as the SDAGE table writes it; with
+    field="alert", the alert flow (DSA) of the tables that give one."""
     out = {}
     for path in sorted(REQUIREMENTS_DIR.glob("*.csv")):
         with path.open(encoding="utf-8") as f:
             for r in csv.DictReader(f):
-                if r.get("objective"):
-                    out.setdefault(r["station_id"], r["objective"])
+                if r.get(field):
+                    out.setdefault(r["station_id"], r[field])
     return out
 
 

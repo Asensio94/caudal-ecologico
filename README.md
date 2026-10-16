@@ -16,9 +16,9 @@ de la Directiva Marco del Agua que se le aplican. 2027 es el último plazo: desp
 prórroga por condiciones naturales o rebajar el objetivo.
 
 **Francia** tiene su propia página, en francés: [«Débit écologique»](https://asensio94.github.io/caudal-ecologico/france.html)
-compara cada día el caudal de los 60 puntos nodales del SDAGE Adour-Garonne que tienen estación con
-datos (de 65) con su caudal de crisis (DCR), y añade el nivel de restricción por sequía que publica
-VigiEau. Su [«L’atteindra-t-elle en 2027 ?»](https://asensio94.github.io/caudal-ecologico/france-2027.html)
+compara cada día con su caudal de crisis (DCR) el caudal de los puntos nodales de tres SDAGE que
+tienen estación con datos: 60 de 65 en Adour-Garonne, 62 de 72 en Loire-Bretagne y 61 de 128 en
+Rhône-Méditerranée, y añade el nivel de restricción por sequía que publica VigiEau. Su [«L’atteindra-t-elle en 2027 ?»](https://asensio94.github.io/caudal-ecologico/france-2027.html)
 hace lo mismo que la española con las 12 095 masas de agua francesas. Lo español no cambia: Francia es
 un país más (`country` = `ES` | `FR`) en los mismos ficheros.
 
@@ -99,15 +99,28 @@ mínimo (una nota en cada fila), qué se deja fuera y por qué, los límites y l
 
 ### Francia
 
-1. **Umbral.** El SDAGE Adour-Garonne 2022–2027 (disposición C3) fija en cada punto nodal un caudal
-   objetivo de estiaje (DOE), que se evalúa por temporadas y debe cumplirse 8 años de cada 10, y un
-   caudal de crisis (DCR), que «doit impérativement être sauvegardé en valeur moyenne journalière». El
-   DCR es el umbral diario; el DOE se muestra como contexto. `caudal/plan_fr.py` descarga la tabla C3
-   que publica la agencia del agua (Licence Ouverte) y la lee tal cual. El servidor de la agencia no
-   envía su certificado intermedio; se guarda en `caudal/certs/` (caduca en noviembre de 2027).
-2. **Estación.** La tabla da a cada punto su estación (Hydro1) y, si se movió, la sustituta (Hydro2): se
-   usa la primera con caudal en Hub’Eau en los últimos 60 días. Tres estaciones miden solo un brazo
-   del río y lo dicen en su nota.
+1. **Umbral.** Cada SDAGE 2022–2027 fija en sus puntos nodales un caudal objetivo de estiaje (DOE),
+   que se evalúa por temporadas y debe cumplirse 8 años de cada 10, y un caudal de crisis (DCR). El
+   DCR es el umbral diario; el DOE (y el DSA, caudal umbral de alerta, donde lo hay) se muestra como
+   contexto. `caudal/plan_fr.py` lee una tabla por cuenca:
+   - Adour-Garonne (disposición C3): el DCR «doit impérativement être sauvegardé en valeur moyenne
+     journalière». Se descarga la tabla C3 que publica la agencia del agua (Licence Ouverte) y se lee
+     tal cual. El servidor de la agencia no envía su certificado intermedio; se guarda en
+     `caudal/certs/` (caduca en noviembre de 2027).
+   - Loire-Bretagne (capítulo 7, tabla de objetivos de cantidad en los puntos nodales, con DOE, DSA y
+     DCR) y Rhône-Méditerranée (disposición 7-07, tabla 7C): solo existen en el PDF del SDAGE, así que
+     están transcritas en `data/sdage/`, con la página de cada fila y cada valor comprobado contra el
+     texto del PDF (ver `data/sdage/README.md`). En Rhône-Méditerranée el DCR va «associée à une durée
+     maximum de franchissement» que la tabla no da: se cuenta cada día por debajo, y la web avisa de que
+     un episodio más corto que esa duración quizá no incumpla el SDAGE. Los valores marcados (*), que
+     pueden revisarse durante el ciclo, lo dicen en su nota.
+2. **Estación.** En Adour-Garonne la tabla da a cada punto su estación (Hydro1) y, si se movió, la
+   sustituta (Hydro2): se usa la primera con caudal en Hub’Eau en los últimos 60 días. Tres estaciones
+   miden solo un brazo del río y lo dicen en su nota. En Loire-Bretagne la capa de puntos nodales de la
+   agencia da un código y en Rhône-Méditerranée solo hay río y lugar: se elige la estación de Hub’Eau
+   que lleva el nombre que escribe el SDAGE, y si el código de la agencia apunta a otra, manda el
+   nombre (la nota lo dice). Los puntos dudosos (varias estaciones con el mismo nombre, estación «à
+   réimplanter», estación lejos del lugar) se dejan fuera con su motivo.
 3. **Caudal.** [Hub’Eau](https://hubeau.eaufrance.fr/page/api-hydrometrie) (QmnJ, caudal medio
    diario de los productores). Cada valor trae su estado (bruto, corregido, prevalidado, validado);
    solo el validado es definitivo, y se relee el último mes cada mañana. El nombre de las estaciones
@@ -121,8 +134,8 @@ mínimo (una nota en cada fila), qué se deja fuera y por qué, los límites y l
    plazo es el tramo de la AEMA.
 
 Fuera quedan, y la web explica por qué: el débit réservé de cada presa (art. L214-18 del Code de
-l’environnement; su valor está en cada autorización y no hay registro abierto), Loire-Bretagne y
-Rhône-Méditerranée (tablas en PDF sin código de estación; próximo paso), Seine-Normandie y
+l’environnement; su valor está en cada autorización y no hay registro abierto), los puntos sin DCR
+cifrado («à définir», sobre todo en Rhône-Méditerranée) o sin estación segura, Seine-Normandie y
 Rhin-Meuse (puntos nodales sin valores), Artois-Picardie, Córcega y ultramar (sin examinar) y los
 caudales de los SAGE.
 
@@ -222,7 +235,7 @@ python -m caudal.cli plan            # mínimos y estaciones desde el BOE, los S
 python -m caudal.cli context         # presiones, acuíferos y niveles piezométricos (AEMA y CHJ)
 python -m caudal.cli fetch --days 30 # medias diarias de los últimos 30 días
 python -m caudal.cli wfd             # estado, plazos y excepciones de todas las masas (AEMA y BOE)
-python -m caudal.cli plan-fr         # Francia: DCR y DOE del SDAGE Adour-Garonne y sus estaciones Hub'Eau
+python -m caudal.cli plan-fr         # Francia: DCR, DOE y DSA de tres SDAGE y sus estaciones Hub'Eau
 python -m caudal.cli wfd --country FR
 python -m caudal.cli context --country FR
 python -m caudal.cli restrictions    # nivel VigiEau del día en cada estación francesa
@@ -243,7 +256,8 @@ python -m pytest -q
 | `data/wfd/water_bodies.csv` | Cada masa de agua: código europeo, demarcación, categoría, estado, tramo de plazo, fecha de entrega y punto representativo |
 | `data/wfd/exemptions.csv` | Excepciones por masa y aspecto: artículo, motivo y presiones |
 | `data/wfd/objectives.csv` | Año y artículos del BOE por masa, con su referencia legal y enlace |
-| `data/requirements/adour-garonne.csv` | DCR (como mínimo de todos los meses) y DOE (`objective`, tal como lo escribe la tabla C3) por punto nodal |
+| `data/requirements/{adour-garonne,loire-bretagne,rhone-mediterranee}.csv` | DCR (como mínimo de todos los meses), DOE (`objective`) y DSA (`alert`), tal como los escribe cada tabla, por punto nodal |
+| `data/sdage/*.csv` | Transcripción revisada de las tablas en PDF de Loire-Bretagne y Rhône-Méditerranée: valores, página, estación elegida o motivo para dejar el punto fuera |
 | `data/vigieau.csv` | Nivel de restricción VigiEau por estación francesa y día, con la zona y el enlace al arrêté |
 | `data/wfd/*_fr.csv` | Masas de agua y excepciones de Francia, mismas columnas que las españolas |
 
@@ -274,7 +288,8 @@ municipio (código INSEE). Las series francesas añaden una columna `status` con
 - Francia: caudales de [Hub’Eau](https://hubeau.eaufrance.fr/) (HydroPortail; DREAL y servicios
   de previsión de crecidas); DCR y DOE de la [tabla C3 del SDAGE Adour-Garonne
   2022–2027](https://www.data.gouv.fr/fr/datasets/aeag-sdage-2022-2027-doe-dcr/), agencia del agua
-  Adour-Garonne; restricciones de [VigiEau](https://vigieau.gouv.fr/), ministerio de Transición
+  Adour-Garonne; DCR, DOE y DSA del [SDAGE Loire-Bretagne 2022–2027](https://sdage-sage.eau-loire-bretagne.fr/files/live/mounts/midas/Donnees-et-documents/Sdage/AELB-SDAGE_Tome1_maj_car) (capítulo 7) y del [SDAGE
+  Rhône-Méditerranée 2022–2027](https://rhone-mediterranee.eaufrance.fr/sites/sierm/files/content/2022-03/20220318-SDAGE-2022-2027_vol.principal_ADOPTE-1.pdf) (tabla 7C), transcritos en `data/sdage/`; restricciones de [VigiEau](https://vigieau.gouv.fr/), ministerio de Transición
   Ecológica. Todo bajo Licence Ouverte.
 - Código: MIT. Datos propios (medias diarias y comparaciones): CC BY 4.0.
 

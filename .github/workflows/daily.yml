@@ -39,7 +39,9 @@ jobs:
       # The plan is consolidated text that can be amended: re-read it on the 1st, with the
       # status and deadlines of every water body (EEA WISE, pinned release, and the BOE),
       # and the pressures, aquifer status and Júcar piezometric trends around each point.
-      # France: table C3 of the Adour-Garonne SDAGE (DCR and DOE) and its WISE bodies.
+      # France: the DCR, DOE and DSA of the Adour-Garonne (table C3, open file), Loire-Bretagne
+      # and Rhône-Méditerranée SDAGEs (tables transcribed in data/sdage/), and their WISE bodies.
+      # plan-fr fails if any basin fails; that basin keeps last month's thresholds.
       - name: Monthly plan refresh
         run: |
           if [ "$(date -u +%d)" = "01" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
