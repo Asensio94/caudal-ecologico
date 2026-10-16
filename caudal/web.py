@@ -11,6 +11,8 @@ from .explain import method_html, sources_html
 from .compliance import DayResult, Status, episodes, evaluate
 from .config import DOCS_DIR, TOLERANCE
 from .logo import LOGO_SVG, favicon_link
+from .i18n import country_nav
+from .sources.hubeau import VALIDATED
 from .sources.wise import FLOW_PRESSURES
 
 ACCENT, ACCENT_DARK = "#007c91", "#4fc7d9"
@@ -66,6 +68,8 @@ tr[hidden]{{display:none}}
 .method details{{margin:6px 0;max-width:72ch}}
 .method summary{{cursor:pointer;font-weight:600}}
 .method details ul{{font-size:.9rem;margin:6px 0 12px}}
+.paises{{margin:0 0 8px;font-size:14px;color:var(--muted)}}
+.paises a[aria-current]{{color:var(--ink);text-decoration:none}}
 """
 
 
@@ -76,7 +80,7 @@ def _fmt(x: float | None, digits: int = 2) -> str:
     return s.replace(",", " ").replace(".", ",").replace(" ", ".")
 
 
-def _sparkline(results: list[DayResult], start: date) -> str:
+def _sparkline(results: list[DayResult], start: date, label: str = f"Caudal de los últimos {WINDOW_DAYS} días") -> str:
     """Daily flow (line) against the minimum (dashed), days below shaded. Log-free: clipped at 3× the minimum."""
     w, h = 180, 36
     mins = [r.minimum for r in results if r.minimum]
@@ -97,19 +101,20 @@ def _sparkline(results: list[DayResult], start: date) -> str:
             d.append(f"{pen}{x(r.day):.1f} {y(v):.1f}")
             pen = "L"
         return " ".join(d)
-    return (f'<svg class="spark" viewBox="0 0 {w} {h}" role="img" aria-label="Caudal de los últimos {WINDOW_DAYS} días">'
+    return (f'<svg class="spark" viewBox="0 0 {w} {h}" role="img" aria-label="{label}">'
             f'{shade}<path class="min" d="{path("minimum")}"/><path class="q" d="{path("flow")}"/></svg>')
 
 
-def build_rows(today: date) -> tuple[list[dict], date]:
+def build_rows(today: date, country: str = "ES") -> tuple[list[dict], date]:
     last = today - timedelta(days=1)
     start = last - timedelta(days=WINDOW_DAYS - 1)
     reqs = store.load_requirements()
     rows, refs, ctx = [], store.legal_refs(), context.load()
-    for s in store.load_stations():
+    for s in store.load_stations(country):
         series = store.flow_series(s["station_id"])
         window = {start + timedelta(days=i): series.get(start + timedelta(days=i)) for i in range(WINDOW_DAYS)}
-        results = evaluate(window, reqs.get(s["station_id"], []), tolerance=TOLERANCE)
+        validated = {d for d, st in store.flow_statuses(s["station_id"]).items() if st == VALIDATED}
+        results = evaluate(window, reqs.get(s["station_id"], []), validated_days=validated, tolerance=TOLERANCE)
         latest = next((r for r in reversed(results) if r.flow is not None), None)
         eps = episodes(results)
         ongoing = eps[-1] if eps and latest and latest.status is Status.BELOW and eps[-1].end == latest.day else None
@@ -239,6 +244,7 @@ def render(today: date | None = None) -> Path:
 </head>
 <body>
 <header class="site-header">
+  {country_nav("ES")}
   <h1>{LOGO_SVG}Caudal <span>ecológico</span></h1>
   <p class="lede">Cada día, el caudal medio de los puntos de control frente al caudal mínimo que fija el plan
   hidrológico para ese río y ese mes. Datos del SAIH; mínimos leídos del BOE.</p>

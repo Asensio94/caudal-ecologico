@@ -8,7 +8,7 @@ import typer
 
 from . import plan, sources, store
 from .config import REFRESH_DAYS
-from .sources import cantabrico, guadalquivir, guadiana, jucar
+from .sources import cantabrico, guadalquivir, guadiana, hubeau, jucar
 
 app = typer.Typer(add_completion=False, help="Caudal ecológico: daily flows against the legal minimum.")
 
@@ -42,17 +42,33 @@ def build_plan():
     plan.write_excluded(excluded)
 
 
+@app.command("plan-fr")
+def build_plan_fr():
+    """Read the crisis flows (DCR) of the Adour-Garonne SDAGE and rebuild the French stations."""
+    from . import plan_fr
+    stations, reqs, unread = plan_fr.build_all()
+    plan.write_requirements(plan_fr.BASIN, reqs, plan_fr.REQ_FIELDS_FR)
+    plan.write_stations(stations, plan_fr.COUNTRY)
+    plan.write_excluded([(plan_fr.BASIN, u) for u in unread], plan_fr.COUNTRY)
+    typer.echo(f"{plan_fr.BASIN}: {len(stations)} nodal points with public flows; not compared:")
+    for u in unread:
+        typer.echo(f"  - {u}")
+
+
 @app.command("wfd")
-def build_wfd():
-    """Status and exemptions of every water body (EEA WISE) and deadlines from the BOE plans."""
+def build_wfd(country: str = "ES"):
+    """Status and exemptions of every water body (EEA WISE) and, for Spain, deadlines from the BOE plans."""
     from . import objectives, wfd
     http = sources.session()
-    bodies = wfd.build_bodies(wfd.sql(wfd.SURFACE_SQL, http), wfd.sql(wfd.GROUND_SQL, http), wfd.fetch_places(http))
-    exemptions = wfd.fetch_exemptions(http)
-    wfd.write_csv("water_bodies.csv", wfd.WB_FIELDS, bodies)
-    wfd.write_csv("exemptions.csv", wfd.EXEMPTION_FIELDS, exemptions)
-    typer.echo(f"{len(bodies)} water bodies, {len(exemptions)} exemption rows; "
+    bodies = wfd.build_bodies(wfd.sql(wfd.surface_sql(country), http), wfd.sql(wfd.ground_sql(country), http),
+                              wfd.fetch_places(http, country), country)
+    exemptions = wfd.fetch_exemptions(http, country)
+    wfd.write_csv(wfd.file_name("water_bodies.csv", country), wfd.WB_FIELDS, bodies)
+    wfd.write_csv(wfd.file_name("exemptions.csv", country), wfd.EXEMPTION_FIELDS, exemptions)
+    typer.echo(f"{country}: {len(bodies)} water bodies, {len(exemptions)} exemption rows; "
                f"{sum(not b['lat'] for b in bodies)} without a point")
+    if country != "ES":
+        return   # the plan deadlines are read from the BOE: Spain only
     found = []
     for block, read in objectives.READERS.items():
         html = plan.fetch_block(block)
@@ -65,12 +81,27 @@ def build_wfd():
 
 
 @app.command()
-def fetch(days: int = REFRESH_DAYS, until: str = "", station: str = "", pause: float = 0.5):
+def fetch(days: int = REFRESH_DAYS, until: str = "", station: str = "", country: str = "", pause: float = 0.5):
     """Fetch the daily means of the last `days` complete days (yesterday backwards)."""
     last = date.fromisoformat(until) if until else date.today() - timedelta(days=1)
     span = [last - timedelta(days=i) for i in range(days)][::-1]
-    for s in store.load_stations():
-        if station and s["station_id"] != station:
+    stations = [s for s in store.load_stations(country or None) if not station or s["station_id"] == station]
+    # Hub'Eau answers many sites and days in one request: read them all at once.
+    french = [s for s in stations if s["source"] == hubeau.SOURCE]
+    if french:
+        # Hub'Eau values keep being corrected for weeks; one request re-reads a whole month.
+        first = min(span[0], last - timedelta(days=hubeau.REFRESH_DAYS - 1))
+        try:
+            got = hubeau.fetch_range([s["source_id"] for s in french], first, last)
+        except Exception as e:
+            typer.echo(f"hubeau {first}..{last}: {type(e).__name__} {e}", err=True)
+            got = {}
+        for s in french:
+            flows = got.get(s["source_id"], [])
+            store.save_flows(s["station_id"], flows)
+            typer.echo(f"{s['station_id']}: {sum(g.mean is not None for g in flows)}/{(last - first).days + 1} days")
+    for s in stations:
+        if s["source"] == hubeau.SOURCE:
             continue
         got = []
         if ranged := RANGE_READERS.get(s["source"]):
@@ -93,18 +124,36 @@ def fetch(days: int = REFRESH_DAYS, until: str = "", station: str = "", pause: f
 
 
 @app.command()
-def context():
+def restrictions(pause: float = 0.3):
+    """Store today's drought restriction level (VigiEau) at each French station."""
+    from .sources import vigieau
+    http, levels = sources.session(), {}
+    for s in store.load_stations("FR"):
+        try:
+            levels[s["station_id"]] = vigieau.zone_at(float(s["lon"]), float(s["lat"]), http)
+        except Exception as e:   # a station without today's level just has a gap
+            typer.echo(f"{s['station_id']}: {type(e).__name__} {e}", err=True)
+            continue
+        time.sleep(pause)
+    vigieau.save(date.today(), levels)
+    typer.echo(f"{sum(v is not None for v in levels.values())}/{len(levels)} stations under a restriction order")
+
+
+@app.command()
+def context(country: str = typer.Option("", help="Only this country's stations (ES, FR); keeps the rest")):
     """Rebuild data/context.csv: river pressures and aquifer status (EEA) and level trends (CHJ)."""
     from .context import build
-    typer.echo(f"{build(typer.echo)} rows")
+    typer.echo(f"{build(typer.echo, country or None)} rows")
 
 
 @app.command()
 def page():
-    """Render docs/index.html, docs/2027.html (with masas-2027.json) and docs/signals.json."""
-    from . import countdown, signals, web
+    """Render docs/index.html and france.html, docs/2027.html (with masas-2027.json) and docs/signals.json."""
+    from . import countdown, countdown_fr, signals, web, web_fr
     web.render()
+    web_fr.render()
     countdown.render()
+    countdown_fr.render()
     signals.render()
 
 

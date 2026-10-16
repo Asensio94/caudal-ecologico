@@ -429,10 +429,10 @@ REQ_FIELDS = (["station_id", "water_body_code", "water_body_name", "protected", 
               + [f"m{m:02d}" for m in range(1, 13)] + ["valid_from", "valid_to", "legal_ref", "source_url"])
 
 
-def write_requirements(basin: str, rows: list[dict]) -> None:
+def write_requirements(basin: str, rows: list[dict], fields: list[str] = REQ_FIELDS) -> None:
     path = REQUIREMENTS_DIR / f"{basin}.csv"
     with path.open("w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=REQ_FIELDS)
+        w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader()
         w.writerows(rows)
 
@@ -451,7 +451,7 @@ def requirement_rows(station_id: str, wb: WaterBodyMinimum, valid_from="2023-02-
 
 
 STATION_FIELDS = ["station_id", "basin", "source", "source_id", "name", "river",
-                  "water_body_code", "water_body_name", "protected", "roea", "lon", "lat", "note"]
+                  "water_body_code", "water_body_name", "protected", "roea", "lon", "lat", "note", "country", "municipality"]
 
 
 def build_jucar(boe_html: str, gauges: dict) -> tuple[list[dict], list[dict], list[str]]:
@@ -523,18 +523,24 @@ def title_es(text: str) -> str:
                     for i, w in enumerate(words))
 
 
-def write_excluded(rows: list[tuple[str, str]]) -> None:
-    """(basin, reason) for every plan point or gauge left out, so the page can list them."""
+def write_excluded(rows: list[tuple[str, str]], country: str = "ES") -> None:
+    """(basin, reason) for every plan point or gauge left out, so the page can list them.
+    Replaces the rows of `country` and keeps those of the others."""
     from .config import EXCLUDED_FILE
+    from .store import load_excluded
+    kept = [(r["basin"], r["reason"], r["country"]) for r in load_excluded() if r["country"] != country]
     with EXCLUDED_FILE.open("w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
-        w.writerow(["basin", "reason"])
-        w.writerows(rows)
+        w.writerow(["basin", "reason", "country"])
+        w.writerows(kept + [(b, r, country) for b, r in rows])
 
 
-def write_stations(rows: list[dict]) -> None:
+def write_stations(rows: list[dict], country: str = "ES") -> None:
+    """Replace the stations of `country`, keeping those of the others."""
     from .config import STATIONS_FILE
+    from .store import load_stations
+    rows = [r for r in load_stations() if r["country"] != country] + [{**r, "country": country} for r in rows]
     with STATIONS_FILE.open("w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=STATION_FIELDS)
+        w = csv.DictWriter(f, fieldnames=STATION_FIELDS, restval="")
         w.writeheader()
         w.writerows(sorted(rows, key=lambda r: r["station_id"]))

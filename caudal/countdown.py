@@ -12,12 +12,13 @@ from html import escape
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from . import store
+from . import context, store
 from .config import DOCS_DIR
+from .i18n import PAGES_2027, country_nav
 from .logo import LOGO_SVG, favicon_link
 from .outlook import VERDICTS, assess, flagged
 from .web import ACCENT, ACCENT_DARK, COMMON_CSS, REPO, SIBLINGS
-from .wfd import RBD_NAMES, match_code, read_csv
+from .wfd import RBD_NAMES, file_name, match_code, read_csv
 
 PAGE_URL = "https://asensio94.github.io/caudal-ecologico/2027.html"
 DISCODATA_URL = "https://discodata.eea.europa.eu/"
@@ -49,11 +50,22 @@ def horizon_label(h: str) -> str:
             "2015": "2015", "2021": "2021 o antes"}.get(h, h)
 
 
-def station_links() -> dict[str, str]:
-    """EU code of a water body → id of the gauging station that measures it on index.html."""
+def station_links(country: str = "ES") -> dict[str, str]:
+    """EU code of a water body → id of the gauging station that measures it on the daily page.
+
+    Spanish stations carry the code their basin plan gives; French ones get it from the EEA
+    layer at the gauge (data/context.csv, `python -m caudal.cli context`)."""
     out = {}
+    stations = store.load_stations(country)
+    if country != "ES":
+        ctx = context.load()
+        for s in stations:
+            c = ctx.get(s["station_id"])
+            if c and c.river_body_code:
+                out.setdefault(c.river_body_code, s["station_id"])
+        return out
     known = {b["code"] for b in read_csv("water_bodies.csv")}
-    for s in store.load_stations():
+    for s in stations:
         for rbd in STATION_RBD.get(s["basin"], ()):
             code = match_code(s["water_body_code"], rbd, known)
             if code:
@@ -62,31 +74,35 @@ def station_links() -> dict[str, str]:
     return out
 
 
-def bodies() -> list[dict]:
-    """Every reported water body with its outlook, sorted by district and code."""
+def bodies(country: str = "ES") -> list[dict]:
+    """Every reported water body with its outlook, sorted by district and code. The exact year
+    of the BOE is Spanish; elsewhere only the EEA bands are read."""
     exemptions: dict[str, list[dict]] = {}
-    for e in read_csv("exemptions.csv"):
+    for e in read_csv(file_name("exemptions.csv", country)):
         exemptions.setdefault(e["code"], []).append(e)
-    objectives = {o["code"]: o for o in read_csv("objectives.csv")}
-    stations = station_links()
+    objectives = {o["code"]: o for o in read_csv("objectives.csv")} if country == "ES" else {}
+    stations = station_links(country)
     out = []
-    for b in read_csv("water_bodies.csv"):
+    for b in read_csv(file_name("water_bodies.csv", country)):
         o = assess(b, exemptions.get(b["code"], []), objectives.get(b["code"]))
         out.append({**b, "outlook": o, "flagged": flagged(o), "station": stations.get(b["code"], ""),
                     "objective": objectives.get(b["code"]), "exemptions": exemptions.get(b["code"], [])})
     return sorted(out, key=lambda r: (r["rbd"], r["code"]))
 
 
-def _json_row(b: dict) -> list:
+def _json_row(b: dict, reasons: dict[str, str]) -> list:
     o = b["outlook"]
     return [b["code"], b["name"], b["rbd"], b["category"], b["ecological"], b["chemical"], b["quantitative"],
-            o.verdict, o.horizon, o.horizon_source, o.articles, [REASONS.get(r, r) for r in o.reasons], b["station"]]
+            o.verdict, o.horizon, o.horizon_source, o.articles, [reasons.get(r, r) for r in o.reasons], b["station"]]
 
 
-def write_json(rows: list[dict], generated: str) -> Path:
+def write_json(rows: list[dict], generated: str, name: str = "masas-2027.json",
+               verdicts: dict[str, str] = VERDICTS, reasons: dict[str, str] = REASONS) -> Path:
+    """The bodies for the search box. Same fields in every country; the labels follow the page."""
+    districts = {k: v for k, v in RBD_NAMES.items() if k[:2] == (rows[0]["rbd"][:2] if rows else "ES")}
     doc = {"generated": generated, "cycle": "2022-2027", "fields": JSON_FIELDS,
-           "districts": RBD_NAMES, "verdicts": VERDICTS, "bodies": [_json_row(b) for b in rows]}
-    out = DOCS_DIR / "masas-2027.json"
+           "districts": districts, "verdicts": verdicts, "bodies": [_json_row(b, reasons) for b in rows]}
+    out = DOCS_DIR / name
     out.write_text(json.dumps(doc, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     return out
 
@@ -117,6 +133,8 @@ table.points{{width:100%;border-collapse:collapse;font-size:.92rem}}
 #count{{color:var(--muted);font-size:.85rem;margin:0 0 8px}}
 .points tr:target td,.points tr.hit td{{background:color-mix(in srgb,var(--accent) 10%,transparent)}}
 .legend{{color:var(--muted);font-size:.85rem;margin:8px 0 0}}
+.paises{{margin:0 0 8px;font-size:14px;color:var(--muted)}}
+.paises a[aria-current]{{color:var(--ink);text-decoration:none}}
 """
 
 
@@ -153,7 +171,7 @@ def render() -> Path:
     heads = "".join(f'<th class="num"><span class="state {v}"></span>{VERDICTS[v]}</th>' for v in ORDER)
     totals = "".join(f'<td class="num">{total[v]}</td>' for v in ORDER)
     options = "\n".join(f'      <option value="{k}">{escape(v)}</option>'
-                        for k, v in sorted(RBD_NAMES.items(), key=lambda kv: kv[1]))
+                        for k, v in sorted(RBD_NAMES.items(), key=lambda kv: kv[1]) if k.startswith("ES"))
     verdict_options = "\n".join(f'      <option value="{v}">{VERDICTS[v]}</option>' for v in ORDER)
 
     html = f"""<!doctype html>
@@ -171,6 +189,7 @@ def render() -> Path:
 </head>
 <body>
 <header class="site-header">
+  {country_nav("ES", PAGES_2027)}
   <h1>{LOGO_SVG}¿Llegará a <span>2027</span>?</h1>
   <p class="lede">2027 es el último plazo de la Directiva Marco del Agua para que ríos, lagos, costas y acuíferos
   estén en buen estado. Después solo cabe esperar a que la naturaleza se recupere o rebajar el objetivo.

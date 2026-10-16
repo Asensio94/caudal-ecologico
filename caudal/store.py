@@ -9,6 +9,7 @@ from .config import EXCLUDED_FILE, FLOWS_DIR, REQUIREMENTS_DIR, STATIONS_FILE
 from .sources import DailyFlow
 
 FLOW_FIELDS = ["date", "q_mean", "readings", "expected", "source", "fetched_at"]
+STATUS_FIELD = "status"   # only in files of sources that rate their values (Hub'Eau)
 
 
 def load_flows(station_id: str) -> dict[date, dict]:
@@ -25,9 +26,11 @@ def save_flows(station_id: str, new: list[DailyFlow]) -> None:
     stamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
     for d in new:
         rows[d.day] = {"date": d.day.isoformat(), "q_mean": "" if d.mean is None else f"{d.mean:.4f}",
-                       "readings": d.readings, "expected": d.expected, "source": d.source, "fetched_at": stamp}
+                       "readings": d.readings, "expected": d.expected, "source": d.source, "fetched_at": stamp,
+                       **({STATUS_FIELD: d.status} if d.status else {})}
+    fields = FLOW_FIELDS + ([STATUS_FIELD] if any(r.get(STATUS_FIELD) for r in rows.values()) else [])
     with (FLOWS_DIR / f"{station_id}.csv").open("w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=FLOW_FIELDS)
+        w = csv.DictWriter(f, fieldnames=fields, restval="")
         w.writeheader()
         w.writerows(rows[k] for k in sorted(rows))
 
@@ -36,11 +39,18 @@ def flow_series(station_id: str) -> dict[date, float | None]:
     return {d: (float(r["q_mean"]) if r["q_mean"] else None) for d, r in load_flows(station_id).items()}
 
 
-def load_stations() -> list[dict]:
+def flow_statuses(station_id: str) -> dict[date, str]:
+    return {d: r.get(STATUS_FIELD) or "" for d, r in load_flows(station_id).items()}
+
+
+def load_stations(country: str | None = None) -> list[dict]:
+    """Every station, or those of one country ("ES", "FR"). Rows written before the country
+    column existed are Spanish."""
     if not STATIONS_FILE.exists():
         return []
     with STATIONS_FILE.open(encoding="utf-8") as f:
-        return list(csv.DictReader(f))
+        rows = [{**r, "country": r.get("country") or "ES"} for r in csv.DictReader(f)]
+    return [r for r in rows if country is None or r["country"] == country]
 
 
 def load_requirements() -> dict[str, list[Requirement]]:
@@ -62,6 +72,17 @@ def load_requirements() -> dict[str, list[Requirement]]:
     return out
 
 
+def objectives() -> dict[str, str]:
+    """Low-water objective (DOE) of each French station, as the SDAGE table writes it."""
+    out = {}
+    for path in sorted(REQUIREMENTS_DIR.glob("*.csv")):
+        with path.open(encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                if r.get("objective"):
+                    out.setdefault(r["station_id"], r["objective"])
+    return out
+
+
 def legal_refs() -> dict[str, tuple[str, str]]:
     """(legal reference, BOE link) of each station's minimum, for the page to cite."""
     out = {}
@@ -72,8 +93,9 @@ def legal_refs() -> dict[str, tuple[str, str]]:
     return out
 
 
-def load_excluded() -> list[dict]:
+def load_excluded(country: str | None = None) -> list[dict]:
     if not EXCLUDED_FILE.exists():
         return []
     with EXCLUDED_FILE.open(encoding="utf-8") as f:
-        return list(csv.DictReader(f))
+        rows = [{**r, "country": r.get("country") or "ES"} for r in csv.DictReader(f)]
+    return [r for r in rows if country is None or r["country"] == country]
