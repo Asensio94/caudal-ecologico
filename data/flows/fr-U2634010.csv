@@ -1,0 +1,142 @@
+date,q_mean,readings,expected,source,fetched_at,status
+2026-05-28,11.9530,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-05-29,11.4240,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-05-30,10.9810,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-05-31,10.7700,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-06-01,14.2630,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-06-02,14.9120,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-03,15.2550,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-04,16.1810,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-05,15.8850,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-06,14.5400,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-07,13.1940,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-08,12.0920,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-09,11.6160,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-10,11.3940,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-11,11.3490,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-12,10.6640,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-13,10.0290,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-14,9.2810,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-15,8.9370,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-16,8.4090,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-17,7.9360,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-18,7.6290,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-19,7.2400,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-20,7.1300,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-21,6.9050,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-22,6.6370,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-23,6.4310,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-24,6.4660,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-25,5.8640,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-26,6.7130,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-27,6.1000,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-28,5.3270,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-29,7.8160,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-06-30,9.5700,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-01,7.3640,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-02,6.8050,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-03,6.6000,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-04,6.0380,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-05,5.9360,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-06,5.7400,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-07,6.2950,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-08,5.3060,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-09,5.3790,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-10,5.2000,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-11,4.6270,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-12,4.2170,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-13,6.2060,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-14,6.9250,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-15,6.8510,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-16,6.9070,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-17,7.6920,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-18,6.2310,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-19,5.2460,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-20,4.7240,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-21,5.5480,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-22,6.0010,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-23,5.9330,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-24,5.7620,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-25,5.6800,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-26,5.6470,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-27,5.6860,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-28,5.4260,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-29,5.2760,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-30,5.0490,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-07-31,5.0780,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-08-01,4.9560,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-08-02,4.9340,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-03,4.7280,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-04,4.5850,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-05,5.2970,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-06,5.6040,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-07,5.7840,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-08,5.0860,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-09,4.5470,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-10,4.4430,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-11,4.5920,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-12,4.1970,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-13,3.8840,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-14,4.1100,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-15,3.7120,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-16,2.9390,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-17,,0,1,hubeau,2026-10-16T09:34Z,
+2026-08-18,,0,1,hubeau,2026-10-16T09:34Z,
+2026-08-19,2.8970,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-20,,0,1,hubeau,2026-10-16T09:34Z,
+2026-08-21,2.7660,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-22,,0,1,hubeau,2026-10-16T09:34Z,
+2026-08-23,4.8820,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-24,4.2990,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-25,4.6160,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-26,5.3220,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-27,5.1150,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-28,4.6270,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-29,4.2360,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-30,4.3490,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-08-31,3.7170,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-09-01,2.8680,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-02,,0,1,hubeau,2026-10-16T09:34Z,
+2026-09-03,,0,1,hubeau,2026-10-16T09:34Z,
+2026-09-04,2.7240,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-05,3.5640,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-06,4.0760,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-07,3.9200,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-08,3.7600,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-09,4.3160,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-10,4.6500,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-11,4.4100,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-12,4.1510,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-13,3.7750,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-14,3.5930,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-15,3.2760,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-16,3.2470,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-17,3.4580,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-18,3.2000,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-19,3.2790,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-20,3.1520,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-21,3.2130,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-22,2.9330,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-23,3.0930,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-24,3.0600,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-25,3.0620,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-26,2.9520,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-27,2.8810,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-28,2.7730,1,1,hubeau,2026-10-16T09:34Z,Donnée pré-validée
+2026-09-29,,0,1,hubeau,2026-10-16T09:34Z,
+2026-09-30,,0,1,hubeau,2026-10-16T09:34Z,
+2026-10-01,2.5120,1,1,hubeau,2026-10-16T09:34Z,Donnée corrigée
+2026-10-02,,0,1,hubeau,2026-10-16T09:34Z,
+2026-10-03,,0,1,hubeau,2026-10-16T09:34Z,
+2026-10-04,2.9510,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-10-05,2.9560,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-10-06,,0,1,hubeau,2026-10-16T09:34Z,
+2026-10-07,,0,1,hubeau,2026-10-16T09:34Z,
+2026-10-08,4.5830,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-10-09,6.0070,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-10-10,6.8100,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-10-11,5.3030,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-10-12,5.6710,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-10-13,5.3150,1,1,hubeau,2026-10-16T09:34Z,Donnée brute
+2026-10-14,,0,1,hubeau,2026-10-16T09:34Z,
+2026-10-15,,0,1,hubeau,2026-10-16T09:34Z,
