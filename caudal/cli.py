@@ -44,15 +44,32 @@ def build_plan():
 
 @app.command("plan-fr")
 def build_plan_fr():
-    """Read the crisis flows (DCR) of the Adour-Garonne SDAGE and rebuild the French stations."""
+    """Read the crisis flows (DCR) of each French SDAGE and rebuild the French stations.
+
+    A basin whose table or gauges cannot be read keeps last month's stations and files."""
     from . import plan_fr
-    stations, reqs, unread = plan_fr.build_all()
-    plan.write_requirements(plan_fr.BASIN, reqs, plan_fr.REQ_FIELDS_FR)
+    from .sources import session
+    http = session()
+    stations, excluded, failed = [], [], []
+    for slug, basin in plan_fr.BASINS.items():
+        try:
+            st, reqs, unread = plan_fr.build_basin(basin, http)
+        except Exception as e:
+            typer.echo(f"{slug}: {type(e).__name__} {e}; keeping last month's thresholds", err=True)
+            failed.append(slug)
+            stations += [s for s in store.load_stations(plan_fr.COUNTRY) if s["basin"] == slug]
+            excluded += [(slug, r["reason"]) for r in store.load_excluded(plan_fr.COUNTRY) if r["basin"] == slug]
+            continue
+        plan.write_requirements(slug, reqs, plan_fr.REQ_FIELDS_FR)
+        stations += st
+        excluded += [(slug, u) for u in unread]
+        typer.echo(f"{slug}: {len(st)} nodal points with public flows; not compared:")
+        for u in unread:
+            typer.echo(f"  - {u}")
     plan.write_stations(stations, plan_fr.COUNTRY)
-    plan.write_excluded([(plan_fr.BASIN, u) for u in unread], plan_fr.COUNTRY)
-    typer.echo(f"{plan_fr.BASIN}: {len(stations)} nodal points with public flows; not compared:")
-    for u in unread:
-        typer.echo(f"  - {u}")
+    plan.write_excluded(excluded, plan_fr.COUNTRY)
+    if failed:
+        raise typer.Exit(1)
 
 
 @app.command("wfd")

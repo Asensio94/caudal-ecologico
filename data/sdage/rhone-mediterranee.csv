@@ -1,0 +1,129 @@
+id,department,river,location,station_state,water_body_code,doe,dcr,revisable,pdf_page,code,reason
+1,21,Vingeanne,Oisilly,Opérationnelle,FRDR666,"1,00","0,76",0,328,U0924020,
+2,21,Tille,Arcelot,Opérationnelle,FRDR651,"0,14","0,11",0,328,U1224010,
+3,21,Tille,Champdôtre,Opérationnelle,FRDR649,"0,45","0,50",0,328,U1244040,
+4,21,Ouche aval,Trouhans,Opérationnelle,FRDR646,"1,27","0,90",0,328,U1334010,
+5,21,Vouge,Aubigny-en-Plaine,Opérationnelle,FRDR645,"0,30","0,21",0,328,U1415040,
+6,21,Saône,Pagny-la-ville (Lechatelet),Opérationnelle,FRDR1806c,"24,00","16,00",0,328,U1420010,
+7,21,Dheune,Santenay,Opérationnelle,FRDR608,"0,23","0,13",1,328,U3014010,
+8,39,Seille/Seyle,Voiteur,Opérationnelle,FRDR1803,"0,34","0,08",0,328,U3404030,
+9,70,Saône amont,Cendrecourt,Opérationnelle,FRDR1806a,non pertinent,"2,20",0,328,U0230010,
+10,01,Rhône,Lagnieu,Opérationnelle,FRDR2004,non pertinent,"140,00",0,328,V1630020,
+11,70,Lanterne,Fleurey les Faverney,Opérationnelle,FRDR684,"3,90","1,70",0,328,U0474010,
+12,70,Ognon,Pesmes,Opérationnelle,FRDR656,"5,60","2,10",0,328,U1084010,
+13,90,Savoureuse,Belfort,Opérationnelle,FRDR628b,"0,44","0,23",0,328,U2345030,
+14,25,Doubs,Mouthe,Opérationnelle,FRDR644,"0,22","0,13",0,328,U2002010,
+15,25,Doubs,Goumois,Opérationnelle,FRDR635,"5,30","2,93",0,328,U2122010,
+16,25,Doubs,Mathay,Opérationnelle,FRDR633b,"9,00","5,28",0,328,U2222010,
+17,39,Doubs,Neublans,Opérationnelle,FRDR1808,"31,00","14,00",0,328,U2722010,
+18,39,Loue,Champagne / Loue,Opérationnelle,FRDR619,"10,00","5,27",0,328,U2634010,
+19,01,Ain,Chazey-sur-Ain,Opérationnelle,FRDR484,"18,00","12,00",0,328,V2942010,
+20,74,Les Usses,Les Usses aval,Opérationnelle,FRDR540,"0,79","0,20",0,328,,"plusieurs stations de Hub'Eau portent ce nom (V1114010, V1120001) et le SDAGE ne dit pas laquelle lire"
+21,01,Allondon,Saint-Genis-Pouilly,Opérationnelle,FRDR547a,"0,05","0,01",0,328,V0415010,
+22,01,Reyssouze,Bourg-en-Bresse (Majornas),Opérationnelle,FRDR593a,"0,22","0,07",0,328,U4014020,
+24,01,Groin,Artemare,Opérationnelle,FRDR523,"0,03","0,00",0,328,V1425010,
+25,01,Albarine,Saint-Rambert-en-Bugey,Opérationnelle,FRDR486,"0,49","0,21",0,328,V2924010,
+26,69,Brévenne,Sain Bel,Opérationnelle,FRDR569b,"0,06","0,01",0,328,U4635010,
+27,69,Turdine,L'Arbresles (Gobelette),Station à réimplanter,FRDR569a,à définir,à définir,0,328,,
+28,69,Saône,Couzon-au-Mont-d'Or,Opérationnelle,FRDR1807b,non pertinent,à définir,0,328,,
+29,69,Yzeron,Francheville (Taffignon),Opérationnelle,FRDR482b,"0,07","0,02",0,328,V3015020,
+30,69,Gier,Givors,Opérationnelle,FRDR474,"0,50","0,23",0,328,V3124010,
+31,69,Rhône,Ternay,Opérationnelle,FRDR2006,non pertinent,"205,00",0,328,V3030020,
+32,74,Rhône,Pougny,Opérationnelle,FRDR2000,à définir,à définir,0,328,,
+33,74,Les Usses,Musièges (pont des Douattes),Opérationnelle,FRDR541,"0,43","0,18",0,328,V1114010,
+34,74,Arve,Arthaz-pont-notre-dame,Opérationnelle,FRDR555b,"22,00","12,00",0,328,V0220002,
+35,74,Dranse de Morzine,Seytroux (pont couvaloup),Opérationnelle,FRDR552d,"1,80","1,10",0,328,,aucune station de Hub'Eau ne porte ce nom dans le département
+36,73,Leysse,La Motte-Servolex (pt du Tremblay),Opérationnelle,FRDR527b,"0,54","0,13",0,328,V1315020,
+37,73,Sierroz,Aix-les-bains,Opérationnelle,FRDR526b,"0,19","0,08",0,328,V1325020,
+39,07,Auzon-Claduègne,Auzon-Claduègne,Suivi piezo dans alluvions,FRDR11447,"0,010","0,005",0,329,,"le SDAGE suit ce point par un piézomètre dans les alluvions, pas par une station de débit"
+40,73,Isère,Moutiers,Opérationnelle,FRDR367b,"11,00","6,30",0,329,W0110010,
+41,26,Isère,Beaumont-Monteux,Opérationnelle,FRDR312,"160,00","97,00",0,329,W3540010,
+42,26,Galaure,Saint-Uze,Opérationnelle,FRDR457,"0,57","0,29",0,329,V3614010,
+43,26,Collières,Saint-Rambert-d'Albon,Opérationnelle,FRDR466c,"0,60","0,22",0,329,V3434010,
+44,26,Drôme,Saillans,Opérationnelle,FRDR440,"1,90","0,21",0,329,V4264010,
+45,26,Drôme aval,à définir,Station à réimplanter,FRDR438a,"2,50",à définir,0,329,,
+46,26,Aygues,Saint-May (Pont de la Tune),Opérationnelle,FRDR402,"0,48","0,25",0,329,,aucune station de Hub'Eau ne porte ce nom dans le département
+47,26,Herbasse aval,Clerieux (Pont d'Herbasse),Opérationnelle,FRDR313,"0,55","0,26",0,329,W3534020,
+49,26,Rhône aval,Viviers,Opérationnelle,FRDR2007,non pertinent,"320,00",0,329,,aucune station de Hub'Eau ne porte ce nom dans le département
+50,07,Cance,Sarras,Opérationnelle,FRDR460,"0,29","0,07",0,329,V3524010,
+51,07,Doux,Colombier le vieux,Opérationnelle,FRDR454,"0,10",à définir,0,329,,
+52,07,Ardèche aval,Saint-Martin d'Ardèche-Sauze,Opérationnelle,FRDR411b,"6,00","3,80",0,329,V5064010,
+53,07,Ardèche,Meyras,Opérationnelle,FRDR421,"0,20","0,11",0,329,V5004030,
+54,07,Glueyre,Gluiras,Opérationnelle,FRDR10733,"0,10",à définir,0,329,,
+55,38,Bourbre,Tignieu-Jameyzieu,Opérationnelle,FRDR506b,"2,10","1,30",0,329,V1774010,
+56,38,Drac aval,Fontaine,Opérationnelle,FRDR325,"12,00","9,80",0,329,W2832011,
+57,05,Buëch,Serre Village,Opérationnelle,FRDR281a,"1,34","0,95",0,329,,aucune station de Hub'Eau ne porte ce nom dans le département
+58,26,Ouvèze provençale,Buis les baronnies (hameau de Coste),Station à réimplanter,FRDR390,"0,20","0,10",0,329,,le SDAGE indique « station à réimplanter » pour la station de ce point : celle que publie Hub'Eau (V6022010) n'est peut-être pas celle qu'il vise
+59,04,Vançon aval,Sourribes,Station à déterminer,FRDR279,"0,11","0,06",0,329,,aucune station de Hub'Eau ne porte ce nom dans le département
+60,04,Lauzon aval,Villeneuve,Opérationnelle,FRDR1060,"0,05","0,03",0,329,X1335010,
+61,04,Bès,La Javie (Clue du Peroure),Opérationnelle,FRDR277,"0,56","0,45",1,329,X1225010,
+62,04,Asse,Beynes (Chabrières),Opérationnelle,FRDR2030,"0,40","0,25",0,329,X1420001,
+63,04,Durance moyenne,à définir,Station à réimplanter,FRDR275,à définir,à définir,0,329,,
+64,13,Durance,Meyrargues,Opérationnelle,FRDR246a,9,à définir,1,329,,
+65,13,Arc,Aix (Roquefavour),Opérationnelle,FRDR129,"1,26","0,72",0,329,Y4122040,
+66,83,Verdon,Vinon-sur-Verdon,Opérationnelle,FRDR250a,"2,6","0,052",1,329,X2811210,
+67,83,Gapeau,Sollies-pont (autoroute),Opérationnelle,FRDR114b,"0,11","0,04",0,329,Y4604020,
+68,83,Real martin,La Crau (Decapris),Opérationnelle,FRDR113,"0,093","0,041",1,329,Y4615020,
+69,83,Argens,Chateauvert (CD554),Opérationnelle,FRDR110,"0,54",à définir,0,329,,
+70,83,Caramy,Vins sur Caramy (les Marcounious),Opérationnelle,FRDR111,"0,38","0,30",0,329,Y5105010,
+71,34,Orb,"Cazilhac, aval barrage Monts d’Orb (O2 EVP)",Opérationnelle,FRDR156a,"> 0,70","0,37",0,330,Y2500030,
+72,83,Argens,Roquebrune (Pt D7),Opérationnelle,FRDR2033,"3,50","2,93",0,330,Y5312010,
+73,06,Siagne,à définir,Station à réimplanter,FRDR95a,à définir,à définir,0,330,,
+74,06,Loup,station les Ferrayonnes,Opérationnelle,FRDR93b,"0,40","0,23",0,330,Y5616215,
+75,06,Tinee,Tournefort,Opérationnelle,FRDR83,Acquisition de données nécessaires,Acquisition de données nécessaires,0,330,,
+76,06,Var,Nice (pt de Napoléon III),Opérationnelle,FRDR78b,14,11,1,330,Y6442010,
+77,13,Rhône aval,Beaucaire-Tarascon /aval prise canal Rhône-Sète,Opérationnelle,FRDR2008b,non pertinent,"600,00",0,330,,aucune station de Hub'Eau ne porte ce nom dans le département
+78,30,Gardons,Pont de Ners amont prise canal Boucoiran,Opérationnelle,FRDR379,"[0,99-2] période mai à octobre","[0,46 – 1,02] Période juillet à sept",1,330,,
+79,30,Gardons,Remoulins amont prise canal Beaucaire,Aménagement,FRDR377,"1,70","1,00",1,330,,aucune station de Hub'Eau ne porte ce nom dans le département
+80,30,Cèze,Bagnols sur Cèze (C4 EVP),Opérationnelle,FRDR396,"[0,900-1,900]","[0,8-1,76]",0,330,,
+81,34,Hérault,"Gorges Hérault, aval prise canal de Gignac",Opérationnelle,FRDR169,>3,"1,70",0,330,,aucune station de Hub'Eau ne porte ce nom dans le département
+82,34,Hérault,"Aspiran, aval restitution ASA Gignac",Opérationnelle,FRDR161b,">3,5","1,00",0,330,Y2300020,
+83,34,Hérault,Hérault aval à Florensac site de Bladier-Ricard,Création,FRDR161b,">2,25","1,00",0,330,,"plusieurs stations de Hub'Eau portent ce nom (Y2100010, Y2100020, Y2140010, Y2140020, Y2300020, Y2330010, Y2370020) et le SDAGE ne dit pas laquelle lire"
+84,34,Orb,"Pont Doumergues, amont Taurou (O7 EVP)",Opérationnelle,FRDR152,"> 2,0","1,50",0,330,,aucune station de Hub'Eau ne porte ce nom dans le département
+85,34,Lez,Montpellier pont Garigliano,Opérationnelle,FRDR142,"> 0,230","0,20",0,330,,"la station du pont Garigliano (Y3210010) ne publie plus ; Y3210021, à 3 km en aval, n'est pas le point du SDAGE"
+86,30,Vidourle,Sommières (V5 EVP),Opérationnelle,FRDR134b,"[0,17-0,22]","[0,140-0,200]",0,330,,
+87,11,Fresquel,Carcassonne Pont Rouge,Opérationnelle,FRDR188,"> 0,500","0,23",0,330,Y1364010,
+88,11,Aude amont,Carcassonne Pont Neuf,Opérationnelle,FRDR197,"> 3,5","2,10",1,330,Y1232010,
+89,11,Aude aval,Moussoulens aval prise canal de la Robine,Station basses eaux à aménager,FRDR174,"4,4",2,1,330,,le SDAGE indique « station basses eaux à aménager » pour la station de ce point : celle que publie Hub'Eau (Y1612020) n'est peut-être pas celle qu'il vise
+90,11,Orbieu,Station SPCMO de l'Orbieu,Station basses eaux à réimplanter,FRDR176,"0,2","0,13",1,330,,aucune station de Hub'Eau ne porte ce nom dans le département
+91,66,Tech,Arles-sur-Tech,Opérationnelle,FRDR235,"[1,3-1,6]","1,10",1,330,Y0244010,
+92,66,Tech,Pont d'Elne (T5 EVP),Station basses eaux à aménager,FRDR234b,"0,84","0,5",1,330,,aucune station de Hub'Eau ne porte ce nom dans le département
+93,66,Têt,Perpignan Pont Joffre (T7 EVP),Opérationnelle,FRDR223,"[1,2-1,4]","0,90",0,330,Y0474030,
+94,01/39,Ain amont,Pont de Poitte,Opérationnelle,FRDR503,Acquisition de données nécessaires,Acquisition de données nécessaires,0,330,,
+95,74,Le Foron de Sciez,Station du Foron de Sciez,Opérationnelle,FRDR550,Attente résultats vol. prélevables,Attente résultats vol. prélevables,0,331,,
+96,69,Garon,Brignais,Opérationnelle,FRDR479a,"0,03","0,01",0,331,V3035010,
+97,74,Giffre,Marignier,Opérationnelle,FRDR561,à définir,à définir,0,331,,
+98,26,Lez provençal amont,Grillon,Opérationnelle,FRDR406,"0,06",à définir,0,331,,
+99,26,Herbasse/ Veaune/ Bouterne/Chalon,Joyeuse à Chatillon-St-Jean,opérationnelle,FRDR1110,Acquisition de données nécessaires,Acquisition de données nécessaires,0,331,,
+100,26,Jabron aval,Montélimar,Station à implanter,FRDR429a,"0,20",à définir,0,331,,
+101,26,Roubion aval,Montélimar,Station à implanter,FRDR428a,"0,25",à définir,0,331,,
+102,26/38,Isère Bas Grésivaudan,le Vézy,Station à implanter,FRDR315,"0,13",à définir,0,331,,
+103,07,Eyrieux soutenu,Saint-Fortunat,Opérationnelle,FRDR444b,"0,75",à définir,0,331,,
+104,07,Ouvèze,Pouzin,Opérationnelle,FRDR1320c,"0,19",à définir,0,331,,
+105,07,Chassezac soutenu,Berrias-Chaulet,Opérationnelle,FRDR413c,Acquisition de données nécessaires,"1,73",1,331,V5048813,
+106,07,Beaume,Pont de Peyroche,Opérationnelle,FRDR417b,"0,300","0,15",1,331,,aucune station de Hub'Eau ne porte ce nom dans le département
+107,38,Véga aval,Pont-Evêque,Opérationnelle,FRDR472c,"0,52","0,36",0,331,V3225420,
+108,69,Ozon,Saint-Symphorien d’Ozon (Sérézin),Opérationnelle,FRDR10315,"0,30",à définir,0,331,,
+109,05,Drac amont,station des Ricoux,Opérationnelle,FRDR353b,"0,60","0,35",0,331,,aucune station de Hub'Eau ne porte ce nom dans le département
+110,05,Méouge aval,Pommet (station EDF),Opérationnelle,FRDR282,"0,24","0,15",0,331,X1050003,
+111,26,Aygues aval,à définir,Station à déterminer,FRDR401c,"0,61","0,12",0,331,,aucune station de Hub'Eau ne porte ce nom dans le département
+112,84,Ouvèze provençale,Roaix,opérationnelle,FRDR390,"0,13","0,10",0,331,V6051010,
+113,84,Lez provençal aval,Bollène (aval Lez),Opérationnelle,FRDR406,"0,33","0,05",0,331,V5234010,
+115,04,Bléone,Digne (pont Beau de Rochas),Opérationnelle,FRDR276a,"1,01","0,40",0,331,,"aucune des stations de ce nom (X1230001, X1230002) ne publie de débit récent sur Hub'Eau, et le SDAGE ne dit pas laquelle lire"
+116,04,Bléone aval,Pont de Malijai (station EDF),Station à déterminer,FRDR276a,"1,11","0,70",0,331,,le SDAGE indique « station à déterminer » pour la station de ce point : celle que publie Hub'Eau (X1250002) n'est peut-être pas celle qu'il vise
+117,84,Calavon,Station de la Bégude,Opérationnelle,FRDR251,"0,10","0,05",0,331,,aucune station de Hub'Eau ne porte ce nom dans le département
+118,13,Huveaune,Aubagne (Charrel),Opérationnelle,FRDR121b,"0,125","0,08",1,331,Y4424040,
+119,04,Le Largue,Villeneuve,Opérationnelle,FRDR268,"0,09","0,04",0,331,X1520001,
+120,04,Jabron,Peipin (pont de Nadé),Opérationnelle,FRDR280,"0,13","0,07",0,331,,aucune station de Hub'Eau ne porte ce nom dans le département
+121,04,Sasse,Sasse à Valernes,Opérationnelle,FRDR290,"0,34","0,25",0,331,,"aucune des stations de ce nom (X0700001, X0700002, X0710004, X0710005, X0710006, X0720002) ne publie de débit récent sur Hub'Eau, et le SDAGE ne dit pas laquelle lire"
+122,13,Durance aval,Bonpas,Opérationnelle,FRDR244,"9,40",à définir,0,332,,
+114,06,Cagne,Pont de Salles,Station à réimplanter,FRDR92b,"0,06",à définir,0,332,,
+123,30,Cèze,Saint-Ambroix,Station basses eaux à aménager,FRDR396,"[0,550-1 000]","0,05",0,332,,le SDAGE indique « station basses eaux à aménager » pour la station de ce point : celle que publie Hub'Eau (V5430002) n'est peut-être pas celle qu'il vise
+124,66,Sègre,Carol S1 (EVP),Opérationnelle,FRDR2040,"[0,700-0,900]","0,30",0,332,,aucune station de Hub'Eau ne porte ce nom dans le département
+125,34,Orb,Réals amont prise d'eau BRL,Opérationnelle,FRDR152,"> 2,0","1,60",0,332,Y2574040,
+126,34,Orb aval,Barrage Pont Rouge amont prise d'eau canal du Midi,Opérationnelle ; (récupération des données de l’automate VNF),FRDR151b,"> 2,0","1,50",0,332,,aucune station de Hub'Eau ne porte ce nom dans le département
+127,66,Têt,"Barrage Vinça, aval restitution (T5 EVP)",Opérationnelle,FRDR224,"[3,7-8,0]","1,60",0,332,Y0464010,
+128,66,Agly,Mas de Jau aval perte (A4 EVP),Opérationnelle,FRDR212,"[0,20-0,60]",maintien en eau,0,332,,
+129,66,Agly,"Barrage Agly, aval restitution(A2 EVP)",Opérationnelle,FRDR215,"[0,875-2]","0,30",0,332,Y0634020,
+130,11,Aude amont,Belviane gorges de l'Aude,Opérationnelle,FRDR201,"> 3,0","2,50",0,332,,aucune station de Hub'Eau ne porte ce nom dans le département
+131,34,Lez,Source du lez à St Clément de Rivière,Opérationnelle,FRDR142,"0,230",non pertinent,0,332,,

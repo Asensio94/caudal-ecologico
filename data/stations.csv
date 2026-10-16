@@ -32,6 +32,68 @@ cantabrico-1378,cantabrico,saih-cantabrico,1378,Grado,Cubia,ES018MSPFES175MAR001
 cantabrico-1398,cantabrico,saih-cantabrico,1398,Luarca,Negro,ES018MSPFES202MAR001800,Río Negro II,0,1398,-6.53497,43.52995,A 14 m del cauce de la masa; cuenca de 82 km² frente a 88 km² en el punto del plan.,ES,
 cantabrico-1405,cantabrico,saih-cantabrico,1405,San Pelayo,Navia,ES018MSPFES234MAR002150,Río Navia V,0,1405,-6.72387,43.49273,A 22 m del cauce de la masa; cuenca de 2.515 km² frente a 2.512 km² en el punto del plan.,ES,
 cantabrico-1407,cantabrico,saih-cantabrico,1407,Ponte da Muria,Navia,ES018MSPFES208MAR001902,Río Navia IV,0,1407,-6.96232,43.02455,A 22 m del cauce de la masa; cuenca de 829 km² frente a 832 km² en el punto del plan.,ES,
+fr-J0121510,loire-bretagne,hubeau,J0121510,Le Couesnon à Romazy,Couesnon,,Couesnon à Romazy,0,,-1.50379,48.36547,,FR,35244
+fr-J1721720,loire-bretagne,hubeau,J1721720,Le Trieux à Saint-Clet,Trieux,,Trieux à Saint-Clet,0,,-3.16713,48.69006,,FR,22283
+fr-J1813010,loire-bretagne,hubeau,J1813010,Le Leff à Quemper-Guézennec et à Yvias,Leff,,Leff à Quemper-Guézennec,0,,-3.06832,48.70587,,FR,22256
+fr-J2233020,loire-bretagne,hubeau,J2233020,Le Léguer à Pluzunet,Léguer,,Léguer à Pluzunet,0,,-3.41435,48.63578,,FR,22245
+fr-J3413030,loire-bretagne,hubeau,J3413030,L'Elorn à Plouédern,Elorn,,Elorn à Plouédern,0,,-4.22014,48.46943,,FR,29181
+fr-J3811810,loire-bretagne,hubeau,J3811810,L'Aulne à Châteauneuf-du-Faou,Aulne,,Aulne à Châteauneuf-du-Faou,0,,-3.86153,48.16503,,FR,29027
+fr-J4211910,loire-bretagne,hubeau,J4211910,L'Odet à Ergué-Gabéric,Odet,,Odet à Ergué-Gabéric,0,,-4.06385,48.00630,,FR,29051
+fr-J4742010,loire-bretagne,hubeau,J4742010,L'Ellé à Arzano,Ellé,,Ellé à Arzano,0,,-3.46922,47.90433,,FR,29002
+fr-J4813010,loire-bretagne,hubeau,J4813010,L'Isole à Quimperlé,Isole,,Isole à Quimperlé,0,,-3.54607,47.87566,,FR,29233
+fr-J5102210,loire-bretagne,hubeau,J5102210,Le Scorff à Plouay,Scorff,,Scorff à Plouay,0,,-3.41914,47.90558,,FR,56166
+fr-J5432110,loire-bretagne,hubeau,J5432110,Le Blavet à Neulliac,Blavet,,Blavet à Neuillac,0,,-3.00532,48.14327,,FR,56146
+fr-J5712110,loire-bretagne,hubeau,J5712110,Le Blavet à Inzinzac-Lochrist et à Languidic,Blavet,,Blavet à Inzinzac-Lochrist (Pont-Neuf),0,,-3.24839,47.82616,"La couche des points nodaux de l'agence de l'eau donne la station J5712130 ; on lit J5712110, la station de Hub'Eau qui porte le nom que donne le SDAGE.",FR,56090
+fr-J7090630,loire-bretagne,hubeau,J7090630,La Vilaine à Cesson-Sévigné et à Rennes,Vilaine,,Vilaine à Cesson-Sévigné,0,,-1.56368,48.12366,,FR,35051
+fr-J8502310,loire-bretagne,hubeau,J8502310,Le canal de Nantes à Brest [L'Oust] à Saint-Gravé,Oust,,Oust à Saint-Gravé,0,,-2.25696,47.73910,,FR,56218
+fr-K0260010,loire-bretagne,hubeau,K0260010,La Loire à Chadrac,Loire,,Loire à Chadrac,0,,3.90498,45.06800,"La couche des points nodaux de l'agence de l'eau donne la station K0260020 ; on lit K0260010, la station de Hub'Eau qui porte le nom que donne le SDAGE.",FR,43046
+fr-K0550010,loire-bretagne,hubeau,K0550010,La Loire à Bas-en-Basset,Loire,,Loire à Bas-en-Basset,0,,4.11799,45.29523,"La couche des points nodaux de l'agence de l'eau donne la station K0550020 ; on lit K0550010, la station de Hub'Eau qui porte le nom que donne le SDAGE.",FR,43020
+fr-K0910010,loire-bretagne,hubeau,K0910010,La Loire à Villerest,Loire,,Loire à Villerest,0,,4.04195,46.00155,"La couche des points nodaux de l'agence de l'eau donne la station K0910020 ; on lit K0910010, la station de Hub'Eau qui porte le nom que donne le SDAGE.",FR,42332
+fr-K1341810,loire-bretagne,hubeau,K1341810,L'Arroux à Rigny-sur-Arroux,Arroux,,Arroux à Rigny,0,,4.03450,46.53457,,FR,71370
+fr-K1383010,loire-bretagne,hubeau,K1383010,La Bourbince à Vitry-en-Charollais,Bourbince,,Bourbince à Vitry-en-Charollais,0,,4.07851,46.47176,,FR,71588
+fr-K1930010,loire-bretagne,hubeau,K1930010,La Loire à Nevers,Loire,,Loire à Nevers,0,,3.16533,46.98281,"La couche des points nodaux de l'agence de l'eau donne la station K4000010 ; on lit K1930010, la station de Hub'Eau qui porte le nom que donne le SDAGE.",FR,58194
+fr-K2070810,loire-bretagne,hubeau,K2070810,L'Allier à Langogne,Allier,,Allier à Langogne,0,,3.85779,44.73485,,FR,48080
+fr-K2240820,loire-bretagne,hubeau,K2240820,L'Allier à Prades,Allier,,Allier à Prades,0,,3.59473,45.02945,,FR,43155
+fr-K2330810,loire-bretagne,hubeau,K2330810,L'Allier à Vieille-Brioude,Allier,,Allier à Vieille-Brioude,0,,3.40869,45.26074,,FR,43262
+fr-K2680810,loire-bretagne,hubeau,K2680810,L'Allier à Vic-le-Comte,Allier,,Allier à Vic-le-Comte,0,,3.20201,45.66117,,FR,63457
+fr-K2790810,loire-bretagne,hubeau,K2790810,L'Allier à Limons,Allier,,Allier à Limons,0,,3.44784,45.96940,,FR,63196
+fr-K2981910,loire-bretagne,hubeau,K2981910,La Dore à Dorat,Dore,,Dore à Dorat,0,,3.47759,45.89112,,FR,63138
+fr-K3382010,loire-bretagne,hubeau,K3382010,La Sioule à Saint-Pourçain-sur-Sioule,Sioule,,Sioule à Saint-Pourçain,0,,3.29654,46.30925,,FR,03254
+fr-K3650810,loire-bretagne,hubeau,K3650810,L'Allier à Cuffy,Allier,,Allier à Cuffy,0,,3.07065,46.94621,,FR,18082
+fr-K4180010,loire-bretagne,hubeau,K4180010,La Loire à Saint-Martin-sur-Ocre et à Gien,Loire,,Loire à Gien,0,,2.63180,47.68365,,FR,45155
+fr-K4800010,loire-bretagne,hubeau,K4800010,La Loire à Onzain,Loire,,Loire à Onzain,0,,1.19034,47.48558,"La couche des points nodaux de l'agence de l'eau donne la station K4470010 ; on lit K4800010, la station de Hub'Eau qui porte le nom que donne le SDAGE.",FR,41167
+fr-K5220900,loire-bretagne,hubeau,K5220900,Le Cher à Montluçon et à Saint-Victor et à Lavault-Sainte-Anne,Cher,,Cher à Montluçon,0,,2.60248,46.34500,,FR,03140
+fr-K5490900,loire-bretagne,hubeau,K5490900,Le Cher à Vierzon,Cher,,Cher à Vierzon,0,,2.06566,47.21657,"La couche des points nodaux de l'agence de l'eau donne la station K5490910 ; on lit K5490900, la station de Hub'Eau qui porte le nom que donne le SDAGE.",FR,18279
+fr-K5702320,loire-bretagne,hubeau,K5702320,L'Yèvre à Saint-Doulchard,Yèvre,,Yèvre à Saint-Doulchard,0,,2.35251,47.08562,"La couche des points nodaux de l'agence de l'eau donne la station K5702310 ; on lit K5702320, la station de Hub'Eau qui porte le nom que donne le SDAGE.",FR,18205
+fr-K6192420,loire-bretagne,hubeau,K6192420,L'Arnon à Méreau,Arnon,,Arnon à Méreau,0,,2.03245,47.18051,,FR,18148
+fr-K6593020,loire-bretagne,hubeau,K6593020,Le Fouzon à Meusnes,Fouzon,,Fouzon à Meusnes,0,,1.48463,47.26033,"La couche des points nodaux de l'agence de l'eau donne la station K6593010 ; on lit K6593020, la station de Hub'Eau qui porte le nom que donne le SDAGE.",FR,41139
+fr-K6710910,loire-bretagne,hubeau,K6710910,Le Cher à Tours,Cher,,Cher à Tours,0,,0.67801,47.37310,,FR,37261
+fr-K6830020,loire-bretagne,hubeau,K6830020,La Loire à Langeais,Loire,,Loire à Langeais,0,,0.40531,47.31986,,FR,37123
+fr-K7322610,loire-bretagne,hubeau,K7322610,L'Indre à Perrusson,Indre,,Indre à Perrusson,0,,1.01838,47.10308,"La couche des points nodaux de l'agence de l'eau donne la station K7312610 ; on lit K7322610, la station de Hub'Eau qui porte le nom que donne le SDAGE.",FR,37183
+fr-K7522620,loire-bretagne,hubeau,K7522620,L'Indre à Monts,Indre,,Indre à Monts,0,,0.62719,47.27843,,FR,37159
+fr-L0400610,loire-bretagne,hubeau,L0400610,La Vienne à Limoges et au Palais-sur-Vienne,Vienne,,Vienne à Palais,0,,1.26951,45.82570,,FR,87085
+fr-L0920610,loire-bretagne,hubeau,L0920610,La Vienne à Étagnac,Vienne,,Vienne à Etagnac,0,,0.78618,45.86484,,FR,16132
+fr-L1400610,loire-bretagne,hubeau,L1400610,La Vienne à Lussac-les-Châteaux,Vienne,,Vienne à Lussac-les-Château,0,,0.70143,46.40462,,FR,86140
+fr-L2341610,loire-bretagne,hubeau,L2341610,Le Clain à Poitiers,Clain,,Clain à Poitiers,0,,0.35161,46.57773,"La couche des points nodaux de l'agence de l'eau donne la station L2501610 ; on lit L2341610, la station de Hub'Eau qui porte le nom que donne le SDAGE.",FR,86194
+fr-L3200620,loire-bretagne,hubeau,L3200620,La Vienne à Ingrandes,Vienne,,Vienne à Ingrandes,0,,0.56358,46.87708,"La couche des points nodaux de l'agence de l'eau donne la station L3200610 ; on lit L3200620, la station de Hub'Eau qui porte le nom que donne le SDAGE.",FR,86111
+fr-L4210710,loire-bretagne,hubeau,L4210710,La Creuse à Glénic,Creuse,,Creuse à Glénic,0,,1.91917,46.22392,,FR,23092
+fr-L5801810,loire-bretagne,hubeau,L5801810,La Gartempe à la Roche-Posay et à Vicq-sur-Gartempe,Gartempe,,Gartempe à Vicq-sur-Gartempe,0,,0.86384,46.72087,"La couche des points nodaux de l'agence de l'eau donne la station L5821810 ; on lit L5801810, la station de Hub'Eau qui porte le nom que donne le SDAGE.",FR,86207
+fr-L6020710,loire-bretagne,hubeau,L6020710,La Creuse à Leugny,Creuse,,Creuse à Leugny,0,,0.70394,46.90946,,FR,86130
+fr-L7000610,loire-bretagne,hubeau,L7000610,La Vienne à Nouâtre et à Pouzay,Vienne,,Vienne à Nouâtre,0,,0.54487,47.05010,"La couche des points nodaux de l'agence de l'eau donne la station L7000620 ; on lit L7000610, la station de Hub'Eau qui porte le nom que donne le SDAGE.",FR,37174
+fr-L8402110,loire-bretagne,hubeau,L8402110,Le Thouet à Montreuil-Bellay,Thouet,,Thouet à Montreuil-Bellay,0,,-0.15441,47.13590,,FR,49215
+fr-M0250610,loire-bretagne,hubeau,M0250610,La Sarthe à Neuville-sur-Sarthe et à Souillé [Montreuil],Sarthe,,Sarthe à Neuville-Souillé,0,,0.20662,48.08975,"La couche des points nodaux de l'agence de l'eau donne la station M0250620 ; on lit M0250610, la station de Hub'Eau qui porte le nom que donne le SDAGE.",FR,72217
+fr-M0421510,loire-bretagne,hubeau,M0421510,L'Huisne à Montfort-le-Gesnois [La Pécardière],Huisne,,Huisne à Montfort,0,,0.40530,48.04160,,FR,72241
+fr-M0680610,loire-bretagne,hubeau,M0680610,La Sarthe à Saint-Denis-d'Anjou [Beffes],Sarthe,,Sarthe à St-Denis-d'Anjou,0,,-0.38590,47.80316,,FR,53210
+fr-M1124810,loire-bretagne,hubeau,M1124810,L'Aigre à Romilly-sur-Aigre,Aigre,,Aigre à Cloyes-les-Trois-Rivières,0,,1.30479,47.98553,,FR,28318
+fr-M1151610,loire-bretagne,hubeau,M1151610,Le Loir à Villavard,Loir,,Loir à Villavard,0,,0.89061,47.75934,,FR,41274
+fr-M1531610,loire-bretagne,hubeau,M1531610,Le Loir à Durtal,Loir,,Loir à Durtal,0,,-0.24514,47.66949,,FR,49127
+fr-M3230920,loire-bretagne,hubeau,M3230920,La Mayenne à Saint-Fraimbault-de-Prières,Mayenne,,Mayenne à St-Fraimbault,0,,-0.58400,48.35006,,FR,53216
+fr-M3851810,loire-bretagne,hubeau,M3851810,L'Oudon à Segré [écluse de Maingué],Oudon,,Oudon à Segré,0,,-0.86799,47.68577,,FR,49331
+fr-M5222010,loire-bretagne,hubeau,M5222010,Le Layon à Saint-Lambert-du-Lattay,Layon,,Layon à Saint-Lambert-du-Lattay,0,,-0.63216,47.31636,,FR,49292
+fr-M5300010,loire-bretagne,hubeau,M5300010,La Loire à Chalonnes-sur-Loire et à Ingrandes et à Montjean-sur-Loire et à Saint-Florent-le-Vieil,Loire,,Loire à Montjean,0,,-0.86121,47.39231,,FR,49063
+fr-M6333020,loire-bretagne,hubeau,M6333020,L'Erdre à Nort-sur-Erdre [Moulin de Vault],Erdre,,Erdre à Nort-sur-Erdre,0,,-1.48108,47.46389,,FR,44110
+fr-M7112410,loire-bretagne,hubeau,M7112410,La Sèvre Nantaise à Tiffauges,Sèvre Nantaise,,Sèvre Nantaise à Tiffauges,0,,-1.11508,47.01907,,FR,85293
+fr-N4300623,loire-bretagne,hubeau,N4300623,La Sèvre niortaise à Niort [La Tiffardière - Total],Sèvre Niortaise,,Sèvre Niortaise à Niort (la Tiffardière),0,,-0.51896,46.32963,,FR,79191
 fr-O0174025,adour-garonne,hubeau,O0174025,La Neste à Sarrancolin [Basse Neste],Neste d'Aure,,Neste à Sarrancolin,0,,0.38063,42.96078,"Le SDAGE nomme la station O0174040, sans débit récent sur Hub'Eau ; on lit O0174025, la station de remplacement que donne le même tableau.",FR,65408
 fr-O0200020,adour-garonne,hubeau,O0200020,La Garonne [partielle] à Saint-Gaudens [Valentine],Garonne,,Garonne à Valentine,0,,0.70615,43.09800,"D'après son nom, cette station ne mesure qu'une partie de la rivière (un bras) : un débit très bas peut ne pas valoir pour tout le cours d'eau.",FR,31483
 fr-O0794010,adour-garonne,hubeau,O0794010,L'Arize à Rieux-Volvestre [Volvestre],Arize,,Arize à Rieux-Volvestre,0,,1.19361,43.24171,,FR,31455
@@ -92,6 +154,67 @@ fr-R5123310,adour-garonne,hubeau,R5123310,Le bras de la Seugne à Pons et à Sai
 fr-R5200010,adour-garonne,hubeau,R5200010,La Charente à Saintes,Charente,,Charente à Pont de Beillant,0,,-0.62973,45.74708,,FR,17415
 fr-R6080010,adour-garonne,hubeau,R6080010,La Boutonne à Saint-Séverin-sur-Boutonne et au Vert [Pont du Vert],Boutonne,,Boutonne au Pont du Vert,0,,-0.39264,46.09350,"Le SDAGE nomme la station R6092920, sans débit récent sur Hub'Eau ; on lit R6080010, la station de remplacement que donne le même tableau.",FR,17401
 fr-S0114010,adour-garonne,hubeau,S0114010,La Seudre à Saint-André-de-Lidon [Pont de Saint-André],Seudre,,Seudre à St André de Lidon,0,,-0.74815,45.60342,,FR,17310
+fr-U0230010,rhone-mediterranee,hubeau,U0230010,La Saône à Cendrecourt,Saône amont,FRDR1806a,Saône amont à Cendrecourt,0,,5.93017,47.85713,,FR,70114
+fr-U0474010,rhone-mediterranee,hubeau,U0474010,La Lanterne à Fleurey-lès-Faverney,Lanterne,FRDR684,Lanterne à Fleurey les Faverney,0,,6.07645,47.74840,,FR,70236
+fr-U0924020,rhone-mediterranee,hubeau,U0924020,La Vingeanne à Oisilly,Vingeanne,FRDR666,Vingeanne à Oisilly,0,,5.36722,47.42158,,FR,21467
+fr-U1084010,rhone-mediterranee,hubeau,U1084010,L'Ognon à Pesmes,Ognon,FRDR656,Ognon à Pesmes,0,,5.54502,47.29320,,FR,70408
+fr-U1224010,rhone-mediterranee,hubeau,U1224010,La Tille à Arceau [Arcelot],Tille,FRDR651,Tille à Arcelot,0,,5.18911,47.37302,,FR,21016
+fr-U1244040,rhone-mediterranee,hubeau,U1244040,La Tille à Champdôtre,Tille,FRDR649,Tille à Champdôtre,0,,5.29958,47.17936,,FR,21138
+fr-U1334010,rhone-mediterranee,hubeau,U1334010,L'Ouche à Trouhans,Ouche aval,FRDR646,Ouche aval à Trouhans,0,,5.27900,47.15292,,FR,21645
+fr-U1415040,rhone-mediterranee,hubeau,U1415040,La Vouge à Aubigny-en-Plaine,Vouge,FRDR645,Vouge à Aubigny-en-Plaine,0,,5.17947,47.13405,,FR,21031
+fr-U1420010,rhone-mediterranee,hubeau,U1420010,La Saône à Pagny-la-Ville [Lechâtelet],Saône,FRDR1806c,Saône à Pagny-la-ville (Lechatelet),0,,5.14922,47.06676,,FR,21474
+fr-U2002010,rhone-mediterranee,hubeau,U2002010,Le Doubs à Mouthe,Doubs,FRDR644,Doubs à Mouthe,0,,6.20926,46.70506,,FR,25413
+fr-U2122010,rhone-mediterranee,hubeau,U2122010,Le Doubs à Goumois,Doubs,FRDR635,Doubs à Goumois,0,,6.95048,47.27163,,FR,25280
+fr-U2222010,rhone-mediterranee,hubeau,U2222010,Le Doubs à Mathay,Doubs,FRDR633b,Doubs à Mathay,0,,6.78582,47.43938,,FR,25370
+fr-U2345030,rhone-mediterranee,hubeau,U2345030,La Savoureuse à Belfort,Savoureuse,FRDR628b,Savoureuse à Belfort,0,,6.85915,47.64069,,FR,90010
+fr-U2634010,rhone-mediterranee,hubeau,U2634010,La Loue à Champagne-sur-Loue,Loue,FRDR619,Loue à Champagne / Loue,0,,5.81507,47.04346,,FR,39095
+fr-U2722010,rhone-mediterranee,hubeau,U2722010,Le Doubs à Neublans-Abergement,Doubs,FRDR1808,Doubs à Neublans,0,,5.35042,46.92251,,FR,39385
+fr-U3014010,rhone-mediterranee,hubeau,U3014010,La Dheune à Santenay,Dheune,FRDR608,Dheune à Santenay,0,,4.70633,46.90844,Le SDAGE signale le DOE ou le DCR de ce point comme susceptibles d'être modifiés au cours du cycle 2022-2027.,FR,21582
+fr-U3404030,rhone-mediterranee,hubeau,U3404030,La Seille à Voiteur [aval],Seille/Seyle,FRDR1803,Seille/Seyle à Voiteur,0,,5.61658,46.75520,,FR,39582
+fr-U4014020,rhone-mediterranee,hubeau,U4014020,La Reyssouze à Bourg-en-Bresse [Majornas],Reyssouze,FRDR593a,Reyssouze à Bourg-en-Bresse (Majornas),0,,5.22222,46.22705,,FR,01053
+fr-U4635010,rhone-mediterranee,hubeau,U4635010,La Brévenne à Sain-Bel,Brévenne,FRDR569b,Brévenne à Sain Bel,0,,4.60010,45.81069,,FR,69171
+fr-V0220002,rhone-mediterranee,hubeau,V0220002,L'Arve à Reignier-Ésery [Arthaz],Arve,FRDR555b,Arve à Arthaz-pont-notre-dame,0,,6.27105,46.15060,,FR,74220
+fr-V0415010,rhone-mediterranee,hubeau,V0415010,L'Allondon à Saint-Genis-Pouilly,Allondon,FRDR547a,Allondon à Saint-Genis-Pouilly,0,,6.01420,46.23926,,FR,01354
+fr-V1114010,rhone-mediterranee,hubeau,V1114010,Les Usses à Musièges [Pont des Douattes],Usses,FRDR541,Les Usses à Musièges (pont des Douattes),0,,5.96462,46.00646,,FR,74195
+fr-V1315020,rhone-mediterranee,hubeau,V1315020,La Leysse à la Motte-Servolex [Pont du Tremblay],Leysse,FRDR527b,Leysse à La Motte-Servolex (pt du Tremblay),0,,5.87321,45.62794,,FR,73179
+fr-V1325020,rhone-mediterranee,hubeau,V1325020,Le Sierroz à Aix-les-Bains,Sierroz,FRDR526b,Sierroz à Aix-les-bains,0,,5.90511,45.70651,,FR,73008
+fr-V1425010,rhone-mediterranee,hubeau,V1425010,Le Groin à Artemare [Cerveyrieu],Groin,FRDR523,Groin à Artemare,0,,5.68598,45.87481,,FR,01022
+fr-V1630020,rhone-mediterranee,hubeau,V1630020,Le Rhône à Lagnieu,Rhône,FRDR2004,Rhône à Lagnieu,0,,5.34023,45.88089,,FR,01202
+fr-V1774010,rhone-mediterranee,hubeau,V1774010,La Bourbre à Tignieu-Jameyzieu,Bourbre,FRDR506b,Bourbre à Tignieu-Jameyzieu,0,,5.15914,45.71525,,FR,38507
+fr-V2924010,rhone-mediterranee,hubeau,V2924010,L'Albarine à Saint-Rambert-en-Bugey,Albarine,FRDR486,Albarine à Saint-Rambert-en-Bugey,0,,5.43951,45.94808,,FR,01384
+fr-V2942010,rhone-mediterranee,hubeau,V2942010,L'Ain à Chazey-sur-Ain,Ain,FRDR484,Ain à Chazey-sur-Ain,0,,5.23337,45.90669,,FR,01099
+fr-V3124010,rhone-mediterranee,hubeau,V3124010,Le Gier à Givors,Gier,FRDR474,Gier à Givors,0,,4.73975,45.57958,,FR,69091
+fr-V3225420,rhone-mediterranee,hubeau,V3225420,La Véga à Pont-Évêque,Véga aval,FRDR472c,Véga aval à Pont-Evêque,0,,4.90356,45.53334,,FR,38318
+fr-V3434010,rhone-mediterranee,hubeau,V3434010,L'Oron [Collières] à Saint-Rambert-d'Albon,Collières,FRDR466c,Collières à Saint-Rambert-d'Albon,0,,4.81747,45.29934,,FR,26325
+fr-V3524010,rhone-mediterranee,hubeau,V3524010,La Cance à Sarras,Cance,FRDR460,Cance à Sarras,0,,4.78657,45.20605,,FR,07308
+fr-V3614010,rhone-mediterranee,hubeau,V3614010,La Galaure à Saint-Uze,Galaure,FRDR457,Galaure à Saint-Uze,0,,4.84939,45.17988,,FR,26332
+fr-V4264010,rhone-mediterranee,hubeau,V4264010,La Drôme à Saillans,Drôme,FRDR440,Drôme à Saillans,0,,5.20873,44.69007,,FR,26289
+fr-V5004030,rhone-mediterranee,hubeau,V5004030,L'Ardèche à Meyras,Ardèche,FRDR421,Ardèche à Meyras,0,,4.27004,44.67013,,FR,07156
+fr-V5048813,rhone-mediterranee,hubeau,V5048813,Le Chassezac à Berrias-et-Casteljau [Chaulet],Chassezac soutenu,FRDR413c,Chassezac soutenu à Berrias-Chaulet,0,,4.21606,44.40643,Le SDAGE signale le DOE ou le DCR de ce point comme susceptibles d'être modifiés au cours du cycle 2022-2027.,FR,07031
+fr-V5064010,rhone-mediterranee,hubeau,V5064010,L'Ardèche à Saint-Martin-d'Ardèche [Sauze],Ardèche aval,FRDR411b,Ardèche aval à Saint-Martin d'Ardèche-Sauze,0,,4.55112,44.31400,,FR,07268
+fr-V5234010,rhone-mediterranee,hubeau,V5234010,Le Lez à Bollène,Lez provençal aval,FRDR406,Lez provençal aval à Bollène (aval Lez),0,,4.75068,44.28210,,FR,84019
+fr-V6051010,rhone-mediterranee,hubeau,V6051010,L'Ouvèze à Roaix,Ouvèze provençale,FRDR390,Ouvèze provençale à Roaix,0,,5.01435,44.24212,,FR,84098
+fr-W0110010,rhone-mediterranee,hubeau,W0110010,L'Isère à Moûtiers [Pont Neuf],Isère,FRDR367b,Isère à Moutiers,0,,6.53083,45.48430,,FR,73181
+fr-W3534020,rhone-mediterranee,hubeau,W3534020,L'Herbasse à Clérieux [Pont de l'Herbasse],Herbasse aval,FRDR313,Herbasse aval à Clerieux (Pont d'Herbasse),0,,4.95024,45.05397,,FR,26096
+fr-X1225010,rhone-mediterranee,hubeau,X1225010,Le Bès à la Javie [Esclangon-Péroure],Bès,FRDR277,Bès à La Javie (Clue du Peroure),0,,6.27579,44.21737,Le SDAGE signale le DOE ou le DCR de ce point comme susceptibles d'être modifiés au cours du cycle 2022-2027.,FR,04097
+fr-X1335010,rhone-mediterranee,hubeau,X1335010,Le Lauzon à Villeneuve,Lauzon aval,FRDR1060,Lauzon aval à Villeneuve,0,,5.88619,43.91170,,FR,04242
+fr-X1420001,rhone-mediterranee,hubeau,X1420001,L'Asse à Beynes [Clue de Chabrières],Asse,FRDR2030,Asse à Beynes (Chabrières),0,,6.25297,44.01388,,FR,04028
+fr-X1520001,rhone-mediterranee,hubeau,X1520001,Le Largue à Saint-Maime et à Villeneuve,Largue,FRDR268,Le Largue à Villeneuve,0,,5.83751,43.89703,,FR,04188
+fr-X2811210,rhone-mediterranee,hubeau,X2811210,Le Verdon à Vinon-sur-Verdon [aval canal EDF],Verdon,FRDR250a,Verdon à Vinon-sur-Verdon,0,,5.81306,43.72790,Le SDAGE signale le DOE ou le DCR de ce point comme susceptibles d'être modifiés au cours du cycle 2022-2027.,FR,83150
+fr-Y0244010,rhone-mediterranee,hubeau,Y0244010,Le Tech à Arles-sur-Tech,Tech,FRDR235,Tech à Arles-sur-Tech,0,,2.64525,42.46379,Le SDAGE signale le DOE ou le DCR de ce point comme susceptibles d'être modifiés au cours du cycle 2022-2027.,FR,66009
+fr-Y0474030,rhone-mediterranee,hubeau,Y0474030,La Têt [partielle] à Perpignan [Pont-Joffre],Têt,FRDR223,Têt à Perpignan Pont Joffre (T7 EVP),0,,2.89304,42.70342,"D'après son nom, cette station ne mesure qu'une partie de la rivière (un bras) : un débit très bas peut ne pas valoir pour tout le cours d'eau.",FR,66136
+fr-Y1232010,rhone-mediterranee,hubeau,Y1232010,L'Aude à Carcassonne,Aude amont,FRDR197,Aude amont à Carcassonne Pont Neuf,0,,2.36064,43.21421,Le SDAGE signale le DOE ou le DCR de ce point comme susceptibles d'être modifiés au cours du cycle 2022-2027.,FR,11069
+fr-Y1364010,rhone-mediterranee,hubeau,Y1364010,Le Fresquel à Carcassonne [Pont Rouge],Fresquel,FRDR188,Fresquel à Carcassonne Pont Rouge,0,,2.37367,43.23769,,FR,11069
+fr-Y2300020,rhone-mediterranee,hubeau,Y2300020,L'Hérault à Aspiran,Hérault,FRDR161b,"Hérault à Aspiran, aval restitution ASA Gignac",0,,3.47010,43.57038,,FR,34013
+fr-Y2500030,rhone-mediterranee,hubeau,Y2500030,L'Orb à Lunas [Cazilhac],Orb,FRDR156a,"Orb à Cazilhac, aval barrage Monts d’Orb (O2 EVP)",0,,3.15262,43.71721,,FR,34144
+fr-Y2574040,rhone-mediterranee,hubeau,Y2574040,L'Orb à Cessenon-sur-Orb [Base canoé de Réals],Orb,FRDR152,Orb à Réals amont prise d'eau BRL,0,,3.08782,43.43742,,FR,34074
+fr-Y4122040,rhone-mediterranee,hubeau,Y4122040,L'Arc à Aix-en-Provence [Roquefavour-Bruet],Arc,FRDR129,Arc à Aix (Roquefavour),0,,5.31374,43.51646,,FR,13001
+fr-Y4424040,rhone-mediterranee,hubeau,Y4424040,L'Huveaune à Aubagne [Le Charrel],Huveaune,FRDR121b,Huveaune à Aubagne (Charrel),0,,5.55714,43.28953,Le SDAGE signale le DOE ou le DCR de ce point comme susceptibles d'être modifiés au cours du cycle 2022-2027.,FR,13005
+fr-Y4604020,rhone-mediterranee,hubeau,Y4604020,Le Gapeau à Solliès-Pont,Gapeau,FRDR114b,Gapeau à Sollies-pont (autoroute),0,,6.03802,43.19270,,FR,83130
+fr-Y4615020,rhone-mediterranee,hubeau,Y4615020,Le Réal Martin à la Crau [Decapris],Real martin,FRDR113,Real martin à La Crau (Decapris),0,,6.11170,43.18655,Le SDAGE signale le DOE ou le DCR de ce point comme susceptibles d'être modifiés au cours du cycle 2022-2027.,FR,83047
+fr-Y5105010,rhone-mediterranee,hubeau,Y5105010,Le Caramy à Vins-sur-Caramy [Les Marcounious],Caramy,FRDR111,Caramy à Vins sur Caramy (les Marcounious),0,,6.17348,43.44101,,FR,83151
+fr-Y5312010,rhone-mediterranee,hubeau,Y5312010,L'Argens à Roquebrune-sur-Argens,Argens,FRDR2033,Argens à Roquebrune (Pt D7),0,,6.63297,43.44958,,FR,83107
+fr-Y6442010,rhone-mediterranee,hubeau,Y6442010,Le Var à Nice [Pont Napoléon III],Var,FRDR78b,Var à Nice (pt de Napoléon III),0,,7.20020,43.66412,Le SDAGE signale le DOE ou le DCR de ce point comme susceptibles d'être modifiés au cours du cycle 2022-2027.,FR,06088
 guadalquivir-a07,guadalquivir,saih-guadalquivir,A07_211_X,Mengíbar,Guadalbullón,,Estación de aforos de Mengíbar,0,5029,-3.7809,37.97458,El anuario de aforos del CEDEX asigna al ROEA 5029 la señal A07_211_X del SAIH.,ES,
 guadalquivir-a08,guadalquivir,saih-guadalquivir,A08_211_X,Mengíbar,Guadalquivir,,Presa de Mengíbar,0,5004,-3.79905,37.98393,"El plan pone el punto en la presa de Mengíbar; se lee el aforo del Guadalquivir en Mengíbar (ROEA 5004, señal A08_211_X), junto a ella y el que usa el mapa de caudales de la CHG.",ES,
 guadalquivir-a13,guadalquivir,saih-guadalquivir,A13_211_X,El Pósito,Guadiana Menor,,Estación de aforos el Pósito,0,5023,-3.21168,37.88161,El anuario de aforos del CEDEX asigna al ROEA 5023 la señal A13_211_X del SAIH.,ES,

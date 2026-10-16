@@ -104,4 +104,81 @@ adour-garonne,Adour à Aire amont Lees : le tableau C3 ne rattache ce point à a
 adour-garonne,Gave de Pau à Orthez (Q5421020) : Hub'Eau ne publie pas de débit journalier récent pour cette station,FR
 adour-garonne,Garonne au Bec d'Ambès : le tableau C3 ne rattache ce point à aucune station hydrométrique,FR
 adour-garonne,"Save à Larra (O2552910, O2550001) : Hub'Eau ne publie pas de débit journalier récent pour cette station",FR
-adour-garonne,Système Neste à partir d'Octobre : le tableau C3 ne donne pas de DCR pour ce point,FR
+adour-garonne,Système Neste à partir d'Octobre : le tableau C3 ne donne pas de DCR chiffré pour ce point,FR
+loire-bretagne,Mayenne à Chambellay (M3630910) : Hub'Eau ne publie pas de débit journalier récent pour cette station,FR
+loire-bretagne,Conie à Villiers-Saint-Orien (M1073001) : Hub'Eau ne publie pas de débit journalier récent pour cette station,FR
+loire-bretagne,"Vilaine, au pont-de-Cran (J9300610) : Hub'Eau ne publie pas de débit journalier récent pour cette station",FR
+loire-bretagne,Alagnon à Lempdes : deux stations de Hub'Eau portent ce nom (K2593012 et K2593013) et le SDAGE ne dit pas laquelle lire,FR
+loire-bretagne,"Lay, aval immédiat de la confluence Lay-Marillet : la station que donne l'agence (N3511610) est à La Bretonnière-la-Claye, loin en aval de la confluence Lay-Marillet que vise le SDAGE",FR
+loire-bretagne,Mauves de Meung à Meung-sur-Loire (K4414010) : Hub'Eau ne publie pas de débit journalier récent pour cette station,FR
+loire-bretagne,"Rance, entre Saint-Juvas et Tréfumel (route D12) : le SDAGE ne rattache ce point à aucune station et aucune station de Hub'Eau ne porte ce nom",FR
+loire-bretagne,Cisse à Valloire-sur-Cisse (K4843010) : Hub'Eau ne publie pas de débit journalier récent pour cette station,FR
+loire-bretagne,"Vendée, pont routier entre Chaix et Auzay : le SDAGE ne rattache ce point à aucune station et aucune station de Hub'Eau ne porte ce nom",FR
+loire-bretagne,Sauldre à Prunier-en-Sologne : le SDAGE ne rattache ce point à aucune station et aucune station de Hub'Eau ne porte ce nom,FR
+rhone-mediterranee,"Les Usses aval : plusieurs stations de Hub'Eau portent ce nom (V1114010, V1120001) et le SDAGE ne dit pas laquelle lire",FR
+rhone-mediterranee,Turdine à L'Arbresles (Gobelette) : le tableau 7C ne donne pas de DCR chiffré pour ce point (« à définir »),FR
+rhone-mediterranee,Saône à Couzon-au-Mont-d'Or : le tableau 7C ne donne pas de DCR chiffré pour ce point (« à définir »),FR
+rhone-mediterranee,Yzeron à Francheville (Taffignon) (V3015020) : Hub'Eau ne publie pas de débit journalier récent pour cette station,FR
+rhone-mediterranee,Rhône à Ternay (V3030020) : Hub'Eau ne publie pas de débit journalier récent pour cette station,FR
+rhone-mediterranee,Rhône à Pougny : le tableau 7C ne donne pas de DCR chiffré pour ce point (« à définir »),FR
+rhone-mediterranee,Dranse de Morzine à Seytroux (pont couvaloup) : aucune station de Hub'Eau ne porte ce nom dans le département,FR
+rhone-mediterranee,"Auzon-Claduègne : le SDAGE suit ce point par un piézomètre dans les alluvions, pas par une station de débit",FR
+rhone-mediterranee,Isère à Beaumont-Monteux (W3540010) : Hub'Eau ne publie pas de débit journalier récent pour cette station,FR
+rhone-mediterranee,"Drôme aval, à définir : le tableau 7C ne donne pas de DCR chiffré pour ce point (« à définir »)",FR
+rhone-mediterranee,Aygues à Saint-May (Pont de la Tune) : aucune station de Hub'Eau ne porte ce nom dans le département,FR
+rhone-mediterranee,Rhône aval à Viviers : aucune station de Hub'Eau ne porte ce nom dans le département,FR
+rhone-mediterranee,Doux à Colombier le vieux : le tableau 7C ne donne pas de DCR chiffré pour ce point (« à définir »),FR
+rhone-mediterranee,Glueyre à Gluiras : le tableau 7C ne donne pas de DCR chiffré pour ce point (« à définir »),FR
+rhone-mediterranee,Drac aval à Fontaine (W2832011) : Hub'Eau ne publie pas de débit journalier récent pour cette station,FR
+rhone-mediterranee,Buëch à Serre Village : aucune station de Hub'Eau ne porte ce nom dans le département,FR
+rhone-mediterranee,Ouvèze provençale à Buis les baronnies (hameau de Coste) : le SDAGE indique « station à réimplanter » pour la station de ce point : celle que publie Hub'Eau (V6022010) n'est peut-être pas celle qu'il vise,FR
+rhone-mediterranee,Vançon aval à Sourribes : aucune station de Hub'Eau ne porte ce nom dans le département,FR
+rhone-mediterranee,"Durance moyenne, à définir : le tableau 7C ne donne pas de DCR chiffré pour ce point (« à définir »)",FR
+rhone-mediterranee,Durance à Meyrargues : le tableau 7C ne donne pas de DCR chiffré pour ce point (« à définir »),FR
+rhone-mediterranee,Argens à Chateauvert (CD554) : le tableau 7C ne donne pas de DCR chiffré pour ce point (« à définir »),FR
+rhone-mediterranee,"Siagne, à définir : le tableau 7C ne donne pas de DCR chiffré pour ce point (« à définir »)",FR
+rhone-mediterranee,"Loup, station les Ferrayonnes (Y5616215) : Hub'Eau ne publie pas de débit journalier récent pour cette station",FR
+rhone-mediterranee,Tinee à Tournefort : le tableau 7C ne donne pas de DCR chiffré pour ce point (« Acquisition de données nécessaires »),FR
+rhone-mediterranee,Rhône aval à Beaucaire-Tarascon /aval prise canal Rhône-Sète : aucune station de Hub'Eau ne porte ce nom dans le département,FR
+rhone-mediterranee,"Gardons à Pont de Ners amont prise canal Boucoiran : le tableau 7C ne donne pas de DCR chiffré pour ce point (« [0,46 – 1,02] Période juillet à sept »)",FR
+rhone-mediterranee,Gardons à Remoulins amont prise canal Beaucaire : aucune station de Hub'Eau ne porte ce nom dans le département,FR
+rhone-mediterranee,"Cèze à Bagnols sur Cèze (C4 EVP) : le tableau 7C ne donne pas de DCR chiffré pour ce point (« [0,8-1,76] »)",FR
+rhone-mediterranee,"Hérault à Gorges Hérault, aval prise canal de Gignac : aucune station de Hub'Eau ne porte ce nom dans le département",FR
+rhone-mediterranee,"Hérault aval à Florensac site de Bladier-Ricard : plusieurs stations de Hub'Eau portent ce nom (Y2100010, Y2100020, Y2140010, Y2140020, Y2300020, Y2330010, Y2370020) et le SDAGE ne dit pas laquelle lire",FR
+rhone-mediterranee,"Orb à Pont Doumergues, amont Taurou (O7 EVP) : aucune station de Hub'Eau ne porte ce nom dans le département",FR
+rhone-mediterranee,"Lez à Montpellier pont Garigliano : la station du pont Garigliano (Y3210010) ne publie plus ; Y3210021, à 3 km en aval, n'est pas le point du SDAGE",FR
+rhone-mediterranee,"Vidourle à Sommières (V5 EVP) : le tableau 7C ne donne pas de DCR chiffré pour ce point (« [0,140-0,200] »)",FR
+rhone-mediterranee,Aude aval à Moussoulens aval prise canal de la Robine : le SDAGE indique « station basses eaux à aménager » pour la station de ce point : celle que publie Hub'Eau (Y1612020) n'est peut-être pas celle qu'il vise,FR
+rhone-mediterranee,"Orbieu, station SPCMO de l'Orbieu : aucune station de Hub'Eau ne porte ce nom dans le département",FR
+rhone-mediterranee,Tech à Pont d'Elne (T5 EVP) : aucune station de Hub'Eau ne porte ce nom dans le département,FR
+rhone-mediterranee,Ain amont à Pont de Poitte : le tableau 7C ne donne pas de DCR chiffré pour ce point (« Acquisition de données nécessaires »),FR
+rhone-mediterranee,"Le Foron de Sciez, station du Foron de Sciez : le tableau 7C ne donne pas de DCR chiffré pour ce point (« Attente résultats vol. prélevables »)",FR
+rhone-mediterranee,Garon à Brignais (V3035010) : Hub'Eau ne publie pas de débit journalier récent pour cette station,FR
+rhone-mediterranee,Giffre à Marignier : le tableau 7C ne donne pas de DCR chiffré pour ce point (« à définir »),FR
+rhone-mediterranee,Lez provençal amont à Grillon : le tableau 7C ne donne pas de DCR chiffré pour ce point (« à définir »),FR
+rhone-mediterranee,Herbasse/ Veaune/ Bouterne/Chalon à Joyeuse à Chatillon-St-Jean : le tableau 7C ne donne pas de DCR chiffré pour ce point (« Acquisition de données nécessaires »),FR
+rhone-mediterranee,Jabron aval à Montélimar : le tableau 7C ne donne pas de DCR chiffré pour ce point (« à définir »),FR
+rhone-mediterranee,Roubion aval à Montélimar : le tableau 7C ne donne pas de DCR chiffré pour ce point (« à définir »),FR
+rhone-mediterranee,"Isère Bas Grésivaudan, le Vézy : le tableau 7C ne donne pas de DCR chiffré pour ce point (« à définir »)",FR
+rhone-mediterranee,Eyrieux soutenu à Saint-Fortunat : le tableau 7C ne donne pas de DCR chiffré pour ce point (« à définir »),FR
+rhone-mediterranee,Ouvèze à Pouzin : le tableau 7C ne donne pas de DCR chiffré pour ce point (« à définir »),FR
+rhone-mediterranee,Beaume à Pont de Peyroche : aucune station de Hub'Eau ne porte ce nom dans le département,FR
+rhone-mediterranee,Ozon à Saint-Symphorien d’Ozon (Sérézin) : le tableau 7C ne donne pas de DCR chiffré pour ce point (« à définir »),FR
+rhone-mediterranee,"Drac amont, station des Ricoux : aucune station de Hub'Eau ne porte ce nom dans le département",FR
+rhone-mediterranee,Méouge aval à Pommet (station EDF) (X1050003) : Hub'Eau ne publie pas de débit journalier récent pour cette station,FR
+rhone-mediterranee,"Aygues aval, à définir : aucune station de Hub'Eau ne porte ce nom dans le département",FR
+rhone-mediterranee,"Bléone à Digne (pont Beau de Rochas) : aucune des stations de ce nom (X1230001, X1230002) ne publie de débit récent sur Hub'Eau, et le SDAGE ne dit pas laquelle lire",FR
+rhone-mediterranee,Bléone aval à Pont de Malijai (station EDF) : le SDAGE indique « station à déterminer » pour la station de ce point : celle que publie Hub'Eau (X1250002) n'est peut-être pas celle qu'il vise,FR
+rhone-mediterranee,"Calavon, station de la Bégude : aucune station de Hub'Eau ne porte ce nom dans le département",FR
+rhone-mediterranee,Jabron à Peipin (pont de Nadé) : aucune station de Hub'Eau ne porte ce nom dans le département,FR
+rhone-mediterranee,"Sasse à Valernes : aucune des stations de ce nom (X0700001, X0700002, X0710004, X0710005, X0710006, X0720002) ne publie de débit récent sur Hub'Eau, et le SDAGE ne dit pas laquelle lire",FR
+rhone-mediterranee,Durance aval à Bonpas : le tableau 7C ne donne pas de DCR chiffré pour ce point (« à définir »),FR
+rhone-mediterranee,Cagne à Pont de Salles : le tableau 7C ne donne pas de DCR chiffré pour ce point (« à définir »),FR
+rhone-mediterranee,Cèze à Saint-Ambroix : le SDAGE indique « station basses eaux à aménager » pour la station de ce point : celle que publie Hub'Eau (V5430002) n'est peut-être pas celle qu'il vise,FR
+rhone-mediterranee,Sègre à Carol S1 (EVP) : aucune station de Hub'Eau ne porte ce nom dans le département,FR
+rhone-mediterranee,Orb aval à Barrage Pont Rouge amont prise d'eau canal du Midi : aucune station de Hub'Eau ne porte ce nom dans le département,FR
+rhone-mediterranee,"Têt à Barrage Vinça, aval restitution (T5 EVP) (Y0464010) : Hub'Eau ne publie pas de débit journalier récent pour cette station",FR
+rhone-mediterranee,Agly à Mas de Jau aval perte (A4 EVP) : le tableau 7C ne donne pas de DCR chiffré pour ce point (« maintien en eau »),FR
+rhone-mediterranee,"Agly à Barrage Agly, aval restitution(A2 EVP) (Y0634020) : Hub'Eau ne publie pas de débit journalier récent pour cette station",FR
+rhone-mediterranee,Aude amont à Belviane gorges de l'Aude : aucune station de Hub'Eau ne porte ce nom dans le département,FR
+rhone-mediterranee,"Lez, source du lez à St Clément de Rivière : le tableau 7C ne donne pas de DCR chiffré pour ce point (« non pertinent »)",FR

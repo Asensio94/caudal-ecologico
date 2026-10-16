@@ -61,6 +61,59 @@ def test_build_reads_the_replacement_gauge_and_says_why_others_stay_out():
     assert "Hub'Eau ne publie pas" in unread[0] and "aucune station" in unread[1] and "pas de DCR" in unread[2]
 
 
+# --- Loire-Bretagne and Rhône-Méditerranée transcriptions ----------------------------
+
+def lb_row(point, river, location, dcr, code="", agency="", reason="", dsa="1,0"):
+    return {"point": point, "river": river, "location": location, "doe": "2,5", "dsa": dsa, "dcr": dcr,
+            "pdf_page": "113", "agency_code": agency, "code": code, "reason": reason}
+
+
+def rm_row(id, river, location, dcr, code="", reason="", revisable="0"):
+    return {"id": id, "department": "26", "river": river, "location": location, "station_state": "existante",
+            "water_body_code": "FRDR10", "doe": "non pertinent", "dcr": dcr, "revisable": revisable,
+            "pdf_page": "250", "code": code, "reason": reason}
+
+
+def test_labels_read_like_the_sdage():
+    assert plan_fr._label("Mayenne", "Chambellay") == "Mayenne à Chambellay"
+    assert plan_fr._label("Les Usses", "Les Usses aval") == "Les Usses aval"
+    assert plan_fr._label("Lay", "aval immédiat de la confluence") == "Lay, aval immédiat de la confluence"
+    assert plan_fr._label("Vilaine", "Au pont-de-Cran") == "Vilaine, au pont-de-Cran"
+
+
+def test_loire_bretagne_keeps_the_dsa_and_says_when_the_agency_names_another_gauge():
+    points = plan_fr.loire_bretagne([
+        lb_row("Bl1", "Blavet", "Inzinzac-Lochrist", "0,9", code="J5712010", agency="J5712011"),
+        lb_row("Rce", "Rance", "entre Saint-Juvas et Tréfumel", "0,1", reason="aucune station ne porte ce nom"),
+    ])
+    sites = {"J5712010": site("Le Blavet à Inzinzac-Lochrist")}
+    basin = plan_fr.BASINS[plan_fr.LB]
+    [blavet], [req], [rance] = plan_fr.build(points, {"J5712010"}, sites, basin)
+    assert blavet["basin"] == "loire-bretagne" and "J5712011" in blavet["note"]
+    assert req["m07"] == "0.9" and req["objective"] == "2,5" and req["alert"] == "1,0"
+    assert req["legal_ref"].endswith("point Bl1 (p. 113)") and req["source_url"].endswith("#page=113")
+    assert rance == "Rance, entre Saint-Juvas et Tréfumel : aucune station ne porte ce nom"
+
+
+def test_rhone_mediterranee_flags_revisable_values_and_leaves_out_undefined_dcr():
+    points = plan_fr.rhone_mediterranee([
+        rm_row("7", "Drôme", "Saillans", "0,8", code="V4264010", revisable="1"),
+        rm_row("8", "Roubion", "Soyans", "à définir"),
+    ])
+    basin = plan_fr.BASINS[plan_fr.RM]
+    [drome], [req], [roubion] = plan_fr.build(points, {"V4264010"}, {"V4264010": site("La Drôme à Saillans")}, basin)
+    assert drome["water_body_code"] == "FRDR10" and "susceptibles d'être modifiés" in drome["note"]
+    assert req["objective"] == "" and req["alert"] == "" and req["legal_ref"].endswith("tableau 7C, point 7")
+    assert roubion == "Roubion à Soyans : le tableau 7C ne donne pas de DCR chiffré pour ce point (« à définir »)"
+
+
+def test_the_transcriptions_in_the_repository_load():
+    for slug, load in ((plan_fr.LB, plan_fr.loire_bretagne), (plan_fr.RM, plan_fr.rhone_mediterranee)):
+        points = load(plan_fr.read_transcription(slug))
+        assert len(points) > 50
+        assert all(p.codes or p.why or p.dcr is None for p in points)   # every point without a gauge says why
+
+
 # --- VigiEau ----------------------------------------------------------------------
 
 class Resp:

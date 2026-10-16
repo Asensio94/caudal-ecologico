@@ -1,7 +1,8 @@
 """The French page: same layout and rules as the Spanish one, French text, French sources.
 
-Only the Adour-Garonne basin publishes its crisis flows (DCR) in an open file with the gauge
-of each nodal point, so that is what is compared. Everything else that stays out, and why,
+Three basins are compared: Adour-Garonne, which publishes its crisis flows (DCR) in an open
+file with the gauge of each nodal point, and Loire-Bretagne and Rhône-Méditerranée, whose
+tables are transcribed from the SDAGE (plan_fr.py). Everything else that stays out, and why,
 is listed on the page itself (explain_fr.py).
 """
 from __future__ import annotations
@@ -14,7 +15,7 @@ from zoneinfo import ZoneInfo
 from . import context, store
 from .compliance import Status
 from .config import DOCS_DIR
-from .explain_fr import method_html, sources_html
+from .explain_fr import BASIN_NAMES, method_html, sources_html
 from .i18n import FLOW_PRESSURES_FR, country_nav, d, long_date, n, p, t
 from .logo import LOGO_SVG, favicon_link
 from .sources import vigieau
@@ -22,7 +23,8 @@ from .web import ACCENT, ACCENT_DARK, COMMON_CSS, CSS, REPO, SIBLINGS, WINDOW_DA
 
 LANG = "fr"
 PARIS = ZoneInfo("Europe/Paris")
-CSS_FR = """.level{display:inline-block;font-size:.78rem;padding:1px 8px;border-radius:999px;border:1px solid var(--line)}
+CSS_FR = """.basins{margin:8px 0 0;color:var(--muted);font-size:.9rem}
+.level{display:inline-block;font-size:.78rem;padding:1px 8px;border-radius:999px;border:1px solid var(--line)}
 .level.crise,.level.alerte_renforcee{border-color:var(--below);color:var(--below)}
 """
 
@@ -66,7 +68,7 @@ def _context_html(c: context.Context | None) -> str:
     return "".join(f'<span class="ctx">{x}</span>' for x in lines)
 
 
-def _row_html(r: dict, start: date, doe: str, restriction: dict | None) -> str:
+def _row_html(r: dict, start: date, doe: str, alert: str, restriction: dict | None) -> str:
     s, latest = r["station"], r["latest"]
     status = latest.status.value if latest else "no_data"
     key = "st_below_validated" if status == "below" and not latest.provisional else f"st_{status}"
@@ -82,8 +84,11 @@ def _row_html(r: dict, start: date, doe: str, restriction: dict | None) -> str:
     level = (restriction or {}).get("level") or ""
     doe_line = (f'<span class="sub" title="{t(LANG, "doe_note")}">{t(LANG, "doe", doe=escape(doe.replace(".", ",")))}</span>'
                 if doe else "")
+    if alert:
+        doe_line += (f'<span class="sub" title="{t(LANG, "dsa_note")}">'
+                     f'{t(LANG, "dsa", dsa=escape(alert.replace(".", ",")))}</span>')
     return (
-        f'<tr id="{s["station_id"]}" data-status="{status}" data-level="{level}">'
+        f'<tr id="{s["station_id"]}" data-status="{status}" data-level="{level}" data-basin="{s["basin"]}">'
         f'<td><span class="state {status}" title="{label}"></span><b>{escape(s["name"])}</b>'
         f'<span class="sub">{escape(s["river"])} · {t(LANG, "station", code=escape(s["source_id"]))}</span></td>'
         f'<td>{escape(s["water_body_name"])}{doe_line}'
@@ -102,18 +107,25 @@ def render(today: date | None = None) -> Path:
     today = today or now.date()
     rows, start = build_rows(today, "FR")
     last = today - timedelta(days=1)
-    objectives, levels = store.objectives(), vigieau.load()
+    objectives, alerts, levels = store.objectives(), store.objectives("alert"), vigieau.load()
     restriction = {r["station"]["station_id"]: _latest_restriction(levels.get(r["station"]["station_id"], {}), today)
                    for r in rows}
     n_below_now = sum(1 for r in rows if r["latest"] and r["latest"].status is Status.BELOW)
     n_any = sum(1 for r in rows if r["below_days"])
     n_crisis = sum(1 for x in restriction.values() if x and x["level"] == "crise")
     first_level = min((day for lv in levels.values() for day in lv), default=None)
-    method = method_html(len(rows), [x["reason"] for x in store.load_excluded("FR")], first_level)
+    compared = {b: sum(1 for r in rows if r["station"]["basin"] == b) for b in BASIN_NAMES}
+    excluded = {b: [x["reason"] for x in store.load_excluded("FR") if x["basin"] == b] for b in BASIN_NAMES}
+    method = method_html(compared, excluded, first_level)
+    per_basin = " · ".join(f"{BASIN_NAMES[b]} {n(k, LANG)}" for b, k in compared.items())
+    basin_buttons = "\n".join(
+        f'    <button type="button" data-basin="{b}" aria-pressed="false">{name}</button>'
+        for b, name in BASIN_NAMES.items())
     siblings = "\n".join(
         f'    <li{" aria-current=\"page\"" if slug == "caudal-ecologico" else ""}>'
         f'<a href="https://asensio94.github.io/{slug}/">{name}</a></li>' for slug, name in SIBLINGS)
     body = "\n".join(_row_html(r, start, objectives.get(r["station"]["station_id"], ""),
+                               alerts.get(r["station"]["station_id"], ""),
                                restriction[r["station"]["station_id"]]) for r in rows)
 
     html = f"""<!doctype html>
@@ -141,6 +153,7 @@ def render(today: date | None = None) -> Path:
     <div><b>{n(n_any, LANG)}</b><span>{t(LANG, "fig_below_any", days=WINDOW_DAYS)}</span></div>
     <div><b>{n(n_crisis, LANG)}</b><span>{t(LANG, "fig_crisis")}</span></div>
   </div>
+  <p class="basins">{t(LANG, "fig_per_basin", list=per_basin)}</p>
 </header>
 <main>
   <p class="nav"><a href="france-2027.html">{t(LANG, "nav_2027")}</a></p>
@@ -149,6 +162,10 @@ def render(today: date | None = None) -> Path:
     <button type="button" data-filter="below" aria-pressed="false">{t(LANG, "f_below")}</button>
     <button type="button" data-filter="history" aria-pressed="false">{t(LANG, "f_history")}</button>
     <button type="button" data-filter="crisis" aria-pressed="false">{t(LANG, "f_crisis")}</button>
+  </div>
+  <div class="tools" role="group" aria-label="{t(LANG, "f_basin")}">
+    <button type="button" data-basin="all" aria-pressed="true">{t(LANG, "basin_all")}</button>
+{basin_buttons}
   </div>
   <div class="wrap"><table class="points">
     <thead><tr><th>{t(LANG, "th_point")}</th><th>{t(LANG, "th_thresholds")}</th><th class="num">{t(LANG, "th_flow")}</th>
@@ -172,14 +189,18 @@ def render(today: date | None = None) -> Path:
   </ul></nav>
 </footer>
 <script>
+// Two groups of buttons: what the flow did, and which basin. A row shows when it passes both.
+const chosen = {{filter: 'all', basin: 'all'}};
 document.querySelectorAll('.tools button').forEach(b => b.addEventListener('click', () => {{
   b.parentElement.querySelectorAll('button').forEach(o => o.setAttribute('aria-pressed', o === b));
-  const f = b.dataset.filter;
+  if (b.dataset.filter) chosen.filter = b.dataset.filter; else chosen.basin = b.dataset.basin;
+  const f = chosen.filter;
   document.querySelectorAll('.points tbody tr').forEach(tr => {{
     const below = tr.dataset.status === 'below';
     const history = tr.children[4].textContent.trim()[0] !== '0';
     const crisis = tr.dataset.level === 'crise';
-    tr.hidden = !(f === 'below' ? below : f === 'history' ? history : f === 'crisis' ? crisis : true);
+    const shown = f === 'below' ? below : f === 'history' ? history : f === 'crisis' ? crisis : true;
+    tr.hidden = !(shown && (chosen.basin === 'all' || tr.dataset.basin === chosen.basin));
   }});
 }}));
 </script>
