@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>¿Llegará a 2027?</title>
+<meta name="description" content="Estado de cada masa de agua de España, su plazo para el buen estado y las excepciones de la Directiva Marco del Agua que se le aplican.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cstyle%3E.b%7Bfill%3A%23221d1a%7D.p%7Bfill%3A%23007c91%7D.l%7Bstroke%3A%23221d1a%7D%40media%20%28prefers-color-scheme%3Adark%29%7B.b%7Bfill%3A%23ede6e0%7D.p%7Bfill%3A%234fc7d9%7D.l%7Bstroke%3A%23ede6e0%7D%7D%3C/style%3E%3Cg%20class%3D%22b%22%3E%3Ccircle%20cx%3D%2234%22%20cy%3D%2231%22%20r%3D%2219%22/%3E%3Cpath%20d%3D%22M19%2040%207%2050.5l3.5%204L25%2046z%22/%3E%3Cpath%20d%3D%22M52%2022l8%202.5-8%202.5z%22/%3E%3C/g%3E%3Cpath%20class%3D%22p%22%20d%3D%22M34%2012a19%2019%200%200%201%2015%2030.8C42%2041%2037%2034%2037%2026c0-6%201.5-10.5%204-12.6A19%2019%200%200%200%2034%2012z%22/%3E%3Cg%20fill%3D%22%23221d1a%22%3E%3Ccircle%20cx%3D%2245%22%20cy%3D%2221.5%22%20r%3D%222.1%22/%3E%3C/g%3E%3Cpath%20class%3D%22l%22%20d%3D%22M31%2049.5V60m7-11v11m-10.5.2h6m1.5%200h6%22%20fill%3D%22none%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E">
+<style>
+/* common.css v1.1 — shared look of the nine open-data projects (vigia-incendios is the reference).
+   Copy this file verbatim into each repo; change it in all repos at once, never in one.
+   Each repo sets only --accent and --accent-dark below it and adds its own rules after it.
+
+   Type:  Barlow Condensed for titles and labels, Source Serif 4 for reading, IBM Plex Mono for
+          figures, codes and dates. Load them with:
+   https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap */
+
+:root{
+  --ground:#f0edea; --paper:#faf8f6; --ink:#221d1a; --muted:#6b625c; --line:#dad2cb;
+  --accent:#c2410c; --accent-dark:#fb7b3e;
+  --natura:#2f7a55; --natura-dark:#62b88a;
+  --shadow:0 1px 0 rgba(34,29,26,.06), 0 6px 18px -10px rgba(34,29,26,.28);
+  --font-title:"Barlow Condensed","Arial Narrow",sans-serif;
+  --font-text:"Source Serif 4",Georgia,serif;
+  --font-data:"IBM Plex Mono",ui-monospace,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#15110f; --paper:#1d1815; --ink:#ede6e0; --muted:#a69a91; --line:#362d28;
+    --accent:var(--accent-dark); --natura:var(--natura-dark);
+    --shadow:0 1px 0 rgba(0,0,0,.3), 0 8px 22px -12px rgba(0,0,0,.7);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#15110f; --paper:#1d1815; --ink:#ede6e0; --muted:#a69a91; --line:#362d28;
+  --accent:var(--accent-dark); --natura:var(--natura-dark);
+  --shadow:0 1px 0 rgba(0,0,0,.3), 0 8px 22px -12px rgba(0,0,0,.7);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font:17px/1.55 var(--font-text);overflow-wrap:break-word}
+a{color:inherit;text-decoration-color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+img,svg{max-width:100%}
+
+/* Header: «PROJECT NAME» with the key word in the accent colour, one sentence, then the figures. */
+.site-header{max-width:1440px;margin:0 auto;padding:28px 16px 18px;display:grid;gap:14px}
+.site-header h1{margin:0;font:700 clamp(40px,6vw,64px)/.9 var(--font-title);text-transform:uppercase;letter-spacing:.02em}
+.site-header h1 span{color:var(--accent)}
+/* Logo: the robin from logo.py before the title; same shape everywhere, breast in the accent. */
+.logo{display:inline-block;width:1.05em;height:1.05em;margin-right:.16em;vertical-align:-.13em;color:var(--ink);overflow:visible}
+.logo .logo-breast{fill:var(--accent)}
+.site-header .lede{margin:0;max-width:72ch;font-size:18px}
+.figures{display:flex;flex-wrap:wrap;gap:12px 28px;margin:0;padding:12px 0 0;border-top:1px solid var(--line)}
+.figures div{display:grid;gap:2px}
+.figures b{font:600 30px/1 var(--font-data);font-variant-numeric:tabular-nums;color:var(--accent)}
+.figures span{font:600 13px/1.2 var(--font-title);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+
+/* Text roles */
+.label{font-family:var(--font-title);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.data{font-family:var(--font-data);font-variant-numeric:tabular-nums}
+.note{color:var(--muted);font-size:14.5px}
+.badge{display:inline-block;font:600 12px/1 var(--font-title);text-transform:uppercase;letter-spacing:.09em;padding:4px 7px 3px;border:1.5px solid currentColor;color:var(--accent)}
+
+/* Cards and panels */
+.card{background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow);padding:16px}
+
+/* Method section: how every figure is computed, step by step */
+.method{max-width:1440px;margin:0 auto;padding:24px 16px}
+.method h2{margin:0 0 6px;font:700 28px/1 var(--font-title);text-transform:uppercase;letter-spacing:.03em}
+.method h3{margin:18px 0 4px;font:600 18px/1.2 var(--font-title);text-transform:uppercase;letter-spacing:.06em}
+.method p,.method li{max-width:72ch}
+table.params{border-collapse:collapse;font-size:14.5px;width:100%;max-width:900px}
+table.params th,table.params td{text-align:left;vertical-align:top;padding:6px 10px 6px 0;border-bottom:1px solid var(--line)}
+table.params th{font:600 14px/1.3 var(--font-title);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;padding-right:16px}
+table.params td.num,table.params th.num{text-align:right;font-family:var(--font-data);font-variant-numeric:tabular-nums}
+
+/* Footer: sources, licence, the shared principle and the sibling projects */
+.site-footer{max-width:1440px;margin:0 auto;padding:16px 16px 40px;font-size:13.5px;color:var(--muted);border-top:1px solid var(--line);display:grid;gap:10px}
+.site-footer .principle{margin:0;color:var(--ink);font-style:italic}
+.siblings{display:flex;flex-wrap:wrap;gap:4px 14px;margin:0;padding:0;list-style:none}
+.siblings li a{text-decoration-color:var(--line)}
+.siblings li[aria-current] a{color:var(--ink);text-decoration-color:var(--accent);font-weight:600}
+
+@media (max-width:640px){
+  body{font-size:16px}
+  .figures b{font-size:24px}
+}
+
+:root{--accent:#007c91;--accent-dark:#4fc7d9;--good:#2f7a55;--by2027:#b7791f;
+  --natural:#6b7280;--other:#b42318;--ls:#7c3aed;--gap:#9a948d}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--good:#62b88a;--by2027:#e3a64a;
+  --natural:#a1a1aa;--other:#f47067;--ls:#b197fc;--gap:#6f6a64}}
+:root[data-theme="dark"]{--good:#62b88a;--by2027:#e3a64a;--natural:#a1a1aa;--other:#f47067;--ls:#b197fc;--gap:#6f6a64}
+main{max-width:1100px;margin:0 auto;padding:0 16px}
+.nav{margin:20px 0 0;font-size:.92rem}
+.wrap{overflow-x:auto}
+table.points{width:100%;border-collapse:collapse;font-size:.92rem}
+.points th{text-align:left;font-weight:600;color:var(--muted);font-size:.8rem;text-transform:uppercase;
+  letter-spacing:.03em;padding:8px 10px;border-bottom:2px solid var(--line)}
+.points td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.points td.num,.points th.num{text-align:right;font-family:var(--font-data);white-space:nowrap}
+.points .sub{display:block;color:var(--muted);font-size:.82rem}
+.points tfoot td{font-weight:600;border-top:2px solid var(--line)}
+.state{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.state.good{background:var(--good)}.state.by_2027{background:var(--by2027)}
+.state.beyond_natural{background:var(--natural)}.state.beyond_other{background:var(--other)}
+.state.less_stringent{background:var(--ls)}.state.unknown{background:var(--gap)}
+.search{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 12px}
+.search input,.search select{font:inherit;font-size:.95rem;padding:7px 10px;border:1px solid var(--line);
+  border-radius:8px;background:var(--paper);color:var(--ink)}
+.search input{flex:1 1 260px}
+#count{color:var(--muted);font-size:.85rem;margin:0 0 8px}
+.points tr:target td,.points tr.hit td{background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.legend{color:var(--muted);font-size:.85rem;margin:8px 0 0}
+
+</style>
+</head>
+<body>
+<header class="site-header">
+  <h1><svg class="logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="currentColor"><circle cx="34" cy="31" r="19"/><path d="M19 40 7 50.5l3.5 4L25 46z"/><path d="M52 22l8 2.5-8 2.5z"/></g><path class="logo-breast" d="M34 12a19 19 0 0 1 15 30.8C42 41 37 34 37 26c0-6 1.5-10.5 4-12.6A19 19 0 0 0 34 12z"/><g fill="#221d1a"><circle cx="45" cy="21.5" r="2.1"/></g><path d="M31 49.5V60m7-11v11m-10.5.2h6m1.5 0h6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>¿Llegará a <span>2027</span>?</h1>
+  <p class="lede">2027 es el último plazo de la Directiva Marco del Agua para que ríos, lagos, costas y acuíferos
+  estén en buen estado. Después solo cabe esperar a que la naturaleza se recupere o rebajar el objetivo.
+  Esto es lo que España comunicó a la Agencia Europea de Medio Ambiente para cada masa de agua.</p>
+  <div class="figures">
+    <div><b>6274</b><span>masas de agua superficiales y subterráneas</span></div>
+    <div><b>2682</b><span>aún no están en buen estado</span></div>
+    <div><b>263</b><span>con plazo después de 2027</span></div>
+    <div><b>48</b><span>con objetivos menos rigurosos</span></div>
+  </div>
+</header>
+<main>
+  <p class="nav"><a href="./">← Caudal diario frente al mínimo ecológico</a></p>
+
+  <h2>Por demarcación</h2>
+  <div class="wrap"><table class="points">
+    <thead><tr><th>Demarcación</th><th class="num">Masas</th><th class="num"><span class="state good"></span>En buen estado</th><th class="num"><span class="state by_2027"></span>Prórroga hasta 2027</th><th class="num"><span class="state beyond_natural"></span>Más allá de 2027 por condiciones naturales</th><th class="num"><span class="state beyond_other"></span>Más allá de 2027 sin alegar condiciones naturales</th><th class="num"><span class="state less_stringent"></span>Objetivos menos rigurosos</th><th class="num"><span class="state unknown"></span>Sin evaluar</th><th class="num">En buen estado</th></tr></thead>
+    <tbody>
+<tr><td><b>Cantábrico Occidental</b><span class="sub">ES018</span></td><td class="num">315</td><td class="num">267</td><td class="num">44</td><td class="num">0</td><td class="num">0</td><td class="num">3</td><td class="num">1</td><td class="num">85 %</td></tr>
+<tr><td><b>Cantábrico Oriental</b><span class="sub">ES017</span></td><td class="num">160</td><td class="num">115</td><td class="num">42</td><td class="num">0</td><td class="num">3</td><td class="num">0</td><td class="num">0</td><td class="num">72 %</td></tr>
+<tr><td><b>Cataluña</b><span class="sub">ES100</span></td><td class="num">392</td><td class="num">111</td><td class="num">202</td><td class="num">25</td><td class="num">1</td><td class="num">1</td><td class="num">52</td><td class="num">28 %</td></tr>
+<tr><td><b>Ceuta</b><span class="sub">ES150</span></td><td class="num">4</td><td class="num">3</td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">75 %</td></tr>
+<tr><td><b>Cuencas Mediterráneas Andaluzas</b><span class="sub">ES060</span></td><td class="num">248</td><td class="num">143</td><td class="num">86</td><td class="num">0</td><td class="num">17</td><td class="num">0</td><td class="num">2</td><td class="num">58 %</td></tr>
+<tr><td><b>Duero</b><span class="sub">ES020</span></td><td class="num">772</td><td class="num">248</td><td class="num">500</td><td class="num">9</td><td class="num">1</td><td class="num">8</td><td class="num">6</td><td class="num">32 %</td></tr>
+<tr><td><b>Ebro</b><span class="sub">ES091</span></td><td class="num">919</td><td class="num">622</td><td class="num">256</td><td class="num">21</td><td class="num">2</td><td class="num">17</td><td class="num">1</td><td class="num">68 %</td></tr>
+<tr><td><b>El Hierro</b><span class="sub">ES127</span></td><td class="num">6</td><td class="num">6</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">100 %</td></tr>
+<tr><td><b>Fuerteventura</b><span class="sub">ES122</span></td><td class="num">10</td><td class="num">6</td><td class="num">0</td><td class="num">4</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">60 %</td></tr>
+<tr><td><b>Galicia-Costa</b><span class="sub">ES014</span></td><td class="num">505</td><td class="num">397</td><td class="num">106</td><td class="num">2</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">79 %</td></tr>
+<tr><td><b>Gran Canaria</b><span class="sub">ES120</span></td><td class="num">18</td><td class="num">10</td><td class="num">2</td><td class="num">6</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">56 %</td></tr>
+<tr><td><b>Guadalete y Barbate</b><span class="sub">ES063</span></td><td class="num">112</td><td class="num">49</td><td class="num">59</td><td class="num">0</td><td class="num">3</td><td class="num">0</td><td class="num">1</td><td class="num">44 %</td></tr>
+<tr><td><b>Guadalquivir</b><span class="sub">ES050</span></td><td class="num">541</td><td class="num">323</td><td class="num">190</td><td class="num">23</td><td class="num">2</td><td class="num">2</td><td class="num">1</td><td class="num">60 %</td></tr>
+<tr><td><b>Guadiana</b><span class="sub">ES040</span></td><td class="num">396</td><td class="num">139</td><td class="num">247</td><td class="num">4</td><td class="num">5</td><td class="num">0</td><td class="num">1</td><td class="num">35 %</td></tr>
+<tr><td><b>Islas Baleares</b><span class="sub">ES110</span></td><td class="num">236</td><td class="num">67</td><td class="num">4</td><td class="num">66</td><td class="num">37</td><td class="num">0</td><td class="num">62</td><td class="num">28 %</td></tr>
+<tr><td><b>Júcar</b><span class="sub">ES080</span></td><td class="num">495</td><td class="num">248</td><td class="num">236</td><td class="num">4</td><td class="num">7</td><td class="num">0</td><td class="num">0</td><td class="num">50 %</td></tr>
+<tr><td><b>La Gomera</b><span class="sub">ES126</span></td><td class="num">9</td><td class="num">9</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">100 %</td></tr>
+<tr><td><b>La Palma</b><span class="sub">ES125</span></td><td class="num">10</td><td class="num">9</td><td class="num">0</td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">90 %</td></tr>
+<tr><td><b>Lanzarote</b><span class="sub">ES123</span></td><td class="num">8</td><td class="num">8</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">100 %</td></tr>
+<tr><td><b>Melilla</b><span class="sub">ES160</span></td><td class="num">7</td><td class="num">4</td><td class="num">3</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">57 %</td></tr>
+<tr><td><b>Miño-Sil</b><span class="sub">ES010</span></td><td class="num">311</td><td class="num">236</td><td class="num">72</td><td class="num">0</td><td class="num">0</td><td class="num">3</td><td class="num">0</td><td class="num">76 %</td></tr>
+<tr><td><b>Segura</b><span class="sub">ES070</span></td><td class="num">177</td><td class="num">70</td><td class="num">98</td><td class="num">0</td><td class="num">9</td><td class="num">0</td><td class="num">0</td><td class="num">40 %</td></tr>
+<tr><td><b>Tajo</b><span class="sub">ES030</span></td><td class="num">538</td><td class="num">335</td><td class="num">202</td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">62 %</td></tr>
+<tr><td><b>Tenerife</b><span class="sub">ES124</span></td><td class="num">12</td><td class="num">8</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">4</td><td class="num">0</td><td class="num">67 %</td></tr>
+<tr><td><b>Tinto, Odiel y Piedras</b><span class="sub">ES064</span></td><td class="num">73</td><td class="num">29</td><td class="num">21</td><td class="num">0</td><td class="num">10</td><td class="num">10</td><td class="num">3</td><td class="num">40 %</td></tr>
+    </tbody>
+    <tfoot><tr><td>España</td><td class="num">6274</td><td class="num">3462</td><td class="num">2371</td><td class="num">166</td><td class="num">97</td><td class="num">48</td><td class="num">130</td><td class="num">55 %</td></tr></tfoot>
+  </table></div>
+
+  <h2>Buscar una masa de agua</h2>
+  <div class="search" role="search">
+    <input id="q" type="search" placeholder="Nombre o código (p. ej. «Tajo», «ES080MSPF18-33»)" aria-label="Nombre o código">
+    <select id="rbd" aria-label="Demarcación">
+      <option value="">Todas las demarcaciones</option>
+      <option value="ES018">Cantábrico Occidental</option>
+      <option value="ES017">Cantábrico Oriental</option>
+      <option value="ES100">Cataluña</option>
+      <option value="ES150">Ceuta</option>
+      <option value="ES060">Cuencas Mediterráneas Andaluzas</option>
+      <option value="ES020">Duero</option>
+      <option value="ES091">Ebro</option>
+      <option value="ES127">El Hierro</option>
+      <option value="ES122">Fuerteventura</option>
+      <option value="ES014">Galicia-Costa</option>
+      <option value="ES120">Gran Canaria</option>
+      <option value="ES063">Guadalete y Barbate</option>
+      <option value="ES050">Guadalquivir</option>
+      <option value="ES040">Guadiana</option>
+      <option value="ES110">Islas Baleares</option>
+      <option value="ES080">Júcar</option>
+      <option value="ES126">La Gomera</option>
+      <option value="ES125">La Palma</option>
+      <option value="ES123">Lanzarote</option>
+      <option value="ES160">Melilla</option>
+      <option value="ES010">Miño-Sil</option>
+      <option value="ES070">Segura</option>
+      <option value="ES030">Tajo</option>
+      <option value="ES124">Tenerife</option>
+      <option value="ES064">Tinto, Odiel y Piedras</option>
+    </select>
+    <select id="verdict" aria-label="Situación">
+      <option value="">Todas las situaciones</option>
+      <option value="good">En buen estado</option>
+      <option value="by_2027">Prórroga hasta 2027</option>
+      <option value="beyond_natural">Más allá de 2027 por condiciones naturales</option>
+      <option value="beyond_other">Más allá de 2027 sin alegar condiciones naturales</option>
+      <option value="less_stringent">Objetivos menos rigurosos</option>
+      <option value="unknown">Sin evaluar</option>
+    </select>
+  </div>
+  <p id="count" aria-live="polite">Cargando…</p>
+  <div class="wrap"><table class="points" id="results">
+    <thead><tr><th>Masa de agua</th><th>Estado</th><th>Situación</th><th>Plazo</th><th>Excepciones</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+  <p class="legend">Datos del tercer ciclo de planificación (2022–2027), entregados por España entre
+  el 7 de agosto de 2023 y el 28 de febrero de 2025.
+  <a href="masas-2027.json">Descargar todas las masas (JSON)</a>.</p>
+
+  <section class="method">
+    <h2>Cómo se calcula</h2>
+    <ol>
+      <li><b>El estado sale de lo que España comunicó a Europa.</b> Cada plan hidrológico se notifica a la
+      Agencia Europea de Medio Ambiente (AEMA), que lo publica en su base WISE. De ahí salen, para cada masa, el
+      estado ecológico (o el potencial, en masas muy modificadas o artificiales) y el químico. En las
+      subterráneas, el cuantitativo y el químico. Una masa está en buen estado si todos sus aspectos lo están.</li>
+      <li><b>El plazo, del BOE cuando lo hay.</b> La AEMA da el plazo por tramos («2021 o antes», «2027 o antes»,
+      «después de 2027»). Para el Júcar, el Guadiana y los dos planes del Cantábrico se usa el año que fija el
+      Real Decreto 35/2023 en el apéndice de objetivos medioambientales de cada plan (1363 masas). Si los dos no
+      coinciden, manda el BOE (2 masas con tramos distintos).</li>
+      <li><b>Las excepciones, de las dos fuentes.</b> Se reúnen los artículos de la Directiva que se aplican a cada masa:
+      4(4), prórroga del plazo; 4(5), objetivos menos rigurosos; 4(6), deterioro temporal por causas
+      naturales o accidentes; y 4(7), nuevas modificaciones. En las prórrogas se guarda también el motivo
+      alegado: viabilidad técnica, coste desproporcionado o condiciones naturales.</li>
+      <li><b>Se clasifica cada masa.</b> Si todo está bien, «En buen estado». Si algo falla y el plazo es 2027
+      o antes, «Prórroga hasta 2027». Si va más allá de 2027 y el único motivo alegado son las condiciones
+      naturales, «Más allá de 2027 por condiciones naturales», lo único que la Directiva admite tras 2027. Si se alega además, o
+      solo, la viabilidad técnica o el coste, o no consta motivo, «Más allá de 2027 sin alegar condiciones naturales». Si se ha
+      rebajado el objetivo, «Objetivos menos rigurosos». Con algún aspecto sin evaluar y ninguno en mal estado,
+      «Sin evaluar».</li>
+    </ol>
+    <h3>Límites</h3>
+    <ul>
+      <li>«Más allá de 2027 sin alegar condiciones naturales» describe lo que se comunicó, no es una infracción: la Comisión Europea evalúa
+      los planes y puede haber justificaciones en la memoria del plan que la base europea no recoge.</li>
+      <li>El estado es el que el plan dio por bueno al aprobarse (datos de 2019–2021 en la mayoría de cuencas),
+      no el de hoy. Se actualizará con el próximo informe a Europa.</li>
+      <li>Las fichas de masas que publica el Ministerio (MITECO) están tras una protección anti-robots y no se leen.</li>
+      <li>De momento el año exacto del BOE se lee para Júcar, Guadiana y Cantábrico; en el resto de cuencas
+      intercomunitarias se irá sumando. Las cuencas internas (Cataluña, Baleares, Canarias, Andalucía, Galicia)
+      no están en ese real decreto y se quedan con los tramos de la AEMA.</li>
+    </ul>
+  </section>
+</main>
+<footer class="site-footer">
+  <p class="principle">Datos públicos, reglas a la vista y cada cifra enlazada a su fuente. Indicios, no veredictos.</p>
+  <p>Estado y excepciones: <a href="https://discodata.eea.europa.eu/">WISE WFD</a>, Agencia Europea de Medio Ambiente (CC BY 4.0).
+  Plazos: <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2023-3511">Real Decreto 35/2023</a>, BOE. Código en <a href="https://github.com/Asensio94/caudal-ecologico">GitHub</a> (MIT);
+  datos propios CC BY 4.0.</p>
+  <nav aria-label="Proyectos hermanos"><ul class="siblings">
+    <li><a href="https://asensio94.github.io/observatorio-alegaciones/">Observatorio de alegaciones</a></li>
+    <li><a href="https://asensio94.github.io/vigia-incendios/">Vigía de incendios</a></li>
+    <li><a href="https://asensio94.github.io/centinela-natura/">Centinela Natura</a></li>
+    <li><a href="https://asensio94.github.io/vigilancia-humedales/">Vigilancia de humedales</a></li>
+    <li><a href="https://asensio94.github.io/sub-nocte/">Sub Nocte</a></li>
+    <li><a href="https://asensio94.github.io/riesgo-tendidos-aves/">Riesgo de tendidos para aves</a></li>
+    <li><a href="https://asensio94.github.io/grafo-promotores/">Grafo de promotores</a></li>
+    <li><a href="https://asensio94.github.io/cartera-cotizadas/">Cartera de las cotizadas</a></li>
+    <li><a href="https://asensio94.github.io/cuaderno-campo/">Cuaderno de campo</a></li>
+    <li aria-current="page"><a href="https://asensio94.github.io/caudal-ecologico/">Caudal ecológico</a></li>
+  </ul></nav>
+</footer>
+<script>
+const CAT = {"RW": "Río", "LW": "Lago o embalse", "TW": "Transición", "CW": "Costera", "GW": "Subterránea"};
+const ECO = {"1":"muy bueno","2":"bueno","3":"moderado","4":"deficiente","5":"malo","Unknown":"sin evaluar"};
+const BIN = {"2":"bueno","3":"malo","Unknown":"sin evaluar"};
+const HOR = {"":"—",">2027":"después de 2027","4(5)":"objetivo menos riguroso","2021":"2021 o antes"};
+const MAX = 200;
+let data = null;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]);
+const fold = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+function row(b, hit) {
+  const [code, name, rbd, cat, eco, chem, quant, verdict, horizon, source, arts, reasons, station] = b;
+  const status = cat === 'GW'
+    ? `cuantitativo ${BIN[quant] || '—'}<span class="sub">químico ${BIN[chem] || '—'}</span>`
+    : `ecológico ${ECO[eco] || '—'}<span class="sub">químico ${chem === '3' ? 'no alcanza el bueno' : BIN[chem] || '—'}</span>`;
+  const st = station ? `<span class="sub"><a href="./#${esc(station)}">Caudal diario</a></span>` : '';
+  const why = reasons.length ? `<span class="sub">${esc(reasons.join(', '))}</span>` : '';
+  return `<tr id="${esc(code)}"${hit ? ' class="hit"' : ''}><td><b>${esc(name || code)}</b>` +
+    `<span class="sub">${esc(code)} · ${CAT[cat] || cat} · ${esc(data.districts[rbd] || rbd)}</span>${st}</td>` +
+    `<td>${status}</td><td><span class="state ${verdict}"></span>${data.verdicts[verdict]}</td>` +
+    `<td>${HOR[horizon] ?? horizon}<span class="sub">${source === 'boe' ? 'BOE' : 'AEMA'}</span></td>` +
+    `<td>${arts.length ? arts.map(a => 'art. ' + a).join(', ') : '—'}${why}</td></tr>`;
+}
+function draw() {
+  const q = fold(document.getElementById('q').value.trim());
+  const rbd = document.getElementById('rbd').value, verdict = document.getElementById('verdict').value;
+  const hash = decodeURIComponent(location.hash.slice(1));
+  const found = data.bodies.filter(b => (!rbd || b[2] === rbd) && (!verdict || b[7] === verdict) &&
+    (!q || fold(b[0]).includes(q) || fold(b[1]).includes(q)));
+  document.querySelector('#results tbody').innerHTML = found.slice(0, MAX).map(b => row(b, b[0] === hash)).join('');
+  document.getElementById('count').textContent = found.length > MAX
+    ? `${found.length} masas; se muestran las ${MAX} primeras. Afina la búsqueda.`
+    : `${found.length} ${found.length === 1 ? 'masa' : 'masas'}.`;
+}
+function fromHash() {
+  const hash = decodeURIComponent(location.hash.slice(1));
+  if (!hash || !data.bodies.some(b => b[0] === hash)) return;
+  document.getElementById('q').value = hash;
+  document.getElementById('rbd').value = document.getElementById('verdict').value = '';
+  draw();
+  document.getElementById(hash)?.scrollIntoView({block: 'center'});
+}
+fetch('masas-2027.json').then(r => r.json()).then(d => {
+  data = d;
+  ['q', 'rbd', 'verdict'].forEach(id => document.getElementById(id).addEventListener('input', draw));
+  window.addEventListener('hashchange', fromHash);
+  draw(); fromHash();
+}).catch(() => { document.getElementById('count').textContent = 'No se han podido cargar las masas.'; });
+</script>
+</body>
+</html>
