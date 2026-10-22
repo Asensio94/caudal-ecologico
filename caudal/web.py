@@ -59,6 +59,8 @@ table.points{{width:100%;border-collapse:collapse;font-size:.92rem}}
 td.below b{{color:var(--below)}}
 svg.spark{{width:180px;max-width:none;height:36px;display:block}}
 .points td:last-child{{min-width:190px}}
+.siblings li[aria-current]{{color:var(--ink);font-weight:600}}
+.site-footer .hub{{margin:0;font-weight:600}}
 .spark .min{{stroke:var(--ink);stroke-dasharray:3 2;stroke-width:1;fill:none;opacity:.6}}
 .spark .q{{stroke:var(--accent);stroke-width:1.6;fill:none}}
 .spark .bd{{fill:var(--below);opacity:.25}}
