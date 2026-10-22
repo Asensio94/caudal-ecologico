@@ -321,7 +321,7 @@ def build_cantabrico(boe_html: dict[str, str], gauges: dict, catchments: dict[st
             points.setdefault(p.minimum.code, []).append(p)
     stations, reqs, unread = [], [], []
     for roea, g in sorted(gauges.items()):
-        label = f"ROEA {roea} {title_es(g.name)} ({title_es(g.river)})"
+        label = f"{title_es(g.name)} ({title_es(g.river)}), ROEA {roea}"
         on = {c for c, paths in river_bodies.items() if c in points and _distance_to_line(g.x, g.y, paths) <= SNAP_METRES}
         area = catchments.get(roea)
         if area is None:
@@ -464,7 +464,7 @@ def build_jucar(boe_html: str, gauges: dict) -> tuple[list[dict], list[dict], li
             g = gauges.get(roea)
             if wb is None or g is None:
                 why = "la masa no tiene mínimo en las tablas 5.1 y 5.2" if wb is None else "el SAIH no publica un aforo con ese código"
-                unread.append(f"ROEA {roea}, masa {code}{' (' + wb.name + ')' if wb else ''}: {why}")
+                unread.append(f"{wb.name + ' (' if wb else ''}ROEA {roea}, masa {code}{')' if wb else ''}: {why}")
                 continue
             sid = f"jucar-{roea}"
             stations.append({"station_id": sid, "basin": "jucar", "source": "saih-jucar", "source_id": g.variable_id,
