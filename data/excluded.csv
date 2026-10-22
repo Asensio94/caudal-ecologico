@@ -1,7 +1,7 @@
 basin,reason
-jucar,"ROEA 08119, masa 10-10A (Río Mijares: embalse de Sichar - toma del tramo común): el SAIH no publica un aforo con ese código"
-jucar,"ROEA 08092, masa 18-21-01-07-02-02A (Río Ojos de Moya: barranco de la Sierra del Agua - embalse de Contreras): el SAIH no publica un aforo con ese código"
-jucar,"ROEA 08112, masa 18-21-01-10 (Río Cabriel: Villatoya - Embalse de Embarcaderos): el SAIH no publica un aforo con ese código"
+jucar,"Río Mijares: embalse de Sichar - toma del tramo común (ROEA 08119, masa 10-10A): el SAIH no publica un aforo con ese código"
+jucar,"Río Ojos de Moya: barranco de la Sierra del Agua - embalse de Contreras (ROEA 08092, masa 18-21-01-07-02-02A): el SAIH no publica un aforo con ese código"
+jucar,"Río Cabriel: Villatoya - Embalse de Embarcaderos (ROEA 08112, masa 18-21-01-10): el SAIH no publica un aforo con ese código"
 guadiana,"Masa ES040MSPF00013353A: tramo del Alto Guadiana marcado (*), exigible solo cuando se recupere el acuífero"
 guadiana,"Masa ES040MSPF00013355A: tramo del Alto Guadiana marcado (*), exigible solo cuando se recupere el acuífero"
 guadiana,"Los Canchales (E2-22), masa ES040MSPF000120100: salida de embalse o azud: el SIRA no publica el caudal soltado al río"
@@ -24,79 +24,79 @@ guadiana,"Torre de Abraham (E1-09), masa ES040MSPF00014160A: salida de embalse o
 guadiana,"Alcollarín (E2-33), masa ES040MSPF000141800: salida de embalse o azud: el SIRA no publica el caudal soltado al río"
 guadiana,"Búrdalo (E2-34), masa ES040MSPF000142000: salida de embalse o azud: el SIRA no publica el caudal soltado al río"
 guadiana,"Villalba (E2-32), masa ES040MSPF000142300: salida de embalse o azud: el SIRA no publica el caudal soltado al río"
-cantabrico,ROEA 1060 Lesaka (Onín): sin superficie de cuenca en el anuario del CEDEX
-cantabrico,ROEA 1062 Bera (Zía): sin superficie de cuenca en el anuario del CEDEX
-cantabrico,ROEA 1063 Sunbilla (Bidasoa): sin superficie de cuenca en el anuario del CEDEX
-cantabrico,ROEA 1064 Etxalar (Tximista): sin superficie de cuenca en el anuario del CEDEX
-cantabrico,ROEA 1065 Santesteban (Ezpelura): sin superficie de cuenca en el anuario del CEDEX
-cantabrico,ROEA 1066 Betelu (Araxes): sin superficie de cuenca en el anuario del CEDEX
-cantabrico,ROEA 1100 Legasa (Bidasoa): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1115 Ergobia (Urumea): sin superficie de cuenca en el anuario del CEDEX
-cantabrico,ROEA 1165 Arrigorriaga (Nervión): sin superficie de cuenca en el anuario del CEDEX
-cantabrico,ROEA 1186 Guriezo (Agüera): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1193 La Gándara (Gándara): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1201 Ramales (Asón): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1202 Pondra (Carranza): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1204 Beranga (Campiazo): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1206 Puente Agüero (Miera): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1207 La Cavada (Miera): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1208 Liérganes (Miera): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1214 Puente del Diablo (Pisueña): sin superficie de cuenca en el anuario del CEDEX
-cantabrico,ROEA 1215 Puente Viesgo (Pas): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1217 La Penilla (Pisueña): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1219 San Lorenzo (Pas): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1235 Los Corrales de Buelna (Besaya): sin superficie de cuenca en el anuario del CEDEX
-cantabrico,ROEA 1237 Puente de Torres (Besaya): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1242 Puente San Miguel (Saja): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1244 Arenas de Iguña (Besaya): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1247 Fresneda (Saja): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1248 Puente de Ruente (Saja): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1252 Puente Pumar (Nansa): no está sobre una masa con caudal mínimo
-cantabrico,ROEA 1262 Roiz (Escudo): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1264 Ojedo (Bullón): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1265 Ojedo (Deva): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1276 Mier (Cares): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1281 Nueva de Llanes (Ereba): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1285 Rales (Bedón): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1295 Cangas de Onís (Sella): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1296 Sobrefoz (Ponga): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1297 Ribota (Sella): masa con tramo de reserva natural fluvial (apéndice aparte)
-cantabrico,ROEA 1298 Santillán (Ponga): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1299 Santianes de Tornín (Sella): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1303 Villamayor (Piloña): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1307 Colunga (Libardón): sin superficie de cuenca en el anuario del CEDEX
-cantabrico,ROEA 1335 El Condado (Nalón): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1338 Vegalencia (Nalón): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1339 Sama (Nalón): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1342 Pola de Siero (Nora): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1343 San Cucao (Nora): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1344 La Fresneda (Noreña): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1347 Almurfe (Pigüeña): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1349 Regla de Corias (Narcea): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1352 S. Martín de Lodón (Canal) (Pigüeña): sin superficie de cuenca en el anuario del CEDEX
-cantabrico,ROEA 1353 Corias (Narcea): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1359 Requejo (Narcea): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1360 Quinzanas (Narcea): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1363 Vega del Rey (Lena): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1366 Villar de Lantero (Narcea): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1367 Argame (Caudal): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1368 Grullos (Nalón): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1370 Peñaullán (Nalón): sin superficie de cuenca en el anuario del CEDEX
-cantabrico,ROEA 1371 Palomar (Nalón): sin superficie de cuenca en el anuario del CEDEX
-cantabrico,ROEA 1372 Bueño (Nalón): sin superficie de cuenca en el anuario del CEDEX
-cantabrico,ROEA 1373 Puente de Quinzanas (Narcea): sin superficie de cuenca en el anuario del CEDEX
-cantabrico,ROEA 1374 Peñasjuntas (Trubia): sin superficie de cuenca en el anuario del CEDEX
-cantabrico,ROEA 1395 Trevías (Esva): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1396 Pontigón (Orio): sin superficie de cuenca en el anuario del CEDEX
-cantabrico,ROEA 1397 Paladeperre (Negro): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1399 Vega de Muñalén (Navelgas): sin superficie de cuenca en el anuario del CEDEX
-cantabrico,ROEA 1401 As Nogais (Navia): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1402 Vallo (Ser): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1404 San Antolín (Ibias): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1414 Sueiro (Porcía): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1424 Ribera de Piquín (Eo): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1426 Pontenova (A) (Eo): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1427 San Tirso de Abres (Eo): su cuenca no coincide con la de ningún punto de control
-cantabrico,ROEA 1428 El Llano (Eo): sin superficie de cuenca en el anuario del CEDEX
-cantabrico,ROEA 1429 Mazo de Meredo (Suarón): su cuenca no coincide con la de ningún punto de control
+cantabrico,"Lesaka (Onín), ROEA 1060: sin superficie de cuenca en el anuario del CEDEX"
+cantabrico,"Bera (Zía), ROEA 1062: sin superficie de cuenca en el anuario del CEDEX"
+cantabrico,"Sunbilla (Bidasoa), ROEA 1063: sin superficie de cuenca en el anuario del CEDEX"
+cantabrico,"Etxalar (Tximista), ROEA 1064: sin superficie de cuenca en el anuario del CEDEX"
+cantabrico,"Santesteban (Ezpelura), ROEA 1065: sin superficie de cuenca en el anuario del CEDEX"
+cantabrico,"Betelu (Araxes), ROEA 1066: sin superficie de cuenca en el anuario del CEDEX"
+cantabrico,"Legasa (Bidasoa), ROEA 1100: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Ergobia (Urumea), ROEA 1115: sin superficie de cuenca en el anuario del CEDEX"
+cantabrico,"Arrigorriaga (Nervión), ROEA 1165: sin superficie de cuenca en el anuario del CEDEX"
+cantabrico,"Guriezo (Agüera), ROEA 1186: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"La Gándara (Gándara), ROEA 1193: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Ramales (Asón), ROEA 1201: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Pondra (Carranza), ROEA 1202: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Beranga (Campiazo), ROEA 1204: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Puente Agüero (Miera), ROEA 1206: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"La Cavada (Miera), ROEA 1207: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Liérganes (Miera), ROEA 1208: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Puente del Diablo (Pisueña), ROEA 1214: sin superficie de cuenca en el anuario del CEDEX"
+cantabrico,"Puente Viesgo (Pas), ROEA 1215: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"La Penilla (Pisueña), ROEA 1217: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"San Lorenzo (Pas), ROEA 1219: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Los Corrales de Buelna (Besaya), ROEA 1235: sin superficie de cuenca en el anuario del CEDEX"
+cantabrico,"Puente de Torres (Besaya), ROEA 1237: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Puente San Miguel (Saja), ROEA 1242: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Arenas de Iguña (Besaya), ROEA 1244: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Fresneda (Saja), ROEA 1247: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Puente de Ruente (Saja), ROEA 1248: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Puente Pumar (Nansa), ROEA 1252: no está sobre una masa con caudal mínimo"
+cantabrico,"Roiz (Escudo), ROEA 1262: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Ojedo (Bullón), ROEA 1264: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Ojedo (Deva), ROEA 1265: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Mier (Cares), ROEA 1276: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Nueva de Llanes (Ereba), ROEA 1281: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Rales (Bedón), ROEA 1285: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Cangas de Onís (Sella), ROEA 1295: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Sobrefoz (Ponga), ROEA 1296: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Ribota (Sella), ROEA 1297: masa con tramo de reserva natural fluvial (apéndice aparte)"
+cantabrico,"Santillán (Ponga), ROEA 1298: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Santianes de Tornín (Sella), ROEA 1299: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Villamayor (Piloña), ROEA 1303: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Colunga (Libardón), ROEA 1307: sin superficie de cuenca en el anuario del CEDEX"
+cantabrico,"El Condado (Nalón), ROEA 1335: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Vegalencia (Nalón), ROEA 1338: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Sama (Nalón), ROEA 1339: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Pola de Siero (Nora), ROEA 1342: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"San Cucao (Nora), ROEA 1343: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"La Fresneda (Noreña), ROEA 1344: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Almurfe (Pigüeña), ROEA 1347: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Regla de Corias (Narcea), ROEA 1349: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"S. Martín de Lodón (Canal) (Pigüeña), ROEA 1352: sin superficie de cuenca en el anuario del CEDEX"
+cantabrico,"Corias (Narcea), ROEA 1353: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Requejo (Narcea), ROEA 1359: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Quinzanas (Narcea), ROEA 1360: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Vega del Rey (Lena), ROEA 1363: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Villar de Lantero (Narcea), ROEA 1366: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Argame (Caudal), ROEA 1367: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Grullos (Nalón), ROEA 1368: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Peñaullán (Nalón), ROEA 1370: sin superficie de cuenca en el anuario del CEDEX"
+cantabrico,"Palomar (Nalón), ROEA 1371: sin superficie de cuenca en el anuario del CEDEX"
+cantabrico,"Bueño (Nalón), ROEA 1372: sin superficie de cuenca en el anuario del CEDEX"
+cantabrico,"Puente de Quinzanas (Narcea), ROEA 1373: sin superficie de cuenca en el anuario del CEDEX"
+cantabrico,"Peñasjuntas (Trubia), ROEA 1374: sin superficie de cuenca en el anuario del CEDEX"
+cantabrico,"Trevías (Esva), ROEA 1395: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Pontigón (Orio), ROEA 1396: sin superficie de cuenca en el anuario del CEDEX"
+cantabrico,"Paladeperre (Negro), ROEA 1397: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Vega de Muñalén (Navelgas), ROEA 1399: sin superficie de cuenca en el anuario del CEDEX"
+cantabrico,"As Nogais (Navia), ROEA 1401: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Vallo (Ser), ROEA 1402: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"San Antolín (Ibias), ROEA 1404: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Sueiro (Porcía), ROEA 1414: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Ribera de Piquín (Eo), ROEA 1424: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"Pontenova (A) (Eo), ROEA 1426: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"San Tirso de Abres (Eo), ROEA 1427: su cuenca no coincide con la de ningún punto de control"
+cantabrico,"El Llano (Eo), ROEA 1428: sin superficie de cuenca en el anuario del CEDEX"
+cantabrico,"Mazo de Meredo (Suarón), ROEA 1429: su cuenca no coincide con la de ningún punto de control"
 guadalquivir,Presa de Cordobilla: el SAIH no publica el caudal que circula por el punto
