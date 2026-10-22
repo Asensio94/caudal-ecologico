@@ -15,6 +15,13 @@ reúne para las 6 274 masas de agua superficiales y subterráneas de España su 
 de la Directiva Marco del Agua que se le aplican. 2027 es el último plazo: después solo cabe una
 prórroga por condiciones naturales o rebajar el objetivo.
 
+**Francia** tiene su propia página, en francés: [«Débit écologique»](https://asensio94.github.io/caudal-ecologico/france.html)
+compara cada día el caudal de los 60 puntos nodales del SDAGE Adour-Garonne que tienen estación con
+datos (de 65) con su caudal de crisis (DCR), y añade el nivel de restricción por sequía que publica
+VigiEau. Su [«L’atteindra-t-elle en 2027 ?»](https://asensio94.github.io/caudal-ecologico/france-2027.html)
+hace lo mismo que la española con las 12 095 masas de agua francesas. Lo español no cambia: Francia es
+un país más (`country` = `ES` | `FR`) en los mismos ficheros.
+
 > **Estado: activo.** Se actualiza solo y sigue en desarrollo.
 
 ## Cómo funciona
@@ -90,11 +97,43 @@ mínimo (una nota en cada fila), qué se deja fuera y por qué, los límites y l
    `docs/masas-2027.json` (datos abiertos). `python -m caudal.cli wfd` se ejecuta el día 1 de cada mes,
    con la relectura del plan.
 
+### Francia
+
+1. **Umbral.** El SDAGE Adour-Garonne 2022–2027 (disposición C3) fija en cada punto nodal un caudal
+   objetivo de estiaje (DOE), que se evalúa por temporadas y debe cumplirse 8 años de cada 10, y un
+   caudal de crisis (DCR), que «doit impérativement être sauvegardé en valeur moyenne journalière». El
+   DCR es el umbral diario; el DOE se muestra como contexto. `caudal/plan_fr.py` descarga la tabla C3
+   que publica la agencia del agua (Licence Ouverte) y la lee tal cual. El servidor de la agencia no
+   envía su certificado intermedio; se guarda en `caudal/certs/` (caduca en noviembre de 2027).
+2. **Estación.** La tabla da a cada punto su estación (Hydro1) y, si se movió, la sustituta (Hydro2): se
+   usa la primera con caudal en Hub’Eau en los últimos 60 días. Tres estaciones miden solo un brazo
+   del río y lo dicen en su nota.
+3. **Caudal.** [Hub’Eau](https://hubeau.eaufrance.fr/page/api-hydrometrie) (QmnJ, caudal medio
+   diario de los productores). Cada valor trae su estado (bruto, corregido, prevalidado, validado);
+   solo el validado es definitivo, y se relee el último mes cada mañana. El nombre de las estaciones
+   sale de su referencial; sus comentarios libres se descartan porque nombran a personas.
+4. **Comparación.** La misma que en España (margen del 5 %, episodios). La web dice «sous le DCR selon
+   des données provisoires», nunca «manquement».
+5. **Restricciones.** [VigiEau](https://vigieau.gouv.fr/): nivel del arrêté sequía vigente
+   (vigilance, alerte, alerte renforcée, crise) en la zona de aguas superficiales de cada estación,
+   guardado cada día en `data/vigieau.csv` porque la API no da histórico.
+6. **2027.** Las mismas tablas WISE de la AEMA, con los distritos FR; sin un equivalente al BOE, el
+   plazo es el tramo de la AEMA.
+
+Fuera quedan, y la web explica por qué: el débit réservé de cada presa (art. L214-18 del Code de
+l’environnement; su valor está en cada autorización y no hay registro abierto), Loire-Bretagne y
+Rhône-Méditerranée (tablas en PDF sin código de estación; próximo paso), Seine-Normandie y
+Rhin-Meuse (puntos nodales sin valores), Artois-Picardie, Córcega y ultramar (sin examinar) y los
+caudales de los SAGE.
+
 ### Señales para Estado de las IBA
 
 `docs/signals.json` sigue el contrato de `estado-iba/CONTRATO.md`:
 
 - `river_flow`: una por estación con algún día por debajo del mínimo en 30 días (con el margen del 5 %).
+- Cada señal lleva `country` (`ES` o `FR`), el campo que añade la versión 2 del contrato. Las
+  francesas llevan además su municipio por código INSEE (5 caracteres, p. ej. `2A004` en Córcega) y
+  `details.threshold = "DCR"`.
 
 El estado de las masas de agua frente a 2027 no se envía: el contrato del hub no tiene ese tipo y
 su validador lo contaría como error. Sigue en `docs/2027.html` y `docs/masas-2027.json`. El código
@@ -183,7 +222,11 @@ python -m caudal.cli plan            # mínimos y estaciones desde el BOE, los S
 python -m caudal.cli context         # presiones, acuíferos y niveles piezométricos (AEMA y CHJ)
 python -m caudal.cli fetch --days 30 # medias diarias de los últimos 30 días
 python -m caudal.cli wfd             # estado, plazos y excepciones de todas las masas (AEMA y BOE)
-python -m caudal.cli page            # docs/index.html, docs/2027.html, masas-2027.json y signals.json
+python -m caudal.cli plan-fr         # Francia: DCR y DOE del SDAGE Adour-Garonne y sus estaciones Hub'Eau
+python -m caudal.cli wfd --country FR
+python -m caudal.cli context --country FR
+python -m caudal.cli restrictions    # nivel VigiEau del día en cada estación francesa
+python -m caudal.cli page            # index.html, france.html, 2027.html, france-2027.html, sus JSON y signals.json
 python -m pytest -q
 ```
 
@@ -200,6 +243,12 @@ python -m pytest -q
 | `data/wfd/water_bodies.csv` | Cada masa de agua: código europeo, demarcación, categoría, estado, tramo de plazo, fecha de entrega y punto representativo |
 | `data/wfd/exemptions.csv` | Excepciones por masa y aspecto: artículo, motivo y presiones |
 | `data/wfd/objectives.csv` | Año y artículos del BOE por masa, con su referencia legal y enlace |
+| `data/requirements/adour-garonne.csv` | DCR (como mínimo de todos los meses) y DOE (`objective`, tal como lo escribe la tabla C3) por punto nodal |
+| `data/vigieau.csv` | Nivel de restricción VigiEau por estación francesa y día, con la zona y el enlace al arrêté |
+| `data/wfd/*_fr.csv` | Masas de agua y excepciones de Francia, mismas columnas que las españolas |
+
+`stations.csv` y `excluded.csv` llevan una columna `country`; las estaciones francesas, además, su
+municipio (código INSEE). Las series francesas añaden una columna `status` con el estado del dato.
 
 ## Fuentes y licencias
 
@@ -222,6 +271,11 @@ python -m pytest -q
   vía su API de datos abiertos.
 - Estado, excepciones y nombres de las masas: [WISE WFD](https://discodata.eea.europa.eu/), Agencia
   Europea de Medio Ambiente, CC BY 4.0 (Discodata y servicios de mapas WFD2022).
+- Francia: caudales de [Hub’Eau](https://hubeau.eaufrance.fr/) (HydroPortail; DREAL y servicios
+  de previsión de crecidas); DCR y DOE de la [tabla C3 del SDAGE Adour-Garonne
+  2022–2027](https://www.data.gouv.fr/fr/datasets/aeag-sdage-2022-2027-doe-dcr/), agencia del agua
+  Adour-Garonne; restricciones de [VigiEau](https://vigieau.gouv.fr/), ministerio de Transición
+  Ecológica. Todo bajo Licence Ouverte.
 - Código: MIT. Datos propios (medias diarias y comparaciones): CC BY 4.0.
 
 Forma parte de [Terra Aperta](https://asensio94.github.io/terra-aperta/), un conjunto de

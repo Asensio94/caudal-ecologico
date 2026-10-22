@@ -5,6 +5,11 @@ One kind of signal:
   days, as the hub's adapter has read it so far (it stops reading our files once this
   one exists), but with the page's own 5 % margin for measurement error.
 
+Every signal says its `country` ("ES", "FR"), the field version 2 of the contract adds.
+French stations add their municipality by INSEE code (five characters, 2A004 in Corsica),
+since the hub's municipal layer is Spanish; their minimum is the crisis flow (DCR) of the
+SDAGE.
+
 `water_status` (one per water body short of good status or under an exemption of the Water
 Framework Directive) is built but not sent: the hub's contract has no such kind, and its
 validator would count every one as an error. The bodies stay on docs/2027.html and
@@ -19,6 +24,7 @@ from zoneinfo import ZoneInfo
 
 from .compliance import Status
 from .config import DOCS_DIR
+from .i18n import PAGES
 from .countdown import CATEGORIES, PAGE_URL, REASONS, horizon_label, status_label
 from .outlook import VERDICTS
 from .wfd import RBD_NAMES
@@ -27,9 +33,9 @@ SOURCE = "caudal-ecologico"
 SITE = "https://asensio94.github.io/caudal-ecologico/"
 
 
-def _signal(id_: str, kind: str, day: str, title: str, url: str, **extra) -> dict:
-    return {"id": id_, "kind": kind, "date": day, "title": title, "url": url, "precision": "punto",
-            "deadline": None, **extra}
+def _signal(id_: str, kind: str, day: str, title: str, url: str, country: str = "ES", **extra) -> dict:
+    return {"id": id_, "kind": kind, "date": day, "title": title, "url": url, "country": country,
+            "precision": "punto", "deadline": None, **extra}
 
 
 def river_flow(rows: list[dict]) -> list[dict]:
@@ -40,14 +46,24 @@ def river_flow(rows: list[dict]) -> list[dict]:
         days = [x for x in r["results"] if x.flow is not None]
         if not r["below_days"] or latest is None:
             continue
+        country = s.get("country") or "ES"
+        french = country == "FR"
+        details = {"minimum": latest.minimum, "days_below": r["below_days"], "days": len(days),
+                   "below_now": latest.status is Status.BELOW, "river": s["river"],
+                   "water_body": s["water_body_code"], "point": [float(s["lon"]), float(s["lat"])]}
+        if french:
+            ctx = r.get("context")
+            details.update(water_body=ctx.river_body_code if ctx else "", threshold="DCR",
+                           provisional=latest.provisional, nodal_point=s["water_body_name"])
         out.append(_signal(
             s["station_id"], "river_flow", latest.day.isoformat(),
-            f"{s['name']}: {r['below_days']} de {len(days)} días por debajo del caudal mínimo",
-            f"{SITE}#{s['station_id']}",
+            f"{s['name']}: {r['below_days']} de {len(days)} días por debajo del "
+            + ("caudal de crisis (DCR) según datos provisionales" if french and latest.provisional
+               else "caudal de crisis (DCR)" if french else "caudal mínimo"),
+            f"{SITE}{PAGES[country] if french else ''}#{s['station_id']}", country,
             status=latest.status.value, value={"amount": round(latest.flow, 4), "unit": "m³/s"},
-            details={"minimum": latest.minimum, "days_below": r["below_days"], "days": len(days),
-                     "below_now": latest.status is Status.BELOW, "river": s["river"],
-                     "water_body": s["water_body_code"], "point": [float(s["lon"]), float(s["lat"])]}))
+            **({"municipalities": [s["municipality"]]} if s.get("municipality") else {}),
+            details=details))
     return out
 
 
@@ -76,7 +92,8 @@ def build(rows: list[dict], now: datetime | None = None) -> dict:
     return {
         "source": SOURCE, "version": 1, "generated": now.strftime("%Y-%m-%dT%H:%MZ"),
         "coverage": {"label": "Toda España", "sites": None,
-                     "note": "Caudal diario frente al mínimo ecológico en Júcar, Guadiana, Cantábrico y Guadalquivir."},
+                     "note": "Caudal diario frente al mínimo ecológico en Júcar, Guadiana, Cantábrico y Guadalquivir; "
+                             "en Francia, frente al caudal de crisis (DCR) de los puntos nodales de Adour-Garona."},
         "signals": river_flow(rows),
     }
 
@@ -90,4 +107,4 @@ def write(rows: list[dict]) -> Path:
 def render(today: date | None = None) -> Path:
     from .web import build_rows
     today = today or datetime.now(ZoneInfo("Europe/Madrid")).date()
-    return write(build_rows(today)[0])
+    return write(build_rows(today, "ES")[0] + build_rows(today, "FR")[0])

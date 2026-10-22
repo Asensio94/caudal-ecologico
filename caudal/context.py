@@ -24,11 +24,17 @@ class Context:
     aquifers: tuple[dict, ...]
 
 
-def build(log=print) -> int:
+def build(log=print, country: str | None = None) -> int:
+    """With a country, only its stations are looked up; the rows of the others are kept."""
     http = session()
-    trends = chj_piezometry.trends(chj_piezometry.fetch(http))
+    stations = store.load_stations(country)
+    ids = {s["station_id"] for s in stations}
+    trends = chj_piezometry.trends(chj_piezometry.fetch(http)) if country in (None, "ES") else {}
     rows = []
-    for s in store.load_stations():
+    if country and CONTEXT_FILE.exists():
+        with CONTEXT_FILE.open(encoding="utf-8") as f:
+            rows = [r for r in csv.DictReader(f) if r["station_id"] not in ids]
+    for s in stations:
         lon, lat = float(s["lon"]), float(s["lat"])
         try:
             river = wise.river_body_at(lon, lat, s["water_body_code"], s["river"], http=http)
@@ -48,7 +54,7 @@ def build(log=print) -> int:
                              "trend_falling": t.falling, "trend_years": f"{t.first_year}-{t.last_year}"} if t else {})})
         log(f"{s['station_id']}: river body {base['river_body_code'] or '—'}, {len(aquifers)} aquifer(s)")
     with CONTEXT_FILE.open("w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=FIELDS)
+        w = csv.DictWriter(f, fieldnames=FIELDS, restval="")
         w.writeheader()
         w.writerows(rows)
     return len(rows)

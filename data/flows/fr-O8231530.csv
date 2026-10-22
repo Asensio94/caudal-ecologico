@@ -1,0 +1,141 @@
+date,q_mean,readings,expected,source,fetched_at,status
+2026-05-28,,0,1,hubeau,2026-10-15T16:22Z,
+2026-05-29,,0,1,hubeau,2026-10-15T16:22Z,
+2026-05-30,,0,1,hubeau,2026-10-15T16:22Z,
+2026-05-31,,0,1,hubeau,2026-10-15T16:22Z,
+2026-06-01,,0,1,hubeau,2026-10-15T16:22Z,
+2026-06-02,,0,1,hubeau,2026-10-15T16:22Z,
+2026-06-03,,0,1,hubeau,2026-10-15T16:22Z,
+2026-06-04,,0,1,hubeau,2026-10-15T16:22Z,
+2026-06-05,,0,1,hubeau,2026-10-15T16:22Z,
+2026-06-06,,0,1,hubeau,2026-10-15T16:22Z,
+2026-06-07,,0,1,hubeau,2026-10-15T16:22Z,
+2026-06-08,,0,1,hubeau,2026-10-15T16:22Z,
+2026-06-09,,0,1,hubeau,2026-10-15T16:22Z,
+2026-06-10,19.3720,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-06-11,16.9300,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-06-12,16.7320,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-06-13,16.5120,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-06-14,15.4910,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-06-15,14.5050,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-06-16,14.6720,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-06-17,15.5590,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-06-18,18.1710,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-06-19,15.0910,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-06-20,14.5760,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-06-21,14.9070,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-06-22,16.6060,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-06-23,14.9950,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-06-24,12.7510,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-06-25,12.7110,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-06-26,12.2990,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-06-27,15.1840,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-06-28,12.6870,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-06-29,12.5780,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-06-30,13.2200,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-01,12.2930,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-02,17.0050,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-03,17.0810,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-04,17.0950,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-05,17.2110,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-06,17.1120,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-07,17.0340,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-08,13.6390,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-09,12.6040,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-10,12.7120,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-11,12.3400,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-12,,0,1,hubeau,2026-10-15T16:22Z,
+2026-07-13,,0,1,hubeau,2026-10-15T16:22Z,
+2026-07-14,,0,1,hubeau,2026-10-15T16:22Z,
+2026-07-15,,0,1,hubeau,2026-10-15T16:22Z,
+2026-07-16,,0,1,hubeau,2026-10-15T16:22Z,
+2026-07-17,,0,1,hubeau,2026-10-15T16:22Z,
+2026-07-18,23.6790,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-19,19.3730,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-20,20.2180,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-21,21.9320,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-22,40.7480,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-23,38.7880,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-24,24.1040,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-25,17.8950,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-26,17.3410,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-27,16.3700,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-28,22.6480,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-29,19.9850,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-30,25.5350,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-07-31,19.7270,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-01,25.6590,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-02,16.5130,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-03,20.8740,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-04,49.0080,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-05,32.5970,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-06,24.1150,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-07,24.9090,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-08,25.1210,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-09,19.0600,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-10,28.1500,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-11,46.8260,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-12,45.8810,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-13,49.0060,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-14,50.9660,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-15,36.5490,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-16,36.2080,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-17,31.7690,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-18,33.3580,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-19,49.4910,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-20,53.1950,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-21,46.6010,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-22,40.2340,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-23,18.6100,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-24,18.0960,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-25,39.6380,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-26,38.4420,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-27,40.5930,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-28,44.9900,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-29,27.8680,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-30,20.1820,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-08-31,18.6270,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-01,24.5830,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-02,45.5900,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-03,37.7200,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-04,29.6940,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-05,19.1470,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-06,25.9960,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-07,33.4640,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-08,40.0410,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-09,23.9020,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-10,28.1360,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-11,28.8890,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-12,37.9880,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-13,18.4500,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-14,18.6390,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-15,49.7100,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-16,32.3340,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-17,27.5680,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-18,17.7040,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-19,20.9590,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-20,14.6990,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-21,13.3300,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-22,54.8500,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-23,42.1930,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-24,32.4000,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-25,28.8690,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-26,21.0470,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-27,15.1050,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-28,15.1440,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-29,39.4730,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-09-30,16.9900,1,1,hubeau,2026-10-15T16:22Z,Donnée pré-validée
+2026-10-01,30.1970,1,1,hubeau,2026-10-15T16:22Z,Donnée corrigée
+2026-10-02,48.7500,1,1,hubeau,2026-10-15T16:22Z,Donnée corrigée
+2026-10-03,58.6690,1,1,hubeau,2026-10-15T16:22Z,Donnée corrigée
+2026-10-04,18.0740,1,1,hubeau,2026-10-15T16:22Z,Donnée corrigée
+2026-10-05,14.7940,1,1,hubeau,2026-10-15T16:22Z,Donnée corrigée
+2026-10-06,18.7190,1,1,hubeau,2026-10-15T16:22Z,Donnée corrigée
+2026-10-07,44.1000,1,1,hubeau,2026-10-15T16:22Z,Donnée corrigée
+2026-10-08,43.1390,1,1,hubeau,2026-10-15T16:22Z,Donnée corrigée
+2026-10-09,21.1800,1,1,hubeau,2026-10-15T16:22Z,Donnée brute
+2026-10-10,15.2150,1,1,hubeau,2026-10-15T16:22Z,Donnée brute
+2026-10-11,15.2150,1,1,hubeau,2026-10-15T16:22Z,Donnée brute
+2026-10-12,13.7980,1,1,hubeau,2026-10-15T16:22Z,Donnée brute
+2026-10-13,15.6490,1,1,hubeau,2026-10-15T16:22Z,Donnée brute
+2026-10-14,19.7680,1,1,hubeau,2026-10-15T16:22Z,Donnée brute
