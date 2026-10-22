@@ -23,12 +23,17 @@ SAIH_GUADALQUIVIR = "https://www.chguadalquivir.es/saih/"
 BASINS = {"jucar": "Júcar", "guadiana": "Guadiana", "cantabrico": "Cantábrico", "guadalquivir": "Guadalquivir"}
 REPO = "https://github.com/Asensio94/caudal-ecologico"
 
+# Common footer of the Terra Aperta projects: a link back to the hub, then the twelve projects in
+# the hub's menu order. This project's own entry is plain text marked with aria-current.
+HUB = "https://asensio94.github.io/terra-aperta/"
 SIBLINGS = [
-    ("observatorio-alegaciones", "Observatorio de alegaciones"), ("vigia-incendios", "Vigía de incendios"),
-    ("centinela-natura", "Centinela Natura"), ("vigilancia-humedales", "Vigilancia de humedales"),
-    ("sub-nocte", "Sub Nocte"), ("riesgo-tendidos-aves", "Riesgo de tendidos para aves"),
-    ("grafo-promotores", "Grafo de promotores"), ("cartera-cotizadas", "Cartera de las cotizadas"),
-    ("cuaderno-campo", "Cuaderno de campo"), ("caudal-ecologico", "Caudal ecológico"),
+    ("sub-nocte", "Sub Nocte"), ("vigia-incendios", "Vigía de incendios"),
+    ("centinela-natura", "Centinela Natura"), ("estado-iba", "Estado de las IBA"),
+    ("riesgo-tendidos-aves", "Riesgo de tendidos para aves"),
+    ("observatorio-alegaciones", "Observatorio de alegaciones"), ("grafo-promotores", "Grafo de promotores"),
+    ("vigilancia-humedales", "Vigilancia de humedales"), ("caudal-ecologico", "Caudal ecológico"),
+    ("acuiferos-francia", "Acuíferos de Francia"), ("depuracion-y-bano", "Depuración y baño"),
+    ("zona-inundable", "Construir en zona inundable"),
 ]
 MONTHS = "enero febrero marzo abril mayo junio julio agosto septiembre octubre noviembre diciembre".split()
 
@@ -54,6 +59,8 @@ table.points{{width:100%;border-collapse:collapse;font-size:.92rem}}
 td.below b{{color:var(--below)}}
 svg.spark{{width:180px;max-width:none;height:36px;display:block}}
 .points td:last-child{{min-width:190px}}
+.siblings li[aria-current]{{color:var(--ink);font-weight:600}}
+.site-footer .hub{{margin:0;font-weight:600}}
 .spark .min{{stroke:var(--ink);stroke-dasharray:3 2;stroke-width:1;fill:none;opacity:.6}}
 .spark .q{{stroke:var(--accent);stroke-width:1.6;fill:none}}
 .spark .bd{{fill:var(--below);opacity:.25}}
@@ -221,8 +228,8 @@ def render(today: date | None = None) -> Path:
         excluded.setdefault(x["basin"], []).append(x["reason"])
     method, sources = method_html(compared, excluded, links, _context_counts(rows)), sources_html(links)
     siblings = "\n".join(
-        f'    <li{" aria-current=\"page\"" if slug == "caudal-ecologico" else ""}>'
-        f'<a href="https://asensio94.github.io/{slug}/">{name}</a></li>' for slug, name in SIBLINGS)
+        f'    <li aria-current="page">{name}</li>' if slug == "caudal-ecologico"
+        else f'    <li><a href="https://asensio94.github.io/{slug}/">{name}</a></li>' for slug, name in SIBLINGS)
 
     html = f"""<!doctype html>
 <html lang="es">
@@ -279,6 +286,7 @@ def render(today: date | None = None) -> Path:
   {sources}
   <p>Código en
   <a href="{REPO}">GitHub</a> (MIT); datos propios CC BY 4.0.</p>
+  <p class="hub"><a href="{HUB}">← Terra Aperta: todos los proyectos</a></p>
   <nav aria-label="Proyectos hermanos"><ul class="siblings">
 {siblings}
   </ul></nav>
