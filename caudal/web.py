@@ -36,6 +36,7 @@ CSS = f""":root{{--accent:{ACCENT};--accent-dark:{ACCENT_DARK};--below:#b42318;-
 @media (prefers-color-scheme:dark){{:root:not([data-theme="light"]){{--below:#f47067;--ok:#62b88a;--gap:#6f6a64}}}}
 :root[data-theme="dark"]{{--below:#f47067;--ok:#62b88a;--gap:#6f6a64}}
 main{{max-width:1100px;margin:0 auto;padding:0 16px}}
+.site-header .note{{margin:0;max-width:72ch}}
 .nav{{margin:20px 0 0;font-size:.92rem}}
 tr:target td{{background:color-mix(in srgb,var(--accent) 10%,transparent)}}
 .tools{{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:24px 0 12px}}
@@ -163,9 +164,13 @@ def _context_html(c: context.Context | None) -> str:
     return "".join(f'<span class="ctx">{x}</span>' for x in lines)
 
 
+ROEA = ('<abbr title="Red Oficial de Estaciones de Aforo: el número que el Estado da a cada estación '
+        'que mide el caudal de un río">ROEA</abbr>')
+
+
 def _gauge_label(s: dict) -> str:
     basin = BASINS.get(s["basin"], s["basin"])
-    return f'{basin} · ROEA {s["roea"]}' if s["roea"] else f'{basin} · {"señal SAIH" if s["source"] == "saih-guadalquivir" else "estación"} {escape(s["source_id"])}'
+    return f'{basin} · {ROEA} {s["roea"]}' if s["roea"] else f'{basin} · {"señal SAIH" if s["source"] == "saih-guadalquivir" else "estación"} {escape(s["source_id"])}'
 
 
 def _row_html(r: dict, start: date) -> str:
@@ -248,6 +253,18 @@ def render(today: date | None = None) -> Path:
     <div><b>{n_any}</b><span>con algún día por debajo en {WINDOW_DAYS} días</span></div>
     <div><b>{_fmt(deficit, 2)}</b><span>hm³ que faltaron para llegar al mínimo</span></div>
   </div>
+  <p class="note">Cubre {len(BASINS)} demarcaciones hidrográficas: {", ".join(list(BASINS.values())[:-1])} y
+  {list(BASINS.values())[-1]}. Las otras de los planes estatales (Ebro, Segura, Tajo, Duero y Miño-Sil) todavía
+  no dejan leer o reutilizar sus datos (<a href="#que-falta">qué falta</a>); las cuencas que gestionan las
+  comunidades autónomas tienen planes propios y no entran. La tabla tiene los {len(rows)} puntos de control
+  comparados. Solo los {n_any} que han estado por debajo del mínimo algún día de los últimos {WINDOW_DAYS} pasan
+  como señal a <a href="https://asensio94.github.io/terra-aperta/">Terra Aperta</a> y Estado de las IBA.</p>
+  <p class="note"><b>Caudal ecológico</b>: el caudal mínimo que el plan hidrológico obliga a dejar en cada
+  río para que sigan vivos sus peces, sus plantas y sus riberas. <b>Datos provisionales</b>: las lecturas
+  automáticas del SAIH (Sistema Automático de Información Hidrológica de cada confederación) tal como llegan;
+  la confederación las revisa y publica las definitivas meses después, así que una cifra de aquí puede
+  cambiar. <b>ROEA</b>: Red Oficial de Estaciones de Aforo, el número que el
+  Estado da a cada estación que mide el caudal; en la tabla, cada punto va primero por su sitio y su río.</p>
 </header>
 <main>
   <p class="nav"><a href="2027.html">¿Llegará a 2027? Estado y plazo de cada masa de agua →</a></p>

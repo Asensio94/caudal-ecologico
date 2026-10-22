@@ -76,7 +76,7 @@ def method_html(compared: dict[str, int], excluded: dict[str, list[str]], links:
     <h2>Cuenca por cuenca</h2>
     <h3>Júcar</h3>
     <p>Anexo XI, apéndice 5: un mínimo por mes para cada masa de agua (tabla 5.1, ordinario; 5.2, sequía). El
-    plan dice qué aforo controla cada masa por su código ROEA, y el SAIH Júcar los numera igual (su «EA 89» es
+    plan dice qué aforo controla cada masa por su código ROEA (Red Oficial de Estaciones de Aforo), y el SAIH Júcar los numera igual (su «EA 89» es
     el ROEA 08089), así que la unión es directa. Lecturas cada cinco minutos. Se comparan {n.get("jucar", 0)}
     de los {n.get("jucar", 0) + x.get("jucar", 0)} puntos de control.</p>{_excluded(excluded.get("jucar", []), "puntos del plan")}
 
@@ -176,7 +176,7 @@ def method_html(compared: dict[str, int], excluded: dict[str, list[str]], links:
       margen del {TOLERANCE * 100:.0f} % lo amortigua, no lo elimina.</li>
     </ul>
 
-    <h3>Qué falta</h3>
+    <h3 id="que-falta">Qué falta</h3>
     <ul>
       <li>Ebro: su SAIH exige registrarse para usar la API. Segura: su visor pide aceptar unas condiciones.
       Tajo, Duero y Miño-Sil: hace falta permiso de la confederación para reutilizar sus datos; en el Tajo,
