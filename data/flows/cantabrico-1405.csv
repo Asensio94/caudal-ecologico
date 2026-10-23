@@ -35,9 +35,10 @@ date,q_mean,readings,expected,source,fetched_at
 2026-10-13,,33,288,saih-cantabrico,2026-10-20T12:45Z
 2026-10-14,,26,288,saih-cantabrico,2026-10-21T12:58Z
 2026-10-15,,20,288,saih-cantabrico,2026-10-22T13:00Z
-2026-10-16,,71,288,saih-cantabrico,2026-10-22T13:00Z
-2026-10-17,,69,288,saih-cantabrico,2026-10-22T13:00Z
-2026-10-18,,30,288,saih-cantabrico,2026-10-22T13:00Z
-2026-10-19,,57,288,saih-cantabrico,2026-10-22T13:00Z
-2026-10-20,,148,288,saih-cantabrico,2026-10-22T13:00Z
-2026-10-21,,30,288,saih-cantabrico,2026-10-22T13:00Z
+2026-10-16,,71,288,saih-cantabrico,2026-10-23T12:39Z
+2026-10-17,,69,288,saih-cantabrico,2026-10-23T12:39Z
+2026-10-18,,30,288,saih-cantabrico,2026-10-23T12:39Z
+2026-10-19,,57,288,saih-cantabrico,2026-10-23T12:39Z
+2026-10-20,,148,288,saih-cantabrico,2026-10-23T12:39Z
+2026-10-21,,30,288,saih-cantabrico,2026-10-23T12:39Z
+2026-10-22,,61,288,saih-cantabrico,2026-10-23T12:39Z
