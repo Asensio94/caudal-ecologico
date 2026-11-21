@@ -61,8 +61,10 @@ date,q_mean,readings,expected,source,fetched_at
 2026-11-11,3.9596,24,24,saih-guadalquivir,2026-11-18T16:29Z
 2026-11-12,3.6770,24,24,saih-guadalquivir,2026-11-19T16:35Z
 2026-11-13,2.4808,24,24,saih-guadalquivir,2026-11-19T16:35Z
-2026-11-14,2.5645,24,24,saih-guadalquivir,2026-11-19T16:35Z
-2026-11-15,1.9588,24,24,saih-guadalquivir,2026-11-19T16:35Z
-2026-11-16,2.2157,24,24,saih-guadalquivir,2026-11-19T16:35Z
-2026-11-17,1.4965,24,24,saih-guadalquivir,2026-11-19T16:35Z
-2026-11-18,0.5711,24,24,saih-guadalquivir,2026-11-19T16:35Z
+2026-11-14,2.5645,24,24,saih-guadalquivir,2026-11-21T15:23Z
+2026-11-15,1.9588,24,24,saih-guadalquivir,2026-11-21T15:23Z
+2026-11-16,2.2157,24,24,saih-guadalquivir,2026-11-21T15:23Z
+2026-11-17,1.4965,24,24,saih-guadalquivir,2026-11-21T15:23Z
+2026-11-18,0.5711,24,24,saih-guadalquivir,2026-11-21T15:23Z
+2026-11-19,0.5530,24,24,saih-guadalquivir,2026-11-21T15:23Z
+2026-11-20,2.2637,24,24,saih-guadalquivir,2026-11-21T15:23Z
